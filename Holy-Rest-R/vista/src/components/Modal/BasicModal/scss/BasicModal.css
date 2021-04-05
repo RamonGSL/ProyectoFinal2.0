@@ -1,0 +1,43 @@
+:root {
+  --primary: #003566;
+  --primary-light: #cae9ff;
+  --primary-yellow: #ffc300;
+  --primary-dark: #001d3d;
+  --primary-black: #000814;
+  --primary-yellow-light: #FFE357;
+  --font-primary: var(--primary);
+  --font-light: #fff;
+  --font-yellow: var(--primary-yellow);
+  --font-dark: #000;
+  --border-primary: var(--primary);
+  --border-light:#fff;
+  --border-yellow: var(--primary-yellow);
+  --border-dark: var(--primary-dark);
+  --background-light: #fff;
+  --background-dark: var(--primary-dark);
+  --background-light: var(--primary-light);
+  --danger:#e0245e;
+}
+
+.basic-modal .modal-content {
+  background-color: var(--background-dark);
+  border-radius: 25px;
+}
+
+.basic-modal .modal-content .modal-header {
+  padding: 15px;
+  border: 0;
+}
+
+.basic-modal .modal-content .modal-header .modal-title {
+  margin: 0 auto;
+}
+
+.basic-modal .modal-content .modal-header .modal-title img {
+  width: 100px;
+}
+
+.basic-modal .modal-content .modal-body {
+  padding: 20px 40px 40px 40px;
+}
+/*# sourceMappingURL=BasicModal.css.map */
