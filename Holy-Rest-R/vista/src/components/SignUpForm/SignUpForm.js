@@ -10,15 +10,21 @@ import {
   isSurnamesValid,
   isPasswordValid,
 } from "./../../utils/validations";
-import { newUser } from "./../../utils/services";
+import { registerApi } from "./../../api/user";
 
 export default function SignUpForm(props) {
   const { setShowModal } = props;
+
   //Datos del usuario
   const [formData, setFormData] = useState(initialFormValue());
   const [signUpLoading, setsignUpLoading] = useState(false);
 
-  const onSubmit = (e) => {
+  const requestServer = async (formData) => {
+    let response = await registerApi(formData);
+    return response;
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     let validCount = 0;
     //Cuenta los datos que a introducido el usuario para comprobar si estan todos
@@ -47,12 +53,20 @@ export default function SignUpForm(props) {
         toast.warning("The password must be between 4 and 12 characters long");
       } else {
         setsignUpLoading(true);
-        newUser(formData);
+        try {
+          let response = await requestServer(formData);
+          if (response === "Correct registration") {
+            toast.success(response);
+          } else {
+            toast.error(response);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setsignUpLoading(false);
+        }
       }
     }
-    setTimeout(() => {
-      setsignUpLoading(false);
-    }, 3000);
   };
 
   //Cuando algun elemento del formulario cambia actualiza nuestro formData

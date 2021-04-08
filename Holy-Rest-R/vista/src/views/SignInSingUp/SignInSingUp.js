@@ -35,6 +35,7 @@ export default function SignInSingUp() {
       <BasicModal show={showModal} setShow={setShowModal}>
         {contentModal}
       </BasicModal>
+      <button onClick={() => {}}></button>
     </>
   );
 }

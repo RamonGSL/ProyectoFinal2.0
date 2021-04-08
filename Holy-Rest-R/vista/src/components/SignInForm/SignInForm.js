@@ -5,12 +5,18 @@ import { Form, Button, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { isEmailValid, isPasswordValid } from "./../../utils/validations";
 import { size, values } from "lodash";
-import { loginUser } from "./../../utils/services";
+import { loginApi } from "./../../api/user";
 
 export default function SignInForm() {
   const [formData, setFormData] = useState(initialFormValue());
   const [signInLoading, setsignInLoading] = useState(false);
-  const onSubmit = (e) => {
+
+  const requestServer = async (formData) => {
+    let response = await loginApi(formData);
+    return response;
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     console.log(formData);
@@ -30,7 +36,19 @@ export default function SignInForm() {
         toast.warning("The password must be between 4 and 12 characters long");
       } else {
         setsignInLoading(true);
-        loginUser(formData);
+
+        try {
+          let response = await requestServer(formData);
+          if (response === "Correct login") {
+            toast.success(response);
+          } else {
+            toast.error(response);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setsignInLoading(false);
+        }
       }
     }
   };

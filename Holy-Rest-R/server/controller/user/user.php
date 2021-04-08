@@ -11,6 +11,11 @@ if ($method == "OPTIONS") {
     die();
 }
 $data = json_decode(file_get_contents("php://input"), true);
+var_dump($data["Type"]);
+echo "petición correcta";
+return "petición correcta";
+/*
+
 $datas = $data['datas'];
 $type = $data['type'];
 
@@ -51,3 +56,4 @@ switch ($type) {
         # code...
         break;
 }
+*/
