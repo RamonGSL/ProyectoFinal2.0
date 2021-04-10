@@ -11,43 +11,42 @@ if ($method == "OPTIONS") {
     die();
 }
 $data = json_decode(file_get_contents("php://input"), true);
-var_dump($data["Type"]);
-echo "petición correcta";
-return "petición correcta";
-/*
 
-$datas = $data['datas'];
-$type = $data['type'];
-
+//Componentes del controlador
 include_once('./../../model/User.php');
 include_once('./functionsUser.php');
 $user = new User();
 $functionUser = new functionsUser();
 $comprobationType = false;
-switch ($type) {
 
-    case 'newUser':
 
-        foreach ($datas as $index) {
+var_dump($data);
+
+
+switch ($data['Type']) {
+
+    case 'register':
+
+        foreach ($data as $index) {
             if (is_string($index)) {
                 $comprobationType = true;
             }
         }
 
         if ($comprobationType == true) {
-            return  $functionUser->comprobateUser($datas);
+            return  $functionUser->comprobateUser($data);
         }
         break;
 
     case 'loginUser':
 
-        foreach ($datas as $index) {
+        foreach ($data as $index) {
             if (is_string($index)) {
                 $comprobationType = true;
             }
 
             if ($comprobationType == true) {
-                return  $functionUser->comprobateLogin($datas);
+                return  $functionUser->comprobateLogin($data);
             }
         }
         break;
@@ -56,4 +55,3 @@ switch ($type) {
         # code...
         break;
 }
-*/

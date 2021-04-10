@@ -13,7 +13,7 @@ import {
 import { registerApi } from "./../../api/user";
 
 export default function SignUpForm(props) {
-  const { setShowModal } = props;
+  // const { setShowModal } = props;
 
   //Datos del usuario
   const [formData, setFormData] = useState(initialFormValue());
@@ -57,6 +57,8 @@ export default function SignUpForm(props) {
           let response = await requestServer(formData);
           if (response === "Correct registration") {
             toast.success(response);
+          } else if (response == null) {
+            toast.error("Server error please try again later");
           } else {
             toast.error(response);
           }

@@ -7,7 +7,8 @@ import { isEmailValid, isPasswordValid } from "./../../utils/validations";
 import { size, values } from "lodash";
 import { loginApi } from "./../../api/user";
 
-export default function SignInForm() {
+export default function SignInForm(props) {
+  const { setRefreshCheckLogin } = props;
   const [formData, setFormData] = useState(initialFormValue());
   const [signInLoading, setsignInLoading] = useState(false);
 
@@ -19,7 +20,7 @@ export default function SignInForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    //console.log(formData);
 
     let validCount = 0;
     values(formData).some((value) => {
@@ -41,6 +42,9 @@ export default function SignInForm() {
           let response = await requestServer(formData);
           if (response === "Correct login") {
             toast.success(response);
+            setRefreshCheckLogin(true);
+          } else if (response === null) {
+            toast.error("Server error please try again later");
           } else {
             toast.error(response);
           }
@@ -55,7 +59,7 @@ export default function SignInForm() {
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    //console.log(e.target.value);
   };
 
   return (
