@@ -21,25 +21,11 @@
   --danger: #e0245e;
 }
 
-.basic-modal .modal-content {
-  background-color: var(--background-dark);
-  border-radius: 25px;
+.basic-layout__menu {
+  background-color: var(--primary-dark);
 }
 
-.basic-modal .modal-content .modal-header {
-  padding: 15px;
-  border: 0;
+.basic-layout__content {
+  background-color: var(--primary);
 }
-
-.basic-modal .modal-content .modal-header .modal-title {
-  margin: 0 auto;
-}
-
-.basic-modal .modal-content .modal-header .modal-title img {
-  width: 100px;
-}
-
-.basic-modal .modal-content .modal-body {
-  padding: 20px 40px 40px 40px;
-}
-/*# sourceMappingURL=BasicModal.css.map */
+/*# sourceMappingURL=BasicLayout.css.map */

@@ -1,0 +1,9 @@
+@import "./../../../scss/index.scss";
+.basic-layout {
+  &__menu {
+    background-color: var(--primary-dark);
+  }
+  &__content {
+    background-color: var(--primary);
+  }
+}

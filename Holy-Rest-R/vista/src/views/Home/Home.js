@@ -1,10 +1,31 @@
 import React from "react";
+import BasicLayout from "./../../layouts/BasicLayout/BasicLayout";
 import "./scss/Home.scss";
 
 export default function Home() {
   return (
-    <div>
-      <h2>Estamos en la view de home</h2>
-    </div>
+    <BasicLayout className="home">
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+      <h2>Estamos en home</h2>
+    </BasicLayout>
   );
 }

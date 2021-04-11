@@ -1,0 +1,67 @@
+:root {
+  --primary: #003566;
+  --primary-light: #cae9ff;
+  --primary-yellow: #ffc300;
+  --primary-dark: #001d3d;
+  --primary-black: #000814;
+  --primary-yellow-light: #ffe357;
+  --secondary-dark: #f5b062;
+  --font-primary: var(--primary);
+  --font-light: #fff;
+  --font-yellow: var(--primary-yellow);
+  --font-dark: #000;
+  --icon-light: #fff;
+  --border-primary: var(--primary);
+  --border-light: #fff;
+  --border-yellow: var(--primary-yellow);
+  --border-dark: var(--primary-dark);
+  --background-light: #fff;
+  --background-dark: var(--primary-dark);
+  --background-light: var(--primary-light);
+  --danger: #e0245e;
+}
+
+.colorMode {
+  margin-right: 20px;
+  background-color: var(--primary-yellow-light);
+  border-radius: 1000px;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+}
+
+.colorMode::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  margin: 1px 5px 0 5px;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  -webkit-transition: 0.3 ease all;
+  transition: 0.3 ease all;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.colorMode:active::after {
+  right: 0;
+  left: unset;
+}
+
+.colorMode span {
+  width: 30px;
+  height: 30px;
+  line-height: 25px;
+  display: block;
+  background: none;
+  color: var(--primary);
+}
+/*# sourceMappingURL=ColorMode.css.map */
