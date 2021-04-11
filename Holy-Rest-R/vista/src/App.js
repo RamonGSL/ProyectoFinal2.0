@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SignInSingUp from "./views/SignInSingUp/index";
 import { ToastContainer } from "react-toastify";
-import { AuthContext, ColorContext } from "./utils/context";
-import { whatColorStorage } from "./api/web";
+import { AuthContext } from "./utils/context";
 import { isUserLoged } from "./utils/services";
 import Routing from "./routes/Routing";
 

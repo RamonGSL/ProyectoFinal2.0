@@ -10,9 +10,11 @@ export const setColorStorage = (color) => {
 
 export const whatColorStorage = () => {
   const colorSave = getColorStorage();
+
   if (!colorSave) {
-    return null;
+    return "null";
   } else {
+    console.log(colorSave);
     return colorSave;
   }
 };

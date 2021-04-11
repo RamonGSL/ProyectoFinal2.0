@@ -20,13 +20,4 @@
   --background-light: var(--primary-light);
   --danger: #e0245e;
 }
-
-.basic-layout__menu {
-  background-color: var(--primary-dark);
-}
-
-.basic-layout__content {
-  background-color: var(--primary);
-  height: 100vh;
-}
-/*# sourceMappingURL=BasicLayout.css.map */
+/*# sourceMappingURL=UserZone.css.map */

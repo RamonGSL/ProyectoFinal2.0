@@ -6,26 +6,6 @@ export default function Home() {
   return (
     <BasicLayout className="home">
       <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
-      <h2>Estamos en home</h2>
     </BasicLayout>
   );
 }

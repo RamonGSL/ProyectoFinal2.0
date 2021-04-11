@@ -1,7 +1,7 @@
 @import "./../../../scss/index.scss";
 
 .menu {
-  padding: 15px 0 15px 0;
+  padding: 15px 0 17px 0;
 
   &__routes {
     display: flex;
@@ -10,6 +10,9 @@
 
     a {
       margin-right: 50px;
+      @media (max-width: 350px) {
+        margin-right: 20px;
+      }
       font-size: 20px;
       color: var(--icon-light);
       font-weight: 500;

@@ -28,6 +28,10 @@
   color: var(--icon-light);
 }
 
+.sign-up-form label {
+  color: var(--icon-light);
+}
+
 .sign-up-form .form-group {
   padding-bottom: 20px;
 }

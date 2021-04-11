@@ -36,7 +36,8 @@ export async function loginApi(formData) {
 }
 
 export const logoutUser = () => {
-  localStorage.removeItem("");
+  localStorage.removeItem("Email");
+  localStorage.removeItem("Password");
 };
 
 export const getDatasUser = () => {

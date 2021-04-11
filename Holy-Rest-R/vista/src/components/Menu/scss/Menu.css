@@ -22,7 +22,7 @@
 }
 
 .menu {
-  padding: 15px 0 15px 0;
+  padding: 15px 0 17px 0;
 }
 
 .menu__routes {
@@ -43,6 +43,12 @@
   font-size: 20px;
   color: var(--icon-light);
   font-weight: 500;
+}
+
+@media (max-width: 350px) {
+  .menu__routes a {
+    margin-right: 20px;
+  }
 }
 
 .menu__routes a span {
