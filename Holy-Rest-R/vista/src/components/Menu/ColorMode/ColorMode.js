@@ -49,7 +49,7 @@ export default function ColorMode() {
       document.documentElement.style.setProperty("--primary", "#fff");
       document.documentElement.style.setProperty("--font-light", "black");
     } else {
-      document.documentElement.style.setProperty("--primary-dark", "#001d3");
+      document.documentElement.style.setProperty("--primary-dark", "#001d3d");
       document.documentElement.style.setProperty(
         "--background-dark",
         "#001d3d"

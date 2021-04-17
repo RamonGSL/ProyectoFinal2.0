@@ -12,6 +12,7 @@ import Logo2 from "./../../assets/logo2.png";
 import BasicModal from "./../../components/Modal/BasicModal/BasicModal";
 import SignUpForm from "./../../components/SignUpForm/SignUpForm";
 import SignInForm from "./../../components/SignInForm/SignInForm";
+import BasicLayout from "./../../layouts/BasicLayout/BasicLayout";
 
 import "./scss/SignInSingUp.scss";
 
@@ -26,6 +27,7 @@ export default function SignInSingUp(props) {
   };
 
   return (
+    //<BasicLayout>
     <>
       <Container className="signin-signup" fluid>
         <Row>
@@ -41,6 +43,7 @@ export default function SignInSingUp(props) {
         {contentModal}
       </BasicModal>
     </>
+    //</BasicLayout>
   );
 }
 

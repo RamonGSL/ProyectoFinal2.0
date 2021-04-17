@@ -4,39 +4,44 @@ import { ToastContainer } from "react-toastify";
 import { AuthContext } from "./utils/context";
 import { isUserLoged } from "./utils/services";
 import Routing from "./routes/Routing";
+import BasicLayout from "./layouts/BasicLayout/BasicLayout";
 
 export default function App() {
   //Estados del Usuario para el inicio de sesión
   const [user, setUser] = useState(null);
   const [loadUser, setloadUser] = useState(false);
   const [refreshCheckLogin, setRefreshCheckLogin] = useState(false);
-
+  /*
   useEffect(() => {
     setUser(isUserLoged());
     setRefreshCheckLogin(false);
     setloadUser(true);
   }, [refreshCheckLogin]);
-
-  if (!loadUser) return null;
+  */
+  //if (!loadUser) return null;
 
   return (
     <AuthContext.Provider value={user}>
-      {user ? (
+      {/*   {user ? (
         <Routing />
       ) : (
-        <SignInSingUp setRefreshCheckLogin={setRefreshCheckLogin} />
-      )}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnVisibilityChange
-        draggable
-        pauseOnHover
-      />
+        <>
+          <Routing />
+        </>
+      )} */}
+      <BasicLayout>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
+      </BasicLayout>
     </AuthContext.Provider>
   );
 }
