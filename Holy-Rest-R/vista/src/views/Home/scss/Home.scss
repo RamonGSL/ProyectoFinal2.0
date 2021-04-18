@@ -1,36 +1,26 @@
 @import "./../../../scss/index.scss";
 
-.btnHome {
-  font-weight: 600;
-  font-size: 20px;
-  border: none;
-  background-color: transparent;
-  margin: 2%;
-  color: var(--font-light);
+.carouselIMG {
+  margin: auto;
+  width: 50%;
 }
 
-.buttonsHome {
-  margin-top: 2%;
-}
-
-.HomeComponet {
-  text-align: center;
-  height: 100%;
-}
-
-.textHome {
-  margin-top: 2%;
-  margin-left: 10%;
-  margin-right: 10%;
-  font-size: 17px;
-  color: var(--font-light);
-}
-
-.imagenInicio {
-  margin-bottom: 20px;
-}
-
-.selecionado {
-  font-weight: 700;
-  color: var(--primary-yellow);
+.infoWeb {
+  margin-bottom: 30px;
+  .content-info {
+    margin-top: 20px;
+    padding: 50px 100px 50px 100px;
+    background-color: var(--primary);
+    width: 70%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border-bottom: 1px solid var(--primary-yellow-light);
+    border-left: 1px solid var(--primary-yellow-light);
+    border-right: 1px solid var(--primary-yellow-light);
+    p {
+      color: var(--font-light);
+    }
+  }
 }

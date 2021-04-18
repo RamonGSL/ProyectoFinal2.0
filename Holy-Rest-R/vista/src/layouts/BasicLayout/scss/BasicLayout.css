@@ -27,6 +27,6 @@
 
 .basic-layout__content {
   background-color: var(--primary);
-  height: 100vh;
+  padding-bottom: 40px;
 }
 /*# sourceMappingURL=BasicLayout.css.map */

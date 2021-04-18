@@ -23,7 +23,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-dark);
@@ -31,7 +31,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .btn {
@@ -108,6 +108,35 @@ select.form-control:focus {
 
 .custom-control-label::before {
   border: 1px solid var(--primary-dark);
+}
+
+.nav {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+  padding-top: 10px;
+  width: 69%;
+}
+
+.nav-tabs {
+  border-color: var(--primary-yellow-light) !important;
+}
+
+.nav-item.nav-link {
+  color: var(--font-light);
+  background-color: var(--primary);
+}
+
+.nav-item.nav-link.active {
+  color: var(--primary-yellow-light);
+  font-weight: 600;
+  font-size: 17px;
+  background-color: var(--primary);
+  border-color: var(--primary-yellow-light);
 }
 
 .sign-in-form h2 {
