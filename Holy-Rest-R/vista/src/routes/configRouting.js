@@ -7,11 +7,13 @@ export default [
   {
     path: "/signInUp",
     exact: true,
+    user: false,
     view: SignInUpForm,
   },
   {
     path: "/user-zone",
     exact: true,
+    user: true,
     view: UserZone,
   },
   {

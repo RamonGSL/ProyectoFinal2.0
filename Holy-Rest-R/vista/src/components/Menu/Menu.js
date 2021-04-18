@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Link, Route } from "react-router-dom";
-import Routing from "./../../routes/Routing";
+import { Link } from "react-router-dom";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import ApartmentRoundedIcon from "@material-ui/icons/ApartmentRounded";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
@@ -11,14 +10,21 @@ import ColorMode from "./ColorMode/ColorMode";
 import "./scss/Menu.scss";
 
 export default function Menu() {
-  console.log("La estas cagando campeon");
+  let user = true;
   return (
     <div className="menu">
       <div className="menu__routes">
-        <Link to="/user-zone">
-          <AccountCircleRoundedIcon />
-          <span>User Zone</span>
-        </Link>
+        {user ? (
+          <Link to="/user-zone">
+            <AccountCircleRoundedIcon />
+            <span>User Zone</span>
+          </Link>
+        ) : (
+          <Link to="/signInUp">
+            <AccountCircleRoundedIcon />
+            <span>Sign In Up</span>
+          </Link>
+        )}
 
         <Link to="/hotels">
           <ApartmentRoundedIcon />

@@ -1,4 +1,36 @@
 @import "./../../../scss/index.scss";
 
-.home {
+.btnHome {
+  font-weight: 600;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  margin: 2%;
+  color: var(--font-light);
+}
+
+.buttonsHome {
+  margin-top: 2%;
+}
+
+.HomeComponet {
+  text-align: center;
+  height: 100%;
+}
+
+.textHome {
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 17px;
+  color: var(--font-light);
+}
+
+.imagenInicio {
+  margin-bottom: 20px;
+}
+
+.selecionado {
+  font-weight: 700;
+  color: var(--primary-yellow);
 }

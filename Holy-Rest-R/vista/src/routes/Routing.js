@@ -13,7 +13,6 @@ export default function Routing() {
       <Switch>
         {map(configRouting, (route, index) => (
           <Route key={index} path={route.path} exact={route.exact}>
-            {/* <Menu /> */}
             <div className="basic-layout__content">
               <route.view />
             </div>

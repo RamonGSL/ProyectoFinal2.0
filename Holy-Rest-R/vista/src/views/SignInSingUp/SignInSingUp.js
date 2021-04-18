@@ -25,7 +25,7 @@ export default function SignInSingUp(props) {
     setShowModal(true);
     setContentModal(content);
   };
-
+  let user = false;
   return (
     //<BasicLayout>
     <>
