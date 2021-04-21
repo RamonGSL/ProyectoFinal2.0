@@ -55,7 +55,7 @@ export default function SignUpForm(props) {
         setsignUpLoading(true);
         try {
           let response = await requestServer(formData);
-          if (response === "Correct registration") {
+          if (response === "Correct Register") {
             toast.success(response);
           } else if (response == null) {
             toast.error("Server error please try again later");

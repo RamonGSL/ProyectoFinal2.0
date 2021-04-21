@@ -8,9 +8,10 @@ class functionsUser extends User
     {
         $comprobationEmail = User::returnEmail($datas["Email"]);
         if ($comprobationEmail == "0 datas") {
-            return User::newUser($datas["Name"], $datas["Surnames"], $datas["Email"], md5($datas["Password"]), $datas["DateOfBirth"], $datas["Country"]);
+            User::newUser($datas["Name"], $datas["Surnames"], $datas["Email"], md5($datas["Password"]), $datas["DateOfBirth"], $datas["Country"]);
+            return "Correct Register";
         } else {
-            echo "This Email is already registered";
+            //echo "This Email is already registered";
             return "This Email is already registered";
         }
     }
@@ -23,9 +24,23 @@ class functionsUser extends User
             $comprobatePassLogin = User::comprobatePassLogin($datas["Email"], md5($datas["Password"]));
 
             if ($comprobatePassLogin != "0 datas") {
-                echo "Correct Login";
-                return "Correct Login";
+                $objUsuario = ['Email' => $datas["Email"], 'Password' => md5($datas["Password"])];
+                return  $objUsuario;
+            } else {
+                return "Incorrect Login";
             }
+        } else {
+            return "Incorrect Login";
+        }
+    }
+
+    public function returnDatasUser($datas)
+    {
+        $comprobatePassLogin = User::comprobatePassLogin($datas["Email"], $datas["Password"]);
+        if ($comprobatePassLogin != "0 datas") {
+            return $comprobatePassLogin;
+        } else {
+            return "Error";
         }
     }
 }

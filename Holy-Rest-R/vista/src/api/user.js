@@ -4,13 +4,12 @@ const urlUser = `${API_URL}/server/controller/user/user.php`;
 export async function registerApi(formData) {
   let item = { Type: "register" };
   formData = Object.assign(formData, item);
-
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
-    const result = await response;
-    console.log(result);
-    return "Correct registration";
+    const result = await response.json();
+
+    return result;
   } catch (error) {
     console.log(error);
     return null;
@@ -24,11 +23,30 @@ export async function loginApi(formData) {
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
-    const result = await response;
+    const result = await response.json();
+    if (result !== "Incorrect Login") {
+      localStorage.setItem("Email", result.Email);
+      localStorage.setItem("Password", result.Password);
+      return "Correct Login";
+    } else {
+      return "Incorrect Login";
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function datasUser() {
+  let item = { Type: "datas" };
+  let formData = getDatasUser();
+  formData = Object.assign(formData, item);
+
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlUser, params);
+    const result = await response.json();
     console.log(result);
-    localStorage.setItem("Email", formData["Email"]);
-    localStorage.setItem("Password", formData["Password"]);
-    return "Correct login";
   } catch (error) {
     console.log(error);
     return null;
@@ -41,9 +59,10 @@ export const logoutUser = () => {
 };
 
 export const getDatasUser = () => {
-  let user = [];
-  user[0] = localStorage.getItem("Email");
-  user[1] = localStorage.getItem("Password");
+  let user = {
+    Email: localStorage.getItem("Email"),
+    Password: localStorage.getItem("Password"),
+  };
   return user;
 };
 

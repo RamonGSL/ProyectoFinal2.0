@@ -44,7 +44,7 @@ class Queries
         if ($resp == "0 datas") {
             return $resp;
         } else {
-            return json_encode($resp);
+            return $resp;
         }
     }
 }

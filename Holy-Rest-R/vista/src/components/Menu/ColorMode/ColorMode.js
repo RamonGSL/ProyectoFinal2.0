@@ -7,7 +7,6 @@ import { whatColorStorage, setColorStorage } from "./../../../api/web";
 
 export default function ColorMode() {
   const [webColor, setWebColor] = useState(whatColorStorage);
-
   const comproveClass = () => {
     let colorMode = document.getElementById("colorMode");
     let response = webColor;

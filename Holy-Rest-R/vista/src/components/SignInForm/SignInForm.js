@@ -11,7 +11,6 @@ export default function SignInForm(props) {
   const { setRefreshCheckLogin } = props;
   const [formData, setFormData] = useState(initialFormValue());
   const [signInLoading, setsignInLoading] = useState(false);
-
   const requestServer = async (formData) => {
     let response = await loginApi(formData);
     return response;
@@ -19,8 +18,7 @@ export default function SignInForm(props) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    //console.log(formData);
+    console.log(formData);
 
     let validCount = 0;
     values(formData).some((value) => {
@@ -40,9 +38,12 @@ export default function SignInForm(props) {
 
         try {
           let response = await requestServer(formData);
-          if (response === "Correct login") {
+          if (response === "Correct Login") {
             toast.success(response);
             setRefreshCheckLogin(true);
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 2000);
           } else if (response === null) {
             toast.error("Server error please try again later");
           } else {

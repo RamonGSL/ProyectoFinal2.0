@@ -12,12 +12,11 @@ import Logo2 from "./../../assets/logo2.png";
 import BasicModal from "./../../components/Modal/BasicModal/BasicModal";
 import SignUpForm from "./../../components/SignUpForm/SignUpForm";
 import SignInForm from "./../../components/SignInForm/SignInForm";
-import BasicLayout from "./../../layouts/BasicLayout/BasicLayout";
 
 import "./scss/SignInSingUp.scss";
 
-export default function SignInSingUp(props) {
-  const { setRefreshCheckLogin } = props;
+export default function SignInSingUp() {
+  const [refreshCheckLogin, setRefreshCheckLogin] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [contentModal, setContentModal] = useState(null);
 
@@ -25,9 +24,7 @@ export default function SignInSingUp(props) {
     setShowModal(true);
     setContentModal(content);
   };
-  let user = false;
   return (
-    //<BasicLayout>
     <>
       <Container className="signin-signup" fluid>
         <Row>
@@ -43,7 +40,6 @@ export default function SignInSingUp(props) {
         {contentModal}
       </BasicModal>
     </>
-    //</BasicLayout>
   );
 }
 
