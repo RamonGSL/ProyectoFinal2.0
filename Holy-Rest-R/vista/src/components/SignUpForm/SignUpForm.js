@@ -12,9 +12,7 @@ import {
 } from "./../../utils/validations";
 import { registerApi } from "./../../api/user";
 
-export default function SignUpForm(props) {
-  // const { setShowModal } = props;
-
+export default function SignUpForm() {
   //Datos del usuario
   const [formData, setFormData] = useState(initialFormValue());
   const [signUpLoading, setsignUpLoading] = useState(false);

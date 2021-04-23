@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 
 import { Link } from "react-router-dom";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
@@ -12,7 +12,6 @@ import "./scss/Menu.scss";
 
 export default function Menu() {
   const [user, setUser] = useState(isUserLoged());
-  console.log(user);
 
   return (
     <div className="menu">

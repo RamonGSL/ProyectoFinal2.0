@@ -1,13 +1,15 @@
-import React from "react";
+import { React, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { map } from "lodash";
 import configRouting from "./configRouting";
 import Menu from "./../components/Menu/Menu";
 import UserZone from "./../views/UserZone/UserZone";
 import SignInSingUp from "./../views/SignInSingUp/SignInSingUp";
+import { isUserLoged } from "./../api/user";
 
 export default function Routing() {
-  const comprobateUser = false;
+  const [user, setUser] = useState(isUserLoged());
+
   return (
     <Router>
       <div className="basic-layout__menu">
@@ -21,11 +23,11 @@ export default function Routing() {
                 <route.view />
               ) : null}
 
-              {route.path === "/user-zone" && comprobateUser === true ? (
+              {route.path === "/user-zone" && user === true ? (
                 <UserZone />
               ) : null}
 
-              {route.path === "/signInUp" && comprobateUser === false ? (
+              {route.path === "/signInUp" && user === false ? (
                 <SignInSingUp />
               ) : null}
 

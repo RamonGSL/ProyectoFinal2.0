@@ -16,6 +16,32 @@ export async function registerApi(formData) {
   }
 }
 
+export async function updateUserApi(formData, encripted) {
+  console.log(formData);
+  if (encripted === true) {
+    let item = { Encript: "Encript" };
+    formData = Object.assign(formData, item);
+  }
+  let item = { Type: "update" };
+  formData = Object.assign(formData, item);
+
+  try {
+    console.log(formData);
+    const params = await createParams(formData);
+    const response = await fetch(urlUser, params);
+    console.log(response);
+    const result = await response.json();
+    if (result.length === 1) {
+      InsertStorage(result[0].Email, result[0].Password);
+      return "Correct Update";
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export async function loginApi(formData) {
   let item = { Type: "login" };
   formData = Object.assign(formData, item);
@@ -25,8 +51,7 @@ export async function loginApi(formData) {
     const response = await fetch(urlUser, params);
     const result = await response.json();
     if (result !== "Incorrect Login") {
-      localStorage.setItem("Email", result.Email);
-      localStorage.setItem("Password", result.Password);
+      InsertStorage(result.Email, result.Password);
       return "Correct Login";
     } else {
       return "Incorrect Login";
@@ -46,7 +71,7 @@ export async function datasUser() {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
-    console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
     return null;
@@ -56,6 +81,7 @@ export async function datasUser() {
 export const logoutUser = () => {
   localStorage.removeItem("Email");
   localStorage.removeItem("Password");
+  window.location.assign("/signInUp");
 };
 
 export const getDatasUser = () => {
@@ -66,15 +92,20 @@ export const getDatasUser = () => {
   return user;
 };
 
+export const InsertStorage = (email, password) => {
+  localStorage.setItem("Email", email);
+  localStorage.setItem("Password", password);
+};
+
 export const isUserLoged = () => {
   const userSave = getDatasUser();
-  if (!userSave[0]) {
-    return null;
+  if (userSave.Email === null) {
+    return false;
   } else {
-    if (!userSave[1]) {
-      return null;
+    if (userSave.Password === null) {
+      return false;
     } else {
-      return userSave;
+      return true;
     }
   }
 };

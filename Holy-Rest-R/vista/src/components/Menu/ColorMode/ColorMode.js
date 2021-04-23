@@ -4,7 +4,7 @@ import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
 import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
 
 import { whatColorStorage, setColorStorage } from "./../../../api/web";
-
+import { logoutUser } from "./../../../api/user";
 export default function ColorMode() {
   const [webColor, setWebColor] = useState(whatColorStorage);
   const comproveClass = () => {

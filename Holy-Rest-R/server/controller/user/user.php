@@ -13,12 +13,10 @@ if ($method == "OPTIONS") {
 $data = json_decode(file_get_contents("php://input"), true);
 
 //Componentes del controlador
-include_once('./../../model/User.php');
 include_once('./functionsUser.php');
 
-$user = new User();
 $functionUser = new functionsUser();
-$comprobationType = false;
+$comprobationType = true;
 
 
 
@@ -29,8 +27,8 @@ switch ($data['Type']) {
 
 
         foreach ($data as $index) {
-            if (is_string($index)) {
-                $comprobationType = true;
+            if (!is_string($index)) {
+                $comprobationType = false;
             }
         }
 
@@ -42,8 +40,8 @@ switch ($data['Type']) {
     case 'login':
 
         foreach ($data as $index) {
-            if (is_string($index)) {
-                $comprobationType = true;
+            if (!is_string($index)) {
+                $comprobationType = false;
             }
         }
         if ($comprobationType == true) {
@@ -62,13 +60,32 @@ switch ($data['Type']) {
     case 'datas':
 
         foreach ($data as $index) {
-            if (is_string($index)) {
-                $comprobationType = true;
+            if (!is_string($index)) {
+                $comprobationType = false;
             }
         }
 
         if ($comprobationType == true) {
             $datasUser = $functionUser->returnDatasUser($data);
+            if ($datasUser != "Error") {
+                echo json_encode($datasUser);
+            } else {
+                echo json_encode("Server Not Found");
+            }
+        }
+
+
+        break;
+
+    case 'update':
+        foreach ($data as $index) {
+            if (!is_string($index)) {
+                $comprobationType = false;
+            }
+        }
+        if ($comprobationType == true) {
+            $datasUser = $functionUser->updateDatasUser($data);
+
             if ($datasUser != "Error") {
                 echo json_encode($datasUser);
             } else {
