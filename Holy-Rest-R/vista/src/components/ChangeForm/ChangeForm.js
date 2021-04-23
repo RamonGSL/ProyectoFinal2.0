@@ -22,9 +22,8 @@ export default function ChangeForm(props) {
   const [imageUser, setImageUser] = useState(
     `${API_URL}/server/images/${userData.dataUser.ProfileImage}`
   );
-
-  const [encript, setEncript] = useState(false);
-  const [signUpLoading, setsignUpLoading] = useState(false);
+  const date = new Date().toISOString().split("T")[0];
+  const [spinnerLoad, setSpinnerLoad] = useState(false);
 
   const requestServer = async (formData, encripted) => {
     let response = await updateUserApi(formData, encripted);
@@ -111,7 +110,7 @@ export default function ChangeForm(props) {
           );
         }
       } else {
-        setsignUpLoading(true);
+        setSpinnerLoad(true);
         let encripted = false;
         try {
           if (validCount === 9) {
@@ -128,7 +127,7 @@ export default function ChangeForm(props) {
         } catch (error) {
           console.log(error);
         } finally {
-          setsignUpLoading(false);
+          setSpinnerLoad(false);
         }
       }
     }
@@ -136,19 +135,19 @@ export default function ChangeForm(props) {
 
   return (
     <div>
-      <h2>Change Form</h2>
-      <Form onSubmit={onSubmit} onChange={onChange}>
+      <Form id="formUpdate" onSubmit={onSubmit} onChange={onChange}>
         <Form.Group>
           <Row>
             <Col>
               <div id="PreviewUserImagen">
-                <img id="imgUser" src={imageUser} alt="imagenUser" />
                 <Form.Control
+                  id="fileInput"
                   type="file"
                   placeholder="ImageUser"
                   name="ProfileImage"
                   onInput={addFile}
                 ></Form.Control>
+                <img id="imgUser" src={imageUser} alt="imagenUser" />
               </div>
             </Col>
           </Row>
@@ -212,8 +211,8 @@ export default function ChangeForm(props) {
             placeholder="Date of birth"
             name="DateOfBirth"
             defaultValue={userData.dataUser.DateOfBirth}
-            //min="2010-01-01"
-            //max="2025-12-31"
+            min="1950-01-01"
+            max={date}
           />
         </Form.Group>
         <Form.Group>
@@ -228,7 +227,7 @@ export default function ChangeForm(props) {
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          {!spinnerLoad ? "Submit" : <Spinner animation="border" />}
         </Button>
       </Form>
     </div>

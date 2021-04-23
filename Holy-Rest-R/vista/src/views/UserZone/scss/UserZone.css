@@ -20,4 +20,39 @@
   --background-light: var(--primary-light);
   --danger: #e0245e;
 }
+
+#containerUserZone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 715px) {
+  #containerUserZone {
+    display: block;
+  }
+}
+
+#containerUserZone #containerButtons {
+  padding-top: 10px;
+  padding-left: 5px;
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (max-width: 715px) {
+  #containerUserZone #containerButtons {
+    width: 100%;
+  }
+}
+
+#containerUserZone #optionSelect {
+  margin: auto;
+}
 /*# sourceMappingURL=UserZone.css.map */

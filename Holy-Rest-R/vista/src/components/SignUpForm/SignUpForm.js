@@ -16,7 +16,7 @@ export default function SignUpForm() {
   //Datos del usuario
   const [formData, setFormData] = useState(initialFormValue());
   const [signUpLoading, setsignUpLoading] = useState(false);
-
+  const date = new Date().toISOString().split("T")[0];
   const requestServer = async (formData) => {
     let response = await registerApi(formData);
     return response;
@@ -150,6 +150,8 @@ export default function SignUpForm() {
             placeholder="Date of birth"
             name="DateOfBirth"
             defaultValue={formData.DateOfBirth}
+            min="1950-01-01"
+            max={date}
           />
         </Form.Group>
         <Form.Group>

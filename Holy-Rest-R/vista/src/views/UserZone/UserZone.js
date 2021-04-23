@@ -5,6 +5,7 @@ import { logoutUser, datasUser } from "./../../api/user";
 import LockRoundedIcon from "@material-ui/icons/LockRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
+import { Button } from "react-bootstrap";
 
 import ChangeForm from "./../../components/ChangeForm/ChangeForm";
 
@@ -32,15 +33,16 @@ export default function UserZone() {
   };
 
   return (
-    <div>
-      <div>
-        <h2>User Zone</h2>
-        <button id="logout" onClick={logout}>
+    <div id="containerUserZone">
+      {/* {dataUser[0].Name !== null ? <h2>{dataUser[0].Name}</h2> : null}
+       */}
+      <div id="containerButtons">
+        <Button id="logout" onClick={logout}>
           <LockRoundedIcon />
           <span>Logout</span>
-        </button>
+        </Button>
 
-        <button
+        <Button
           id="dataUser"
           onClick={() => {
             changeOption("dataUser");
@@ -48,10 +50,10 @@ export default function UserZone() {
         >
           <AccountCircleIcon />
           <span name="dataUser">change data</span>
-        </button>
+        </Button>
 
         {role === "1" ? (
-          <button
+          <Button
             id="dataUser"
             onClick={() => {
               changeOption("hotelZone");
@@ -59,11 +61,11 @@ export default function UserZone() {
           >
             <SettingsRoundedIcon />
             <span name="hotelZone">Hotel Zone</span>
-          </button>
+          </Button>
         ) : null}
 
         {role === "2" ? (
-          <button
+          <Button
             id="dataUser"
             onClick={() => {
               changeOption("masterZone");
@@ -71,11 +73,11 @@ export default function UserZone() {
           >
             <SettingsRoundedIcon />
             <span name="masterZone">Master Zone</span>
-          </button>
+          </Button>
         ) : null}
       </div>
 
-      <div>
+      <div id="optionSelect">
         {optionSelect === null ? (
           <div>
             <p>Default</p>

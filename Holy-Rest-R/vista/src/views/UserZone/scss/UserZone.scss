@@ -1,1 +1,24 @@
 @import "../../../scss/index.scss";
+
+#containerUserZone {
+  display: flex;
+
+  @media (max-width: 715px) {
+    display: block;
+  }
+
+  #containerButtons {
+    padding-top: 10px;
+    padding-left: 5px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 715px) {
+      width: 100%;
+    }
+  }
+
+  #optionSelect {
+    margin: auto;
+  }
+}
