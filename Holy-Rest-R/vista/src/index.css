@@ -138,4 +138,8 @@ select.form-control:focus {
   background-color: var(--primary);
   border-color: var(--primary-yellow-light);
 }
+
+.list-group-item {
+  background-color: var(--primary-dark);
+}
 /*# sourceMappingURL=index.css.map */

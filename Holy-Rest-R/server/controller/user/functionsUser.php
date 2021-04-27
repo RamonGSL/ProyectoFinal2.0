@@ -5,7 +5,7 @@ include_once('./../utils.php');
 class functionsUser extends User
 {
 
-    public function comprobateUser($datas)
+    public function checkUser($datas)
     {
         $comprobationEmail = User::returnEmail($datas["Email"]);
         if ($comprobationEmail == "0 datas") {
@@ -17,13 +17,13 @@ class functionsUser extends User
     }
 
 
-    public function comprobateLogin($datas)
+    public function checkLogin($datas)
     {
         $comprobationEmail = User::returnEmail($datas["Email"]);
         if ($comprobationEmail != "0 datas") {
-            $comprobatePassLogin = User::comprobatePassLogin($datas["Email"], md5($datas["Password"]));
+            $checkPassLogin = User::checkPassLogin($datas["Email"], md5($datas["Password"]));
 
-            if ($comprobatePassLogin != "0 datas") {
+            if ($checkPassLogin != "0 datas") {
                 $objUsuario = ['Email' => $datas["Email"], 'Password' => md5($datas["Password"])];
                 return  $objUsuario;
             } else {
@@ -36,9 +36,9 @@ class functionsUser extends User
 
     public function returnDatasUser($datas)
     {
-        $comprobatePassLogin = User::comprobatePassLogin($datas["Email"], $datas["Password"]);
-        if ($comprobatePassLogin != "0 datas") {
-            return $comprobatePassLogin;
+        $checkPassLogin = User::checkPassLogin($datas["Email"], $datas["Password"]);
+        if ($checkPassLogin != "0 datas") {
+            return $checkPassLogin;
         } else {
             return "Error";
         }
@@ -80,6 +80,23 @@ class functionsUser extends User
         }
     }
 
+    public function returnAllNames($datas)
+    {
+        $role = $this->checkRoleUser($datas['Email'], $datas['Password']);
+        if ($role[0]["RoleUser"] == "2") {
+            $returnNames = User::returnNamesUsers();
+            return $returnNames;
+        } else {
+            return "Error";
+        }
+    }
+
+    private function checkRoleUser($email, $password)
+    {
+        $returnRoleUser = User::returnRoleUser($email, $password);
+        return $returnRoleUser;
+    }
+
     private function generateImage($image)
     {
         $imageB64 = explode(',', $image);
@@ -92,7 +109,7 @@ class functionsUser extends User
         $imageName = $this->generateRandomString();
         $nameReturn = $imageName . "." . $extension;
 
-        while ($imageName == User::comproveNameImage($imageName)) {
+        while ($imageName == User::checkNameImage($imageName)) {
             $imageName = $this->generateRandomString();
         }
 

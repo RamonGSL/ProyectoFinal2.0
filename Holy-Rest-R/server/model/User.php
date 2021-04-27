@@ -14,48 +14,60 @@ class User extends Queries
 
     protected function returnNameAndSurnames($Name, $Surnames)
     {
-        $sql = "SELECT * FROM Users where Name = '$Name' AND Surnames = '$Surnames' ";
+        $sql = "SELECT * FROM users where Name = '$Name' AND Surnames = '$Surnames' ";
         return Queries::returnDatas($sql);
     }
 
     protected function returnEmail($Email)
     {
-        $sql = "SELECT * FROM Users where Email = '$Email'";
+        $sql = "SELECT * FROM users where Email = '$Email'";
         return Queries::returnDatas($sql);
     }
 
-    protected function comprobatePassLogin($Email, $Password)
+    protected function checkPassLogin($Email, $Password)
     {
-        $sql = "SELECT * FROM Users where Email = '$Email' AND Password = '$Password'";
+        $sql = "SELECT * FROM users where Email = '$Email' AND Password = '$Password'";
         return Queries::returnDatas($sql);
     }
     protected function returnEmailAndPass($Id)
     {
-        $sql = "SELECT Email , Password FROM Users where Id = '$Id'";
+        $sql = "SELECT Email , Password FROM users where Id = '$Id'";
         return Queries::returnDatas($sql);
     }
 
     protected function returnOtherUserEmail($Email, $Id)
     {
-        $sql = "SELECT Email FROM Users where Email = '$Email' AND Id != '$Id'";
+        $sql = "SELECT Email FROM users where Email = '$Email' AND Id != '$Id'";
         return Queries::returnDatas($sql);
     }
 
-    protected function comproveNameImage($ProfileImage)
+    protected function checkNameImage($ProfileImage)
     {
-        $sql = "SELECT ProfileImage FROM Users where ProfileImage = '$ProfileImage'";
+        $sql = "SELECT ProfileImage FROM users where ProfileImage = '$ProfileImage'";
         return Queries::returnDatas($sql);
     }
 
     protected function returnNameImage($Id)
     {
-        $sql = "SELECT ProfileImage FROM Users where Id = '$Id'";
+        $sql = "SELECT ProfileImage FROM users where Id = '$Id'";
         return Queries::returnDatas($sql);
     }
 
     protected function updateDatas($Name, $Surnames, $Email, $Password, $DateOfBirth, $Country, $ProfileImage, $Id)
     {
-        $sql = "UPDATE Users SET Name = '$Name', Surnames ='$Surnames', Email = '$Email', Password = '$Password', DateOfBirth = '$DateOfBirth', Country = '$Country', ProfileImage = '$ProfileImage' WHERE Id = '$Id'";
+        $sql = "UPDATE users SET Name = '$Name', Surnames ='$Surnames', Email = '$Email', Password = '$Password', DateOfBirth = '$DateOfBirth', Country = '$Country', ProfileImage = '$ProfileImage' WHERE Id = '$Id'";
         return Queries::insertDatas($sql);
+    }
+
+    protected function returnRoleUser($Email, $Password)
+    {
+        $sql = "SELECT RoleUser FROM users where Email = '$Email' AND Password = '$Password' ";
+        return Queries::returnDatas($sql);
+    }
+
+    protected function returnNamesUsers()
+    {
+        $sql = "SELECT Name FROM users";
+        return Queries::returnDatas($sql);
     }
 }

@@ -8,6 +8,7 @@ import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import { Button } from "react-bootstrap";
 
 import ChangeForm from "./../../components/ChangeForm/ChangeForm";
+import MasterZone from "./../../components/MasterZone/MasterZone";
 
 export default function UserZone() {
   const [dataUser, setDataUser] = useState(null);
@@ -86,6 +87,8 @@ export default function UserZone() {
         {optionSelect === "dataUser" ? (
           <ChangeForm dataUser={dataUser} />
         ) : null}
+
+        {optionSelect === "masterZone" ? <MasterZone /> : null}
       </div>
     </div>
   );

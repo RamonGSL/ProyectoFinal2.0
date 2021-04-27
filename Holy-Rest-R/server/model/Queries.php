@@ -29,11 +29,10 @@ class Queries
 
     protected function returnDatas($sql)
     {
-
         $this->automaticConexion();
         $result = $this->conexion->query($sql);
-        if ($result->num_rows > 0) {
 
+        if ($result->num_rows > 0) {
             //Crea un array asociativo y mete todos los resultados en resp  
             for ($resp = array(); $row = $result->fetch_assoc(); $resp[] = $row);
         } else {

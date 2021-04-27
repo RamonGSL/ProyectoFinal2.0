@@ -26,10 +26,8 @@ export async function updateUserApi(formData, encripted) {
   formData = Object.assign(formData, item);
 
   try {
-    console.log(formData);
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
-    console.log(response);
     const result = await response.json();
     if (result.length === 1) {
       InsertStorage(result[0].Email, result[0].Password);
@@ -67,6 +65,21 @@ export async function datasUser() {
   let formData = getDatasUser();
   formData = Object.assign(formData, item);
 
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlUser, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function getAllNames() {
+  let item = { Type: "names" };
+  let formData = getDatasUser();
+  formData = Object.assign(formData, item);
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);

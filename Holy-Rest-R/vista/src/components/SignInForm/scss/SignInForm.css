@@ -139,6 +139,10 @@ select.form-control:focus {
   border-color: var(--primary-yellow-light);
 }
 
+.list-group-item {
+  background-color: var(--primary-dark);
+}
+
 .sign-in-form h2 {
   font-weight: 450;
   padding-bottom: 30px;

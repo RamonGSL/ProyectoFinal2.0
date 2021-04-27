@@ -1,4 +1,4 @@
-@import "./../../../index.scss";
+@import "./../../../scss/index.scss";
 
 #formUpdate {
   margin-top: 20px;
@@ -28,7 +28,7 @@
 
     input,
     select {
-      font-size: 25px;
+      font-size: 20px;
 
       @media (max-width: 1000px) {
         font-size: 15px;

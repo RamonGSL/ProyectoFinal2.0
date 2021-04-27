@@ -20,8 +20,6 @@ $functionUser = new functionsUser();
 $comprobationType = true;
 
 
-
-
 switch ($data['Type']) {
 
     case 'register':
@@ -34,7 +32,7 @@ switch ($data['Type']) {
         }
 
         if ($comprobationType == true) {
-            echo  json_encode($functionUser->comprobateUser($data));
+            echo  json_encode($functionUser->checkUser($data));
         }
         break;
 
@@ -47,7 +45,7 @@ switch ($data['Type']) {
         }
         if ($comprobationType == true) {
 
-            $login = $functionUser->comprobateLogin($data);
+            $login = $functionUser->checkLogin($data);
             if ($login != "Incorrect Login") {
                 echo json_encode($login);
             } else {
@@ -87,6 +85,23 @@ switch ($data['Type']) {
         if ($comprobationType == true) {
             $datasUser = $functionUser->updateDatasUser($data);
 
+            if ($datasUser != "Error") {
+                echo json_encode($datasUser);
+            } else {
+                echo json_encode("Server Not Found");
+            }
+        }
+
+    case 'names':
+
+        foreach ($data as $index) {
+            if (!is_string($index)) {
+                $comprobationType = false;
+            }
+        }
+
+        if ($comprobationType == true) {
+            $datasUser = $functionUser->returnAllNames($data);
             if ($datasUser != "Error") {
                 echo json_encode($datasUser);
             } else {
