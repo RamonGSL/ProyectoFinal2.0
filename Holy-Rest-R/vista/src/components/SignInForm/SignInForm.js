@@ -18,7 +18,6 @@ export default function SignInForm(props) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     let validCount = 0;
     values(formData).some((value) => {

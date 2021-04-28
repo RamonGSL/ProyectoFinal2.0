@@ -91,6 +91,22 @@ export async function getAllNames() {
   }
 }
 
+export async function deleteUser(user) {
+  let item = { Type: "delete" };
+  let formData = getDatasUser();
+  formData = Object.assign(formData, item, user);
+  console.log(formData);
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlUser, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export const logoutUser = () => {
   localStorage.removeItem("Email");
   localStorage.removeItem("Password");

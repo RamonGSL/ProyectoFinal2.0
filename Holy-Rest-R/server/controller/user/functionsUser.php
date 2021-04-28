@@ -91,6 +91,17 @@ class functionsUser extends User
         }
     }
 
+    public function deleteUser($datas)
+    {
+        $role = $this->checkRoleUser($datas['Email'], $datas['Password']);
+        if ($role[0]["RoleUser"] == "2") {
+            $deleteUser = User::deleteUser($datas['user']);
+            return $deleteUser;
+        } else {
+            return "Error";
+        }
+    }
+
     private function checkRoleUser($email, $password)
     {
         $returnRoleUser = User::returnRoleUser($email, $password);

@@ -91,6 +91,7 @@ switch ($data['Type']) {
                 echo json_encode("Server Not Found");
             }
         }
+        break;
 
     case 'names':
 
@@ -108,7 +109,24 @@ switch ($data['Type']) {
                 echo json_encode("Server Not Found");
             }
         }
+        break;
 
+    case 'delete':
+        foreach ($data as $index) {
+            if (!is_string($index)) {
+                $comprobationType = false;
+            }
+        }
+
+
+        if ($comprobationType == true) {
+            $datasUser = $functionUser->deleteUser($data);
+            if ($datasUser != "Error") {
+                echo json_encode($datasUser);
+            } else {
+                echo json_encode("Server Not Found");
+            }
+        }
 
         break;
 
