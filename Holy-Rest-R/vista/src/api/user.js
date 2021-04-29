@@ -100,6 +100,31 @@ export async function deleteUser(user) {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+export async function changeRole(user) {
+  if (user.user === "Hotel") {
+    user.user = "1";
+  } else if (user.user === "Admin") {
+    user.user = "2";
+  } else {
+    return null;
+  }
+  console.log(user);
+  let item = { Type: "role" };
+  let formData = getDatasUser();
+  formData = Object.assign(formData, item, user);
+  console.log(formData);
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlUser, params);
+    const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

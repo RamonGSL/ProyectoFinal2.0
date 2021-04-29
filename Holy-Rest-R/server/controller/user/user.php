@@ -122,13 +122,32 @@ switch ($data['Type']) {
         if ($comprobationType == true) {
             $datasUser = $functionUser->deleteUser($data);
             if ($datasUser != "Error") {
-                echo json_encode($datasUser);
+                echo json_encode("Has been deleted successfully");
             } else {
                 echo json_encode("Server Not Found");
             }
         }
 
         break;
+
+    case 'role':
+        foreach ($data as $index) {
+            if (!is_string($index)) {
+                $comprobationType = false;
+            }
+        }
+
+        if ($comprobationType == true) {
+            $datasUser = $functionUser->newRole($data);
+            if ($datasUser != "Error") {
+                echo json_encode("User role has been changed successfully");
+            } else {
+                echo json_encode("Server Not Found");
+            }
+        }
+
+        break;
+
 
     default:
         # code...

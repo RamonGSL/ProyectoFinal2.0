@@ -96,7 +96,27 @@ class functionsUser extends User
         $role = $this->checkRoleUser($datas['Email'], $datas['Password']);
         if ($role[0]["RoleUser"] == "2") {
             $deleteUser = User::deleteUser($datas['user']);
-            return $deleteUser;
+
+            if ($deleteUser != "New record created successfully") {
+                return "Error";
+            } else {
+                return "Correct";
+            }
+        } else {
+            return "Error";
+        }
+    }
+
+    public function newRole($datas)
+    {
+        $role = $this->checkRoleUser($datas['Email'], $datas['Password']);
+        if ($role[0]["RoleUser"] == "2") {
+            $changeRole = User::changeRole($datas['user'], $datas['Email']);
+            if ($changeRole != "New record created successfully") {
+                return "Error";
+            } else {
+                return "Correct";
+            }
         } else {
             return "Error";
         }

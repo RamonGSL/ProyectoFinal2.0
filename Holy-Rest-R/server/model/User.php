@@ -73,7 +73,13 @@ class User extends Queries
 
     protected function deleteUser($Email)
     {
-        $sql = "DELETE * FROM users where Email = '$Email'";
+        $sql = "DELETE FROM users where Email = '$Email'";
+        return Queries::insertDatas($sql);
+    }
+
+    protected function changeRole($role, $Email)
+    {
+        $sql = "UPDATE users SET RoleUser = '$role' where Email = '$Email'";
         return Queries::insertDatas($sql);
     }
 }
