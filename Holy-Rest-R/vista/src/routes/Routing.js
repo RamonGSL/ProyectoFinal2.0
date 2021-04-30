@@ -31,6 +31,14 @@ export default function Routing() {
                 <SignInSingUp />
               ) : null}
 
+              {route.path === "/user-zone" && user === false ? (
+                <SignInSingUp />
+              ) : null}
+
+              {route.path === "/signInUp" && user === true ? (
+                <UserZone />
+              ) : null}
+
               {/*  <route.view /> */}
             </div>
           </Route>

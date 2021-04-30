@@ -1,7 +1,8 @@
 @import "../../../scss/index.scss";
-
+@import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
 #containerUserZone {
   display: flex;
+  //min-height: 720px;
 
   @media (max-width: 715px) {
     display: block;
@@ -20,5 +21,18 @@
 
   #optionSelect {
     margin: auto;
+  }
+  padding-bottom: 20px;
+}
+.userName {
+  text-align: center;
+  font-family: "Orelega One", cursive;
+  color: var(--primary-yellow) !important;
+  @media (min-width: 700px) {
+    padding-left: 200px;
+  }
+
+  @media (min-width: 1000px) {
+    padding-left: 300px;
   }
 }

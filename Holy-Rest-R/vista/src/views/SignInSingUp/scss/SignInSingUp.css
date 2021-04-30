@@ -77,6 +77,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -85,6 +88,7 @@
 
 @media (max-width: 700px) {
   .signin-signup__right {
+    background-color: var(--primary);
     margin-top: 100px;
     margin-left: 25%;
   }
@@ -107,9 +111,15 @@
   color: var(--icon-light);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .signin-signup__right div h2 {
-    font-size: 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .signin-signup__right div h2 {
+    font-size: 25px;
   }
 }
 

@@ -21,12 +21,15 @@
   --danger: #e0245e;
 }
 
+.basic-layout {
+  background-color: var(--primary);
+}
+
 .basic-layout__menu {
   background-color: var(--primary-dark);
 }
 
 .basic-layout__content {
   background-color: var(--primary);
-  padding-bottom: 40px;
 }
 /*# sourceMappingURL=BasicLayout.css.map */

@@ -26,10 +26,27 @@
   text-align: center;
 }
 
-#formUpdate #PreviewUserImagen #imgUser {
+#formUpdate #PreviewUserImagen {
+  margin: auto;
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+#formUpdate #PreviewUserImagen #imgUser {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+}
+
+@supports ((-o-object-fit: cover) or (object-fit: cover)) {
+  #formUpdate #PreviewUserImagen #imgUser {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center center;
+       object-position: center center;
+  }
 }
 
 #formUpdate #PreviewUserImagen #fileInput {
@@ -37,13 +54,7 @@
   height: 150px;
   border-radius: 50%;
   position: absolute;
-  margin-left: 30%;
-}
-
-@media (max-width: 715px) {
-  #formUpdate #PreviewUserImagen #fileInput {
-    margin-left: 38%;
-  }
+  opacity: 0;
 }
 
 #formUpdate .form-group {

@@ -39,6 +39,7 @@
 .sign-up-form .form-group input,
 .sign-up-form .form-group select {
   font-size: 25px;
+  color: var(--icon-light) !important;
 }
 
 @media (max-width: 1000px) {

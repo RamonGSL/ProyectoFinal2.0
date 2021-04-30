@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Orelega+One&display=swap");
 :root {
   --primary: #003566;
   --primary-light: #cae9ff;
@@ -25,6 +26,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 715px) {
@@ -54,5 +56,23 @@
 
 #containerUserZone #optionSelect {
   margin: auto;
+}
+
+.userName {
+  text-align: center;
+  font-family: "Orelega One", cursive;
+  color: var(--primary-yellow) !important;
+}
+
+@media (min-width: 700px) {
+  .userName {
+    padding-left: 200px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .userName {
+    padding-left: 300px;
+  }
 }
 /*# sourceMappingURL=UserZone.css.map */

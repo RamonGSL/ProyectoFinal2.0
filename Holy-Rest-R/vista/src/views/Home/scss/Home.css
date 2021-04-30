@@ -51,4 +51,8 @@
 .infoWeb .content-info p {
   color: var(--font-light);
 }
+
+.contentHome {
+  padding-bottom: 40px;
+}
 /*# sourceMappingURL=Home.css.map */

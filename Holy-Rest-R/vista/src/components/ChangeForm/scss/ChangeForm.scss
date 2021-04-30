@@ -5,21 +5,28 @@
   text-align: center;
 
   #PreviewUserImagen {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     #imgUser {
-      width: 150px;
-      height: 150px;
       border-radius: 50%;
+      width: 100%;
+      height: auto;
     }
-
+    @supports (object-fit: cover) {
+      #imgUser {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
     #fileInput {
       width: 150px;
       height: 150px;
       border-radius: 50%;
       position: absolute;
-      margin-left: 30%;
-      @media (max-width: 715px) {
-        margin-left: 38%;
-      }
+      opacity: 0;
     }
   }
 

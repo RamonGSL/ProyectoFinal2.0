@@ -13,6 +13,7 @@
 
     input {
       font-size: 25px;
+      color: var(--icon-light) !important;
 
       @media (max-width: 1000px) {
         font-size: 15px;

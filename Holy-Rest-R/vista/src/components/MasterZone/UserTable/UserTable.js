@@ -84,7 +84,11 @@ export default function UserTable() {
     <div>
       <ListGroup>
         {map(userNames, (index, value) => (
-          <ListGroup.Item key={value} className="contentInfoUA">
+          <ListGroup.Item
+            key={value}
+            id={index.Email}
+            className="contentInfoUA"
+          >
             <span className="infoUserFA"> {index.Name} </span>{" "}
             {index.ProfileImage === null ? (
               <img
@@ -137,11 +141,17 @@ export default function UserTable() {
                 deletUserEmail(emailSelected);
                 let emailLocal = getDatasUser();
                 emailLocal = emailLocal.Email;
+                console.log(document.getElementById(emailLocal));
                 if (emailSelected === emailLocal) {
                   logoutUser();
                   setTimeout(() => {
                     window.location.href = "/";
-                  }, 2000);
+                  }, 1500);
+                } else {
+                  let deleteChild = document.getElementById(emailSelected);
+                  if (deleteChild.parentNode) {
+                    deleteChild.parentNode.removeChild(deleteChild);
+                  }
                 }
               } else {
                 toast.warning("The email does not match");

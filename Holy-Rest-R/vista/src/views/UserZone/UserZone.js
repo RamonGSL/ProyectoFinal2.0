@@ -9,7 +9,7 @@ import { Button } from "react-bootstrap";
 
 import ChangeForm from "./../../components/ChangeForm/ChangeForm";
 import MasterZone from "./../../components/MasterZone/MasterZone";
-
+import HotelZone from "./../../components/HotelZone/HotelZone";
 export default function UserZone() {
   const [dataUser, setDataUser] = useState(null);
   const [role, setRole] = useState(null);
@@ -34,62 +34,65 @@ export default function UserZone() {
   };
 
   return (
-    <div id="containerUserZone">
-      {/* {dataUser[0].Name !== null ? <h2>{dataUser[0].Name}</h2> : null}
-       */}
-      <div id="containerButtons">
-        <Button id="logout" onClick={logout}>
-          <LockRoundedIcon />
-          <span>Logout</span>
-        </Button>
+    <>
+      {dataUser !== null ? (
+        <div className="userName">
+          <h2>{dataUser.Name}</h2>
+          <h3> This is the zone of your user</h3>
+        </div>
+      ) : null}
+      <div id="containerUserZone">
+        <div id="containerButtons">
+          <Button id="logout" onClick={logout}>
+            <LockRoundedIcon />
+            <span>Logout</span>
+          </Button>
 
-        <Button
-          id="dataUser"
-          onClick={() => {
-            changeOption("dataUser");
-          }}
-        >
-          <AccountCircleIcon />
-          <span name="dataUser">change data</span>
-        </Button>
-
-        {role === "1" ? (
           <Button
             id="dataUser"
             onClick={() => {
-              changeOption("hotelZone");
+              changeOption("dataUser");
             }}
           >
-            <SettingsRoundedIcon />
-            <span name="hotelZone">Hotel Zone</span>
+            <AccountCircleIcon />
+            <span name="dataUser">change data</span>
           </Button>
-        ) : null}
 
-        {role === "2" ? (
-          <Button
-            id="dataUser"
-            onClick={() => {
-              changeOption("masterZone");
-            }}
-          >
-            <SettingsRoundedIcon />
-            <span name="masterZone">Master Zone</span>
-          </Button>
-        ) : null}
+          {role === "1" ? (
+            <Button
+              id="dataUser"
+              onClick={() => {
+                changeOption("hotelZone");
+              }}
+            >
+              <SettingsRoundedIcon />
+              <span name="hotelZone">Hotel Zone</span>
+            </Button>
+          ) : null}
+
+          {role === "2" ? (
+            <Button
+              id="dataUser"
+              onClick={() => {
+                changeOption("masterZone");
+              }}
+            >
+              <SettingsRoundedIcon />
+              <span name="masterZone">Master Zone</span>
+            </Button>
+          ) : null}
+        </div>
+
+        <div id="optionSelect">
+          {optionSelect === null ? <div></div> : null}
+          {optionSelect === "dataUser" ? (
+            <ChangeForm dataUser={dataUser} />
+          ) : null}
+
+          {optionSelect === "masterZone" ? <MasterZone /> : null}
+          {optionSelect === "hotelZone" ? <HotelZone /> : null}
+        </div>
       </div>
-
-      <div id="optionSelect">
-        {optionSelect === null ? (
-          <div>
-            <p>Default</p>
-          </div>
-        ) : null}
-        {optionSelect === "dataUser" ? (
-          <ChangeForm dataUser={dataUser} />
-        ) : null}
-
-        {optionSelect === "masterZone" ? <MasterZone /> : null}
-      </div>
-    </div>
+    </>
   );
 }

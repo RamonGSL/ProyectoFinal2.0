@@ -119,6 +119,9 @@ export default function ChangeForm(props) {
           let response = await requestServer(formData, encripted);
           if (response === "Correct Update") {
             toast.success(response);
+            setTimeout(() => {
+              window.location.href = "/user-zone";
+            }, 1500);
           } else if (response == null) {
             toast.error("Server error please try again later");
           } else {

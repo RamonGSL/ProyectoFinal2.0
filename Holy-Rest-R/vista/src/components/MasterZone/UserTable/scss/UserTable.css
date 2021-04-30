@@ -61,6 +61,19 @@
   }
 }
 
+.contentInfoUA button .roleIcon {
+  color: var(--primary-yellow-light);
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 600px) {
+  .contentInfoUA button .roleIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .modal-content .textModal {
   color: var(--icon-light);
   margin-right: 5px;

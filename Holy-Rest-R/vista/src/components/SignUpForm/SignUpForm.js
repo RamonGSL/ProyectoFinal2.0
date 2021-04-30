@@ -41,7 +41,7 @@ export default function SignUpForm() {
         );
       } else if (!isSurnamesValid(formData.Surnames)) {
         toast.warning(
-          "The name must only contain alphabetic characters between 2 and 30"
+          "The Surname must only contain alphabetic characters between 2 and 30"
         );
       } else if (!isEmailValid(formData.Email)) {
         toast.warning("Invalid Email");
