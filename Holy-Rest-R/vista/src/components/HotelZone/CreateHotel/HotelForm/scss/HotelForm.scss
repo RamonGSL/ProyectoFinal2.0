@@ -2,23 +2,61 @@
 
 .hotelFormTitle {
   text-align: center;
+  color: var(--primary-yellow);
+  margin: 10px;
 }
 .FormHotel {
   background-color: var(--primary-dark);
   text-align: center;
-  .boxInput {
+  width: 600px;
+  padding: 10px;
+  border-radius: 20px;
+  margin: auto;
+  @media (max-width: 700px) {
     width: 400px;
+  }
+  @media (max-width: 500px) {
+    width: 300px;
+  }
+  .boxInput {
+    // height: 100px;
     margin: auto;
     padding-top: 20px;
-    @media (max-width: 700px) {
-      width: 300px;
+
+    input {
+      margin: auto;
+      width: 250px;
+      text-align: center;
+      @media (max-width: 500px) {
+        width: 100px;
+      }
+      color: var(--icon-light) !important;
     }
-    @media (max-width: 500px) {
-      width: 200px;
+    select {
+      color: var(--icon-light) !important;
+      width: 100px;
+      margin: auto;
+      text-align: center;
+    }
+    textarea {
+      color: var(--icon-light) !important;
+    }
+    small {
+      color: var(--icon-light) !important;
     }
   }
   .buttonHotelForm {
     margin-top: 20px;
     text-align: center;
+  }
+  .textTerms {
+    width: 400px;
+    margin: auto;
+    @media (max-width: 700px) {
+      width: 300px;
+    }
+    @media (max-width: 500px) {
+      width: 250px;
+    }
   }
 }

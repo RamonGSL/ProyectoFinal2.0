@@ -18,3 +18,8 @@ export function isPasswordValid(password) {
   const passwordValid = /^.{4,12}$/;
   return passwordValid.test(String(password).toLowerCase());
 }
+
+export function isHotelNameValid(name) {
+  const nameValid = /^[a-zA-ZÀ-ÿ\s]{2,25}$/;
+  return nameValid.test(String(name).toLowerCase());
+}

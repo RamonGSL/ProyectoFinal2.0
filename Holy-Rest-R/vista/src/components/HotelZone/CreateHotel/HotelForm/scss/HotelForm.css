@@ -23,33 +23,83 @@
 
 .hotelFormTitle {
   text-align: center;
+  color: var(--primary-yellow);
+  margin: 10px;
 }
 
 .FormHotel {
   background-color: var(--primary-dark);
   text-align: center;
-}
-
-.FormHotel .boxInput {
-  width: 400px;
+  width: 600px;
+  padding: 10px;
+  border-radius: 20px;
   margin: auto;
-  padding-top: 20px;
 }
 
 @media (max-width: 700px) {
-  .FormHotel .boxInput {
-    width: 300px;
+  .FormHotel {
+    width: 400px;
   }
 }
 
 @media (max-width: 500px) {
-  .FormHotel .boxInput {
-    width: 200px;
+  .FormHotel {
+    width: 300px;
   }
+}
+
+.FormHotel .boxInput {
+  margin: auto;
+  padding-top: 20px;
+}
+
+.FormHotel .boxInput input {
+  margin: auto;
+  width: 250px;
+  text-align: center;
+  color: var(--icon-light) !important;
+}
+
+@media (max-width: 500px) {
+  .FormHotel .boxInput input {
+    width: 100px;
+  }
+}
+
+.FormHotel .boxInput select {
+  color: var(--icon-light) !important;
+  width: 100px;
+  margin: auto;
+  text-align: center;
+}
+
+.FormHotel .boxInput textarea {
+  color: var(--icon-light) !important;
+}
+
+.FormHotel .boxInput small {
+  color: var(--icon-light) !important;
 }
 
 .FormHotel .buttonHotelForm {
   margin-top: 20px;
   text-align: center;
+}
+
+.FormHotel .textTerms {
+  width: 400px;
+  margin: auto;
+}
+
+@media (max-width: 700px) {
+  .FormHotel .textTerms {
+    width: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+  .FormHotel .textTerms {
+    width: 250px;
+  }
 }
 /*# sourceMappingURL=HotelForm.css.map */
