@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import { Row, Form, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
 import { values, size } from "lodash";
 import { toast } from "react-toastify";
 import { isHotelNameValid } from "./../../../../utils/validations";
 import "./scss/HotelForm.scss";
+//import Map from "./../../../../utils/map/Map";
+import Map2 from "./../../../../utils/map/Map2";
 
 export default function HotelForm(props) {
   const setHotel = (valueHotel) => {
@@ -44,10 +46,15 @@ export default function HotelForm(props) {
 
   useEffect(() => {
     const prefixNumber = document.getElementById("Prefix");
+    /* const hotelCountry = document.getElementById("HotelCountry"); */
     axios
       .get("https://restcountries.eu/rest/v2/all")
       .then((resp) => {
         resp.data.forEach((element) => {
+          /*  let country = document.createElement("option");
+          country.value = element.name;
+          country.text = element.name;
+          hotelCountry.appendChild(country); */
           if (element.callingCodes[0] !== "") {
             let option = document.createElement("option");
             option.value = element.callingCodes;
@@ -78,6 +85,7 @@ export default function HotelForm(props) {
         <Form.Group className="boxInput">
           <Row>
             <Form.Control
+              className="select"
               as="select"
               id="Prefix"
               name="Prefix"
@@ -87,6 +95,7 @@ export default function HotelForm(props) {
               <option>Prefix</option>
             </Form.Control>
             <Form.Control
+              className="input"
               type="text"
               name="Phone"
               maxLength="13"
@@ -95,12 +104,38 @@ export default function HotelForm(props) {
             />
           </Row>
         </Form.Group>
+        {/*  <Form.Group className="boxInput">
+          <Row>
+            <Form.Control
+              as="select"
+              id="HotelCountry"
+              name="HotelCountry"
+              placeholder="The country of your hotel"
+              defaultValue={formHotelValue.HotelCountry}
+            />
+            <Form.Control
+              as="select"
+              id="HotelTown"
+              name="HotelTown"
+              placeholder="The town of your hotel"
+              defaultValue={formHotelValue.HotelTown}
+            />
+            <Form.Control
+              as="select"
+              id="HotelStreet"
+              name="HotelStreet"
+              placeholder="The street of your hotel"
+              defaultValue={formHotelValue.HotelStreet}
+            />
+          </Row>
+        </Form.Group> */}
         <Form.Group className="boxInput">
           <small className="numOfLetters">
             {formHotelValue.Description.length}/200
           </small>
           <Form.Control
             as="textarea"
+            className="textarea"
             name="Description"
             cols="20"
             rows="4"
@@ -133,6 +168,7 @@ export default function HotelForm(props) {
             </p>
           </div>
         </Form.Group>
+        <Map2 />
         <Button className="buttonHotelForm" variant="primary" type="submit">
           {!hotelFormLoading ? "Submit" : <Spinner animation="border" />}
         </Button>
@@ -143,7 +179,9 @@ export default function HotelForm(props) {
 function initialHotelValue() {
   return {
     HotelName: "",
-    Location: "fdsafsadfsadf",
+    HotelCountry: "",
+    HotelTown: "",
+    HotelStreet: "",
     Description: "",
     Phone: "",
     Prefix: "",

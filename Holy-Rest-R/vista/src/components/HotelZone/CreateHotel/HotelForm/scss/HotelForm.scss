@@ -23,7 +23,7 @@
     margin: auto;
     padding-top: 20px;
 
-    input {
+    .input {
       margin: auto;
       width: 250px;
       text-align: center;
@@ -32,13 +32,13 @@
       }
       color: var(--icon-light) !important;
     }
-    select {
+    .select {
       color: var(--icon-light) !important;
       width: 100px;
       margin: auto;
       text-align: center;
     }
-    textarea {
+    .textarea {
       color: var(--icon-light) !important;
     }
     small {
