@@ -22,7 +22,7 @@ $comprobationType = true;
 
 switch ($data['Type']) {
 
-    case 'comprove':
+    case 'CreateHotel':
 
 
         foreach ($data as $index) {
@@ -32,7 +32,7 @@ switch ($data['Type']) {
         }
 
         if ($comprobationType == true) {
-            echo  json_encode($functionHotel->comproveHotel($data));
+            echo  json_encode($functionHotel->createHotel($data));
         }
         break;
 

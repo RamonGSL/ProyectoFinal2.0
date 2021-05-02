@@ -15,4 +15,9 @@ class functionsHotel extends Hotel
             return "This Email is already registered";
         } */
     }
+
+    public function createHotel($datas)
+    {
+        var_dump($datas);
+    }
 }

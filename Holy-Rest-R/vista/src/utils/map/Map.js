@@ -3,11 +3,21 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "mapbox-gl-geocoder";
 import "./scss/Map.scss";
 
-export default function Map2() {
+export default function Map(props) {
+  const { setLocation } = props;
+
+  onkeypress = () => {
+    let strong = document.getElementsByTagName("strong")[0];
+    if (strong !== undefined) {
+      let newLocation = strong.textContent;
+      setLocation(newLocation);
+    }
+  };
+
+  const container = document.getElementById("map");
   mapboxgl.accessToken =
     "pk.eyJ1IjoicmFtb25nc2wiLCJhIjoiY2toaHlscXd6MTA3MDJ4bndla255Y2M1eSJ9.xp5RC0suNYVRO0NDh8z2lA";
 
-  const container = document.getElementById("map");
   if (container) {
     if (container.childElementCount === 0) {
       const map = new mapboxgl.Map({

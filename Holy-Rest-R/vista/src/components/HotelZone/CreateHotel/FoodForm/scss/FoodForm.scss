@@ -1,0 +1,14 @@
+@import "./../../../../../scss/index.scss";
+button {
+  .foodIcon {
+    color: var(--primary-yellow-light);
+    width: 30px;
+    height: 30px;
+    @media (max-width: 600px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  background-color: transparent;
+  border: none;
+}

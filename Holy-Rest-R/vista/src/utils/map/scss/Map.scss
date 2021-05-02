@@ -1,4 +1,5 @@
 @import "./../../../scss/index.scss";
+
 #map {
   width: 400px;
   height: 400px;
@@ -10,6 +11,23 @@ input {
 .suggestions-wrapper {
   color: #202020 !important;
   font-weight: 600;
+}
+.active {
+  color: var(--primary-yellow) !important;
+}
+.geocoder {
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+  top: 10px;
+}
+.mapboxgl-ctrl-geocoder {
+  min-width: 100%;
+}
+#map {
+  margin-top: 75px;
 }
 .mapboxgl-map {
   font: 12px/20px Helvetica Neue, Arial, Helvetica, sans-serif;

@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import { isHotelNameValid } from "./../../../../utils/validations";
 import "./scss/HotelForm.scss";
 //import Map from "./../../../../utils/map/Map";
-import Map2 from "./../../../../utils/map/Map2";
+import Map from "../../../../utils/map/Map";
+import { createHotel } from "./../../../../api/hotel";
 
 export default function HotelForm(props) {
   const setHotel = (valueHotel) => {
@@ -14,6 +15,7 @@ export default function HotelForm(props) {
   };
   const [formHotelValue, setFormHotelValue] = useState(initialHotelValue());
   const [hotelFormLoading, setHotelFormLoading] = useState(false);
+  const [location, setLocation] = useState(null);
 
   const onChangeHotel = (e) => {
     setFormHotelValue({ ...formHotelValue, [e.target.name]: e.target.value });
@@ -40,21 +42,34 @@ export default function HotelForm(props) {
         );
       } else if (formHotelValue.Description.length > 200) {
         toast.warning("The hotel description must only contain 200 characters");
+      } else if (location === null) {
+        toast.warning("Please select location");
+      }
+      setFormHotelValue({ ...formHotelValue, Location: location });
+      try {
+        let response = await createHotel(formHotelValue);
+        if (response === "InsertHotel") {
+          toast.success(response);
+        } else if (response == null) {
+          toast.error("Server error please try again later");
+        } else {
+          toast.error(response);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setHotelFormLoading(false);
       }
     }
   };
 
   useEffect(() => {
     const prefixNumber = document.getElementById("Prefix");
-    /* const hotelCountry = document.getElementById("HotelCountry"); */
+
     axios
       .get("https://restcountries.eu/rest/v2/all")
       .then((resp) => {
         resp.data.forEach((element) => {
-          /*  let country = document.createElement("option");
-          country.value = element.name;
-          country.text = element.name;
-          hotelCountry.appendChild(country); */
           if (element.callingCodes[0] !== "") {
             let option = document.createElement("option");
             option.value = element.callingCodes;
@@ -75,6 +90,7 @@ export default function HotelForm(props) {
       <Form className="FormHotel" onSubmit={onSubmit} onChange={onChangeHotel}>
         <Form.Group className="boxInput">
           <Form.Control
+            className="input"
             type="text"
             name="HotelName"
             placeholder="The name of your hotel"
@@ -104,31 +120,6 @@ export default function HotelForm(props) {
             />
           </Row>
         </Form.Group>
-        {/*  <Form.Group className="boxInput">
-          <Row>
-            <Form.Control
-              as="select"
-              id="HotelCountry"
-              name="HotelCountry"
-              placeholder="The country of your hotel"
-              defaultValue={formHotelValue.HotelCountry}
-            />
-            <Form.Control
-              as="select"
-              id="HotelTown"
-              name="HotelTown"
-              placeholder="The town of your hotel"
-              defaultValue={formHotelValue.HotelTown}
-            />
-            <Form.Control
-              as="select"
-              id="HotelStreet"
-              name="HotelStreet"
-              placeholder="The street of your hotel"
-              defaultValue={formHotelValue.HotelStreet}
-            />
-          </Row>
-        </Form.Group> */}
         <Form.Group className="boxInput">
           <small className="numOfLetters">
             {formHotelValue.Description.length}/200
@@ -168,7 +159,7 @@ export default function HotelForm(props) {
             </p>
           </div>
         </Form.Group>
-        <Map2 />
+        <Map setLocation={setLocation} />
         <Button className="buttonHotelForm" variant="primary" type="submit">
           {!hotelFormLoading ? "Submit" : <Spinner animation="border" />}
         </Button>
@@ -179,9 +170,6 @@ export default function HotelForm(props) {
 function initialHotelValue() {
   return {
     HotelName: "",
-    HotelCountry: "",
-    HotelTown: "",
-    HotelStreet: "",
     Description: "",
     Phone: "",
     Prefix: "",
