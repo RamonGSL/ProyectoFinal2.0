@@ -141,7 +141,9 @@ export default function UserTable() {
                 deletUserEmail(emailSelected);
                 let emailLocal = getDatasUser();
                 emailLocal = emailLocal.Email;
-                console.log(document.getElementById(emailLocal));
+                console.log(emailLocal);
+                console.log(emailSelected);
+                //console.log(document.getElementById(emailLocal));
                 if (emailSelected === emailLocal) {
                   logoutUser();
                   setTimeout(() => {
@@ -192,10 +194,13 @@ export default function UserTable() {
                   changeUserRole(modalInput);
                   let emailLocal = getDatasUser();
                   emailLocal = emailLocal.Email;
+                  console.log(emailLocal);
+                  console.log(emailSelected);
                   if (emailSelected === emailLocal) {
+                    logoutUser();
                     setTimeout(() => {
                       window.location.href = "/";
-                    }, 2000);
+                    }, 1500);
                   }
                 } else {
                   toast.warning("The inserted parameter does not match");

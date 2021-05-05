@@ -12,12 +12,15 @@ class functionsManage extends Manage
         } else {
             return $comproveAdmin;
         }
-        /* $comprobationEmail = User::returnEmail($datas["Email"]);
-        if ($comprobationEmail == "0 datas") {
-            User::newUser($datas["Name"], $datas["Surnames"], $datas["Email"], md5($datas["Password"]), $datas["DateOfBirth"], $datas["Country"]);
-            return "Correct Register";
+    }
+
+    public function newManage($datas)
+    {
+        $createManage = Manage::createManage($datas["IdHotel"], $datas["IdUser"]);
+        if ($createManage == "New record created successfully") {
+            return "Correct";
         } else {
-            return "This Email is already registered";
-        } */
+            return $createManage;
+        }
     }
 }

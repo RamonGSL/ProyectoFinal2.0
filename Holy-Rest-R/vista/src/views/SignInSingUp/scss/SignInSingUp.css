@@ -89,7 +89,7 @@
 @media (max-width: 700px) {
   .signin-signup__right {
     background-color: var(--primary);
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 25%;
   }
 }
@@ -104,34 +104,52 @@
   margin-bottom: 20px;
 }
 
-.signin-signup__right div h2 {
+.signin-signup__right div .firstTitle {
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 20px;
   color: var(--icon-light);
 }
 
-@media (max-width: 700px) {
-  .signin-signup__right div h2 {
-    font-size: 15px;
-  }
-}
-
 @media (max-width: 1000px) {
-  .signin-signup__right div h2 {
+  .signin-signup__right div .firstTitle {
     font-size: 25px;
   }
 }
 
-.signin-signup__right div h3 {
-  font-size: 20px;
+@media (max-width: 700px) {
+  .signin-signup__right div .firstTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .signin-signup__right div .firstTitle {
+    font-size: 15px;
+  }
+}
+
+.signin-signup__right div .secondTitle {
+  font-size: 25px;
   font-weight: 600;
   margin-bottom: 40px;
   color: var(--icon-light);
 }
 
-@media (max-width: 600px) {
-  .signin-signup__right div h3 {
+@media (max-width: 1000px) {
+  .signin-signup__right div .secondTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .signin-signup__right div .secondTitle {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .signin-signup__right div .secondTitle {
     font-size: 10px;
   }
 }
@@ -143,6 +161,7 @@
   font-size: 30px;
   font-weight: bold;
   padding: 10px 0;
+  margin: auto;
 }
 
 .signin-signup__right div button:first-of-type {
@@ -153,5 +172,9 @@
   .signin-signup__right div button {
     font-size: 20px;
   }
+}
+
+.containerInfoSign {
+  text-align: center;
 }
 /*# sourceMappingURL=SignInSingUp.css.map */

@@ -68,10 +68,12 @@ function RightComponent(props) {
   const { openModal, setShowModal, setRefreshCheckLogin } = props;
   return (
     <Col className="signin-signup__right" xs={6}>
-      <div>
-        <img src={Logo2} alt="Logo" />
-        <h2>To have a complete experience it will be necessary to register</h2>
-        <h3>Will last a few seconds</h3>
+      <div className="containerInfoSign">
+        <img className="imgLogo" src={Logo2} alt="Logo" />
+        <h2 className="firstTitle">
+          To have a complete experience it will be necessary to register
+        </h2>
+        <h3 className="secondTitle">Will last a few seconds</h3>
         <Button
           variant="primary"
           onClick={() => openModal(<SignUpForm setShowModal={setShowModal} />)}

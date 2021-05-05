@@ -3,7 +3,7 @@ import { Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
 import { values, size } from "lodash";
 import { toast } from "react-toastify";
-
+import { Redirect } from "react-router-dom";
 import "./scss/ChangeForm.scss";
 import { API_URL } from "./../../utils/constant";
 import {
@@ -12,7 +12,7 @@ import {
   isSurnamesValid,
   isPasswordValid,
 } from "./../../utils/validations";
-import { updateUserApi } from "./../../api/user";
+import { logoutUser, updateUserApi } from "./../../api/user";
 
 export default function ChangeForm(props) {
   //datos del usuario
@@ -120,7 +120,9 @@ export default function ChangeForm(props) {
           if (response === "Correct Update") {
             toast.success(response);
             setTimeout(() => {
-              window.location.href = "/user-zone";
+              logoutUser();
+              window.location.href = "/signInUp";
+              //<Redirect to="/user-zone" />;
             }, 1500);
           } else if (response == null) {
             toast.error("Server error please try again later");

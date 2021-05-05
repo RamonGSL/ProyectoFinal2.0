@@ -16,8 +16,14 @@ class functionsHotel extends Hotel
         } */
     }
 
-    public function createHotel($datas)
+    public function newHotel($datas)
     {
-        var_dump($datas);
+        $createHotel = Hotel::createHotel($datas["HotelName"], $datas["Location"], $datas["Description"], $datas["Phone"], $datas["Prefix"], $datas["Email"]);
+        if ($createHotel == "New record created successfully") {
+            $returnHotel = Hotel::comproveHotelWithEmail($datas["Email"]);
+            return $returnHotel[0]["Id"];
+        } else {
+            return "Error";
+        }
     }
 }

@@ -49,6 +49,8 @@ export async function loginApi(formData) {
     const response = await fetch(urlUser, params);
     const result = await response.json();
     if (result !== "Incorrect Login") {
+      console.log(result.Email);
+      console.log(result.Password);
       InsertStorage(result.Email, result.Password);
       return "Correct Login";
     } else {
@@ -69,6 +71,7 @@ export async function datasUser() {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

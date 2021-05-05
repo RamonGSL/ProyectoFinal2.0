@@ -1,6 +1,6 @@
 import { API_URL } from "./../utils/constant";
 import { datasUser } from "./user";
-const urlUser = `${API_URL}/server/controller/manage/manage.php`;
+const urlManage = `${API_URL}/server/controller/manage/manage.php`;
 
 export async function comproveAdmin() {
   let item = { Type: "comproveAdmin" };
@@ -11,16 +11,34 @@ export async function comproveAdmin() {
 
   try {
     const params = await createParams(formData);
-    const response = await fetch(urlUser, params);
+    const response = await fetch(urlManage, params);
     const result = await response.json();
     if (result === "Don´t exist") {
       return null;
     } else {
+      return result;
     }
-    return result;
   } catch (error) {
     console.log(error);
     return null;
+  }
+}
+
+export async function createManage(id) {
+  console.log(id);
+  try {
+    let item = { Type: "createManage" };
+    let idHotel = { IdHotel: id };
+    let idUser = await datasUser();
+    idUser = { IdUser: idUser[0].Id };
+    let formData = Object.assign(idUser, idHotel, item);
+
+    const params = await createParams(formData);
+    const response = await fetch(urlManage, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
   }
 }
 

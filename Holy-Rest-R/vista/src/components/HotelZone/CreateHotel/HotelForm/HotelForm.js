@@ -21,6 +21,7 @@ export default function HotelForm(props) {
     setFormHotelValue({ ...formHotelValue, [e.target.name]: e.target.value });
   };
   const onSubmit = async (e) => {
+    console.log(formHotelValue);
     e.preventDefault();
     let validCount = 0;
     values(formHotelValue).some((value) => {
@@ -32,7 +33,7 @@ export default function HotelForm(props) {
     } else {
       if (!isHotelNameValid(formHotelValue.HotelName)) {
         toast.warning(
-          "The hotel name must only contain alphabetic characters between 2 and 15 "
+          "The hotel name must only contain alphabetic characters between 2 and 25 "
         );
       } else if (isNaN(formHotelValue.Prefix)) {
         toast.warning("The hotel prefix must only contain numeric characters");
@@ -42,23 +43,24 @@ export default function HotelForm(props) {
         );
       } else if (formHotelValue.Description.length > 200) {
         toast.warning("The hotel description must only contain 200 characters");
-      } else if (location === null) {
+      } else if (location === null || location === "") {
         toast.warning("Please select location");
-      }
-      setFormHotelValue({ ...formHotelValue, Location: location });
-      try {
-        let response = await createHotel(formHotelValue);
-        if (response === "InsertHotel") {
-          toast.success(response);
-        } else if (response == null) {
-          toast.error("Server error please try again later");
-        } else {
-          toast.error(response);
+      } else {
+        setFormHotelValue({ ...formHotelValue, Location: location });
+        try {
+          let response = await createHotel(formHotelValue);
+          if (response === "Correct") {
+            toast.success(response);
+          } else if (response == null) {
+            toast.error("Server error please try again later");
+          } else {
+            toast.error(response);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setHotelFormLoading(false);
         }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setHotelFormLoading(false);
       }
     }
   };

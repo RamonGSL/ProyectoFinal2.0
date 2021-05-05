@@ -36,3 +36,12 @@
     padding-left: 300px;
   }
 }
+.nameUserTitle,
+.nameUserTitle1 {
+  @media (max-width: 600px) {
+    font-size: 15px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 25px;
+  }
+}

@@ -1,4 +1,6 @@
 import { API_URL } from "./../utils/constant";
+import { createManage } from "./manage";
+import { getDatasUser } from "./user";
 const urlUser = `${API_URL}/server/controller/hotel/hotel.php`;
 
 export async function getHotel(idHotel) {
@@ -21,15 +23,24 @@ export async function getHotel(idHotel) {
 
 export async function createHotel(hotel) {
   let item = { Type: "CreateHotel" };
-  let formData = Object.assign(hotel, item);
+  let datasUser = getDatasUser();
+  let formData = Object.assign(hotel, item, datasUser);
   console.log(formData);
 
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
-
-    return result;
+    if (result === "Error") {
+      return null;
+    } else {
+      let newResult = await createManage(result);
+      if (newResult === "Correct") {
+        return result;
+      } else {
+        return null;
+      }
+    }
   } catch (error) {
     console.log(error);
     return null;

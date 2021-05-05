@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./scss/SignInForm.scss";
-
 import { Form, Button, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { isEmailValid, isPasswordValid } from "./../../utils/validations";
@@ -40,6 +39,7 @@ export default function SignInForm(props) {
           if (response === "Correct Login") {
             toast.success(response);
             setRefreshCheckLogin(true);
+
             setTimeout(() => {
               window.location.href = "/";
             }, 2000);

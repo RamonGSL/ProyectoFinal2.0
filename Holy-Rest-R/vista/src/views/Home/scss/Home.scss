@@ -4,6 +4,23 @@
   margin: auto;
   width: 70%;
 }
+#controlled-tab-example-tab-whatDoWeDo {
+  @media (max-width: 715px) {
+    font-size: 10px !important;
+  }
+}
+
+#controlled-tab-example-tab-about {
+  @media (max-width: 715px) {
+    font-size: 10px !important;
+  }
+}
+
+#controlled-tab-example-tab-howToUseWeb {
+  @media (max-width: 715px) {
+    font-size: 10px !important;
+  }
+}
 
 .infoWeb {
   margin-bottom: 30px;
@@ -19,6 +36,10 @@
     border-bottom: 1px solid var(--primary-yellow-light);
     border-left: 1px solid var(--primary-yellow-light);
     border-right: 1px solid var(--primary-yellow-light);
+    @media (max-width: 715px) {
+      font-size: 10px;
+      padding: 15px 30px 15px 30px;
+    }
     p {
       color: var(--font-light);
     }

@@ -32,7 +32,7 @@ switch ($data['Type']) {
         }
 
         if ($comprobationType == true) {
-            echo  json_encode($functionHotel->createHotel($data));
+            echo  json_encode($functionHotel->newHotel($data));
         }
         break;
 

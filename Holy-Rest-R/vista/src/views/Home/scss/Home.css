@@ -26,6 +26,24 @@
   width: 70%;
 }
 
+@media (max-width: 715px) {
+  #controlled-tab-example-tab-whatDoWeDo {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 715px) {
+  #controlled-tab-example-tab-about {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 715px) {
+  #controlled-tab-example-tab-howToUseWeb {
+    font-size: 10px !important;
+  }
+}
+
 .infoWeb {
   margin-bottom: 30px;
 }
@@ -46,6 +64,13 @@
   border-bottom: 1px solid var(--primary-yellow-light);
   border-left: 1px solid var(--primary-yellow-light);
   border-right: 1px solid var(--primary-yellow-light);
+}
+
+@media (max-width: 715px) {
+  .infoWeb .content-info {
+    font-size: 10px;
+    padding: 15px 30px 15px 30px;
+  }
 }
 
 .infoWeb .content-info p {
