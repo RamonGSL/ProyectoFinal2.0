@@ -35,8 +35,9 @@ export async function createHotel(hotel) {
       return null;
     } else {
       let newResult = await createManage(result);
+      console.log(newResult);
       if (newResult === "Correct") {
-        return result;
+        return newResult;
       } else {
         return null;
       }

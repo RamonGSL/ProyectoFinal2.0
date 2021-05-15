@@ -22,7 +22,7 @@ class Hotel extends Queries
 
     protected function comproveHotelWithEmail($Email)
     {
-        $sql = "SELECT * FROM hotels WHERE Email= '$Email'";
+        $sql = "SELECT * FROM hotels WHERE Email = '$Email'";
         return Queries::returnDatas($sql);
     }
 }

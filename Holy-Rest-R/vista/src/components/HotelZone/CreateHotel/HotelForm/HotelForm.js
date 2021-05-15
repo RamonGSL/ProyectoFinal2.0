@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Form, Button, Spinner } from "react-bootstrap";
+import { Redirect } from "react-router";
 import axios from "axios";
 import { values, size } from "lodash";
 import { toast } from "react-toastify";
@@ -9,10 +10,7 @@ import "./scss/HotelForm.scss";
 import Map from "../../../../utils/map/Map";
 import { createHotel } from "./../../../../api/hotel";
 
-export default function HotelForm(props) {
-  const setHotel = (valueHotel) => {
-    props.changeStateHotel(valueHotel);
-  };
+export default function HotelForm() {
   const [formHotelValue, setFormHotelValue] = useState(initialHotelValue());
   const [hotelFormLoading, setHotelFormLoading] = useState(false);
   const [location, setLocation] = useState(null);
@@ -43,14 +41,20 @@ export default function HotelForm(props) {
         );
       } else if (formHotelValue.Description.length > 200) {
         toast.warning("The hotel description must only contain 200 characters");
-      } else if (location === null || location === "") {
+      } else if (location === null || location === " ") {
+        console.log(location);
         toast.warning("Please select location");
       } else {
-        setFormHotelValue({ ...formHotelValue, Location: location });
+        console.log(location);
+        let newLocation = { Location: location };
+        let formData = Object.assign(formHotelValue, newLocation);
         try {
-          let response = await createHotel(formHotelValue);
+          let response = await createHotel(formData);
           if (response === "Correct") {
             toast.success(response);
+            setTimeout(() => {
+              window.location.href = "/user-zone";
+            }, 1500);
           } else if (response == null) {
             toast.error("Server error please try again later");
           } else {

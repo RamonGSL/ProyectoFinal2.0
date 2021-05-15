@@ -1,6 +1,14 @@
 @import "./../../../../../scss/index.scss";
+.infoFood {
+  text-align: center;
+}
+.FormFood {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 button {
   .foodIcon {
+    text-align: center;
     color: var(--primary-yellow-light);
     width: 30px;
     height: 30px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { comproveAdmin } from "./../../../api/manage";
 import "./scss/CreateHotel.scss";
 import FoodForm from "./FoodForm/FoodForm";
 import HotelForm from "./HotelForm/HotelForm";
@@ -8,16 +8,19 @@ import RoomForm from "./RoomForm/RoomForm";
 
 export default function CreateHotel() {
   const [hotelState, setHotelState] = useState(false);
-  const changeStateHotel = (valueHotel) => {
-    setHotelState(valueHotel);
-  };
-  setTimeout(() => {
-    console.log(hotelState);
-  }, 3000);
+
+  useEffect(() => {
+    let hotel = comproveAdmin();
+    if (hotel !== null) {
+      setHotelState(true);
+    } else {
+      setHotelState(false);
+    }
+  }, []);
 
   return (
     <div className="Content-form">
-      <HotelForm changeStateHotel={changeStateHotel} />
+      <HotelForm />
       {hotelState === true ? (
         <>
           <FoodForm />

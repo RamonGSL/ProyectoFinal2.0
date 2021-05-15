@@ -27,6 +27,30 @@
   margin: auto;
 }
 
+@media (max-width: 700px) {
+  #map {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  #map {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 350px) {
+  #map {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
+}
+
 input {
   color: #202020;
 }
@@ -122,7 +146,6 @@ input {
 .mapboxgl-ctrl-bottom-right,
 .mapboxgl-ctrl-top-left,
 .mapboxgl-ctrl-top-right {
-  position: absolute;
   pointer-events: none;
   z-index: 2;
 }

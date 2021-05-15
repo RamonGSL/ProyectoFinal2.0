@@ -33,22 +33,21 @@ export default function HotelZone() {
       <BasicModal show={showModal} setShow={setShowModal}>
         {contentModal}
       </BasicModal> */}
-      {hotelDatas === null ? (
-        <Tabs
-          id="controlled-tab-example"
-          activeKey={key}
-          onSelect={(k) => setKey(k)}
-        >
-          <Tab eventKey="CreateHotel" title="CreateHotel">
-            <CreateHotel />
-          </Tab>
-          <Tab eventKey="Hotels" title="Hotels">
-            <p>Estadisticas</p>
-          </Tab>
-        </Tabs>
-      ) : null}
 
-      {hotelDatas !== null ? (
+      <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+      >
+        <Tab eventKey="Hotel" title="Hotel">
+          <CreateHotel />
+        </Tab>
+        <Tab eventKey="Analytics" title="Analytics">
+          <p>Analytics</p>
+        </Tab>
+      </Tabs>
+
+      {/*  {hotelDatas !== null ? (
         <Tabs
           id="controlled-tab-example"
           activeKey={key}
@@ -59,7 +58,7 @@ export default function HotelZone() {
             <p>Estadisticas</p>
           </Tab>
         </Tabs>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }

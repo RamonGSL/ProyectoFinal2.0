@@ -13,6 +13,7 @@ export async function comproveAdmin() {
     const params = await createParams(formData);
     const response = await fetch(urlManage, params);
     const result = await response.json();
+    console.log(result);
     if (result === "Don´t exist") {
       return null;
     } else {
@@ -25,7 +26,6 @@ export async function comproveAdmin() {
 }
 
 export async function createManage(id) {
-  console.log(id);
   try {
     let item = { Type: "createManage" };
     let idHotel = { IdHotel: id };
@@ -39,6 +39,7 @@ export async function createManage(id) {
     return result;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 

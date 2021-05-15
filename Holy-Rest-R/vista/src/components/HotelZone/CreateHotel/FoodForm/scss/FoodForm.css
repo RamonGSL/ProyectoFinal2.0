@@ -21,12 +21,22 @@
   --danger: #e0245e;
 }
 
+.infoFood {
+  text-align: center;
+}
+
+.FormFood {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 button {
   background-color: transparent;
   border: none;
 }
 
 button .foodIcon {
+  text-align: center;
   color: var(--primary-yellow-light);
   width: 30px;
   height: 30px;

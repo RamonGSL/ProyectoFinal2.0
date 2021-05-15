@@ -1,16 +1,22 @@
-import React from "react";
+import { React, Console } from "react";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "mapbox-gl-geocoder";
 import "./scss/Map.scss";
 
 export default function Map(props) {
-  const { setLocation } = props;
-
-  onkeypress = () => {
-    let strong = document.getElementsByTagName("strong")[0];
-    if (strong !== undefined) {
-      let newLocation = strong.textContent;
-      setLocation(newLocation);
+  onkeyup = () => {
+    try {
+      if (document.getElementsByTagName("strong")[0] !== undefined) {
+        console.log("Entramos");
+        const element = document.getElementsByTagName("strong")[0];
+        console.log(element.textContent);
+        props.setLocation(element.textContent);
+      } else {
+        console.log("No ha saltado la excepción");
+        props.setLocation(null);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -30,11 +36,14 @@ export default function Map(props) {
       map.addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
-          mapboxgl: mapboxgl,
         })
       );
     }
   }
 
-  return <div id="map"></div>;
+  return (
+    <div className="containerMap">
+      <div id="map"></div>
+    </div>
+  );
 }
