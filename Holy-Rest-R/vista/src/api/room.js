@@ -1,11 +1,11 @@
 import { API_URL } from "./../utils/constant";
 import { comproveAdmin } from "./manage";
-const urlFood = `${API_URL}/server/controller/food/food.php`;
+const urlRoom = `${API_URL}/server/controller/room/room.php`;
 
-export async function createFood(Food) {
+export async function createRoom(Room) {
   let hotel = await comproveAdmin();
   let hotelItem = { IdHotel: hotel[0].IdHotel };
-  Food.forEach((element) => {
+  Room.forEach((element) => {
     element = Object.assign(element, hotelItem);
   });
 
@@ -13,14 +13,14 @@ export async function createFood(Food) {
   //let arrayForOption = ["CreateFood"];
   let arrayForOption = [
     {
-      Type: "CreateFood",
+      Type: "CreateRoom",
     },
   ];
-  Food.push(arrayForOption);
-  console.log(Food);
+  Room.push(arrayForOption);
+  console.log(Room);
   try {
-    const params = await createParams(Food);
-    const response = await fetch(urlFood, params);
+    const params = await createParams(Room);
+    const response = await fetch(urlRoom, params);
     const result = await response.json();
     //console.log(result);
     //return result;

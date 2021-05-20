@@ -7,13 +7,11 @@ export async function comproveAdmin() {
   let formData = await datasUser();
   formData = { Id: formData[0].Id };
   formData = Object.assign(formData, item);
-  console.log(formData);
 
   try {
     const params = await createParams(formData);
     const response = await fetch(urlManage, params);
     const result = await response.json();
-    console.log(result);
     if (result === "Don´t exist") {
       return null;
     } else {

@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import "./scss/RoomForm.scss";
 import { API_URL } from "./../../../../utils/constant";
+import { createRoom } from "./../../../../api/room";
 
 var allRooms = [];
 
@@ -21,7 +22,7 @@ export default function RoomForm() {
       return null;
     });
 
-    if (size(formRoomValue) < validCount) {
+    if (size(formRoomValue) !== validCount) {
       toast.warning("Complete all fields");
     } else {
       if (formRoomValue.Price > 0) {
@@ -41,8 +42,8 @@ export default function RoomForm() {
         newArray.push(element);
       }
     });
-
     allRooms = newArray;
+    console.log(allRooms);
   };
 
   const roomTable = () => {
@@ -74,6 +75,8 @@ export default function RoomForm() {
       node.appendChild(button);
       document.getElementById("groupRoom").appendChild(node);
     });
+    //setFormRoomValue(initialRoomValue());
+    delete formRoomValue.Id;
   };
 
   const onChangeRoom = (e) => {
@@ -82,7 +85,12 @@ export default function RoomForm() {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    let validCount = 0;
+    if (allRooms.length === 0) {
+      toast.warning("please select some food");
+    } else {
+      createRoom(allRooms);
+    }
+
   };
 
   return (
@@ -118,7 +126,7 @@ export default function RoomForm() {
         </Form.Group>
 
         <Form.Group className="boxInput">
-          <button onClick={addRoom}>
+          <button type="button" onClick={addRoom}>
             <AddCircleOutlineRoundedIcon className="foodIcon" />
           </button>
         </Form.Group>

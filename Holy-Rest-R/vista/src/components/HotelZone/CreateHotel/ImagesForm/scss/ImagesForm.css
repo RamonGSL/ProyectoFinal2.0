@@ -20,4 +20,41 @@
   --background-light: var(--primary-light);
   --danger: #e0245e;
 }
+
+.FormImages {
+  margin-top: 20px;
+}
+
+.FormImages #containerImage {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
+.FormImages #containerImage #inputImage {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  opacity: 0;
+}
+
+.FormImages #containerImage #imgSelected {
+  width: 100%;
+  height: auto;
+}
+
+@supports ((-o-object-fit: cover) or (object-fit: cover)) {
+  .FormImages #containerImage #imgSelected {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center center;
+       object-position: center center;
+  }
+}
+
+.FormImages .imagesInList {
+  width: 100px;
+  height: 100px;
+}
 /*# sourceMappingURL=ImagesForm.css.map */

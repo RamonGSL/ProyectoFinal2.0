@@ -4,10 +4,10 @@ import axios from "axios";
 import { values, size, initial, map, random } from "lodash";
 import { toast } from "react-toastify";
 import "./scss/FoodForm.scss";
-
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import { API_URL } from "./../../../../utils/constant";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+import { createFood } from "./../../../../api/food";
 
 var allFoods = [];
 
@@ -22,8 +22,7 @@ export default function FoodForm() {
       value && validCount++;
       return null;
     });
-    console.log(formFoodValue);
-    if (size(formFoodValue) < validCount) {
+    if (size(formFoodValue) !== validCount) {
       toast.warning("Complete all fields");
     } else {
       if (formFoodValue.Price > 0) {
@@ -76,6 +75,8 @@ export default function FoodForm() {
       node.appendChild(button);
       document.getElementById("groupFood").appendChild(node);
     });
+    //setFormFoodValue(initialFoodValue());
+    delete formFoodValue.Id;
   };
 
   const onChangeFood = (e) => {
@@ -84,7 +85,12 @@ export default function FoodForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(allFoods);
+    if (allFoods.length === 0) {
+      toast.warning("please select some food");
+    } else {
+      createFood(allFoods);
+    }
+
     try {
     } catch (error) {
       console.log(error);
@@ -119,7 +125,7 @@ export default function FoodForm() {
         </Form.Group>
 
         <Form.Group className="boxInput">
-          <button onClick={addFood}>
+          <button type="button" onClick={addFood}>
             <AddCircleOutlineRoundedIcon className="foodIcon" />
           </button>
         </Form.Group>

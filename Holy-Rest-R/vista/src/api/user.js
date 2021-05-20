@@ -17,7 +17,6 @@ export async function registerApi(formData) {
 }
 
 export async function updateUserApi(formData, encripted) {
-  console.log(formData);
   if (encripted === true) {
     let item = { Encript: "Encript" };
     formData = Object.assign(formData, item);
@@ -49,8 +48,6 @@ export async function loginApi(formData) {
     const response = await fetch(urlUser, params);
     const result = await response.json();
     if (result !== "Incorrect Login") {
-      console.log(result.Email);
-      console.log(result.Password);
       InsertStorage(result.Email, result.Password);
       return "Correct Login";
     } else {
@@ -71,7 +68,6 @@ export async function datasUser() {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
@@ -98,12 +94,10 @@ export async function deleteUser(user) {
   let item = { Type: "delete" };
   let formData = getDatasUser();
   formData = Object.assign(formData, item, user);
-  console.log(formData);
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
@@ -118,16 +112,13 @@ export async function changeRole(user) {
   } else {
     return null;
   }
-  console.log(user);
   let item = { Type: "role" };
   let formData = getDatasUser();
   formData = Object.assign(formData, item, user);
-  console.log(formData);
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

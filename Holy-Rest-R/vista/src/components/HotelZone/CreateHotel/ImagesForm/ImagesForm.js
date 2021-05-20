@@ -5,15 +5,15 @@ import { values, size } from "lodash";
 import { toast } from "react-toastify";
 import "./scss/ImagesForm.scss";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import { API_URL } from "./../../utils/constant";
-
+import { API_URL } from "../../../../utils/constant";
+import { createImages } from "./../../../../api/images";
 var allImages = [];
 export default function ImagesForm() {
   const [formHotelImage, setFormHotelImage] = useState(initialHotelImage());
   const [formHotelImageLoading, setRoomFormLoading] = useState(false);
 
   const [image, setImage] = useState(
-    `${API_URL}/vista/src/assets/userDefault.jpg`
+    `${API_URL}vista/src/assets/userDefault.jpeg`
   );
 
   const addImage = () => {
@@ -23,12 +23,23 @@ export default function ImagesForm() {
       value && validCount++;
       return null;
     });
-
-    if (size(formHotelImage) < validCount) {
+    console.log(formHotelImage);
+    if (size(formHotelImage) !== validCount) {
       toast.warning("Complete all fields");
     } else {
+      if (formHotelImage.Type === "principal") {
+        allImages.forEach((element) => {
+          if (element.Type === "principal") {
+            element.Type = "Normal";
+          }
+        });
+      }
+
+      allImages.push(formHotelImage);
+      imagesTable();
     }
   };
+
   const addFile = (e) => {
     let image = e.target.files;
     let imageConfirm;
@@ -49,6 +60,55 @@ export default function ImagesForm() {
       };
     });
   };
+
+  const deleteImage = (id) => {
+    let newArray = [];
+    document.getElementById(id).remove();
+    allImages.forEach((element) => {
+      if (element.Id === id) {
+        console.log("Este no lo quiero");
+      } else {
+        newArray.push(element);
+      }
+    });
+    console.log(allImages);
+    allImages = newArray;
+  };
+
+  const imagesTable = () => {
+    let container = document.getElementById("groupImage");
+
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+    allImages.forEach((element, i) => {
+      element.Id = i;
+      let node = document.createElement("DIV");
+      node.setAttribute("id", i);
+      node.classList.add("list-group-item");
+      let imageCreate = document.createElement("img");
+      imageCreate.setAttribute("src", element.Image);
+      imageCreate.classList.add("imagesInList");
+      let textnode = document.createTextNode(element.Type);
+      let button = document.createElement("button");
+      button.addEventListener("click", () => {
+        deleteImage(i);
+      });
+
+      let icon = document.createElement("img");
+      let urlDelete = `${API_URL}/vista/src/assets/delete.svg`;
+      icon.setAttribute("src", urlDelete);
+
+      button.appendChild(icon);
+      node.appendChild(imageCreate);
+      node.appendChild(textnode);
+      node.appendChild(button);
+      document.getElementById("groupImage").appendChild(node);
+    });
+    //setFormHotelImage(initialHotelImage());
+    delete formHotelImage.Id;
+  };
+
   const onChangeImageHotel = (e) => {
     setFormHotelImage({
       ...formHotelImage,
@@ -59,8 +119,18 @@ export default function ImagesForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    let validCount = 0;
+    if (allImages.length === 0) {
+      toast.warning("please select some food");
+    } else {
+      createImages(allImages);
+    }
+
+    try {
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div className="FormImages">
       <Form
@@ -69,14 +139,18 @@ export default function ImagesForm() {
         onChange={onChangeImageHotel}
       >
         <Form.Group className="boxInput">
-          <Form.Control
-            className="input"
-            as="file"
-            name="Image"
-            placeholder="Image"
-            onInput={addFile}
-            defaultValue={formHotelImage.Image}
-          />
+          <div id="containerImage">
+            <Form.Control
+              className="input"
+              id="inputImage"
+              type="file"
+              name="Image"
+              placeholder="Image"
+              onInput={addFile}
+              defaultValue={formHotelImage.Image}
+            />
+            <img id="imgSelected" src={image} alt="imgSelected" />
+          </div>
         </Form.Group>
 
         <Form.Group className="boxInput">
@@ -87,13 +161,14 @@ export default function ImagesForm() {
             placeholder="Type Image"
             defaultValue={formHotelImage.Type}
           >
+            <option>Default</option>
             <option value="principal">principal</option>
             <option value="Normal">Normal</option>
           </Form.Control>
         </Form.Group>
 
         <Form.Group className="boxInput">
-          <button onClick={addImage}>
+          <button type="button"  onClick={addImage}>
             <AddCircleOutlineRoundedIcon className="foodIcon" />
           </button>
         </Form.Group>
@@ -104,7 +179,7 @@ export default function ImagesForm() {
           {!formHotelImageLoading ? "Submit" : <Spinner animation="border" />}
         </Button>
       </Form>
-      <ListGroup id="groupRoom"></ListGroup>
+      <ListGroup id="groupImage"></ListGroup>
     </div>
   );
 }
