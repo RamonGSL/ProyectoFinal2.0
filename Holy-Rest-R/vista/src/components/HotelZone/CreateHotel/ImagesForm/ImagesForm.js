@@ -21,17 +21,19 @@ export default function ImagesForm() {
   }, [])
 
   const initialiceImages  = async () => {
+    let obj = null;
     let result = await getImages();
     console.log(result);
     await result.forEach(element => {
-      let obj = {
+      obj = {
         Type: element.Type,
         Image: element.base64
       }
-      console.log(obj);
-      /* setFormHotelImage(obj);
-      addImage(); */
+      if(obj !== null){
+        allImages.push(obj);
+      }      
     });
+    imagesTable();
   };
 
 
@@ -124,7 +126,6 @@ export default function ImagesForm() {
       node.appendChild(button);
       document.getElementById("groupImage").appendChild(node);
     });
-    //setFormHotelImage(initialHotelImage());
     delete formHotelImage.Id;
   };
 

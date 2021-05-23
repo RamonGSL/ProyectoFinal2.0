@@ -6,13 +6,33 @@ import { toast } from "react-toastify";
 import "./scss/FoodForm.scss";
 import { API_URL } from "./../../../../utils/constant";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import { createFood } from "./../../../../api/food";
+import { createFood, getFoods } from "./../../../../api/food";
 
 var allFoods = [];
 
 export default function FoodForm() {
   const [formFoodValue, setFormFoodValue] = useState(initialFoodValue());
   const [foodFormLoading, setFoodFormLoading] = useState(false);
+
+
+  useEffect(() => {
+    initialiceFoods();
+  }, [])
+
+  const initialiceFoods  = async () => {
+    let obj = null;
+    let result = await getFoods();
+    await result.forEach(element => {
+      obj = {
+        Food: element.Type,
+        Price: element.Price
+      }
+      if(obj !== null){
+        allFoods.push(obj);
+      }      
+    });
+    foodTable();
+  };
 
   const addFood = () => {
     let validCount = 0;

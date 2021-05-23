@@ -6,13 +6,32 @@ import { toast } from "react-toastify";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import "./scss/RoomForm.scss";
 import { API_URL } from "./../../../../utils/constant";
-import { createRoom } from "./../../../../api/room";
+import { createRoom, getRooms } from "./../../../../api/room";
 
 var allRooms = [];
 
 export default function RoomForm() {
   const [formRoomValue, setFormRoomValue] = useState(initialRoomValue());
   const [foodRoomLoading, setRoomFormLoading] = useState(false);
+
+  useEffect(() => {
+    initialiceRooms();
+  }, [])
+
+  const initialiceRooms  = async () => {
+    let obj = null;
+    let result = await getRooms();
+    await result.forEach(element => {
+      obj = {
+        Room: element.TypeRoom,
+        Price: element.RoomPrice
+      }
+      if(obj !== null){
+        allRooms.push(obj);
+      }      
+    });
+    roomTable();
+  };
 
   const addRoom = () => {
     let validCount = 0;
@@ -81,7 +100,6 @@ export default function RoomForm() {
 
   const onChangeRoom = (e) => {
     setFormRoomValue({ ...formRoomValue, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
   const onSubmit = async (e) => {
     e.preventDefault();
