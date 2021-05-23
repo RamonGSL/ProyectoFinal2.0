@@ -18,16 +18,8 @@ include_once('./functionsRoom.php');
 $functionRoom = new functionsRoom();
 $comprobationType = true;
 
-$option = end($data);
-switch ($option[0]['Type']) {
-
-    case 'CreateRoom':
-        $functionRoom->createAllRooms($data);
-        //echo  json_encode($functionRoom->createAllRooms($data));
-        break;
-
-
-    default:
-        # code...
-        break;
+if (array_key_exists('idHotel', $data)) {
+    echo  json_encode($functionRoom->getRoomsHotel($data));
+} else {
+    echo  json_encode($functionRoom->createAllRooms($data));
 }

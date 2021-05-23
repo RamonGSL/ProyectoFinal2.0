@@ -18,16 +18,8 @@ include_once('./functionsFood.php');
 $functionFood = new functionsFood();
 $comprobationType = true;
 
-$option = end($data);
-switch ($option[0]['Type']) {
-
-    case 'CreateFood':
-        $functionFood->createAllFoods($data);
-        //echo  json_encode($functionFood->createAllFoods($data));
-        break;
-
-
-    default:
-        # code...
-        break;
+if (array_key_exists('idHotel', $data)) {
+    echo  json_encode($functionFood->getFoodHotel($data));
+} else {
+    echo  json_encode($functionFood->createAllFoods($data));
 }

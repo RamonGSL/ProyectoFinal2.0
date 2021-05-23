@@ -6,15 +6,34 @@ import { toast } from "react-toastify";
 import "./scss/ImagesForm.scss";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { API_URL } from "../../../../utils/constant";
-import { createImages } from "./../../../../api/images";
+import { createImages, getImages } from "./../../../../api/images";
 var allImages = [];
 export default function ImagesForm() {
+
   const [formHotelImage, setFormHotelImage] = useState(initialHotelImage());
   const [formHotelImageLoading, setRoomFormLoading] = useState(false);
-
   const [image, setImage] = useState(
     `${API_URL}vista/src/assets/userDefault.jpeg`
   );
+
+  useEffect(() => {
+    initialiceImages();
+  }, [])
+
+  const initialiceImages  = async () => {
+    let result = await getImages();
+    console.log(result);
+    await result.forEach(element => {
+      let obj = {
+        Type: element.Type,
+        Image: element.base64
+      }
+      console.log(obj);
+      /* setFormHotelImage(obj);
+      addImage(); */
+    });
+  };
+
 
   const addImage = () => {
     let validCount = 0;
@@ -122,13 +141,23 @@ export default function ImagesForm() {
     if (allImages.length === 0) {
       toast.warning("please select some food");
     } else {
-      createImages(allImages);
+      try {
+       let result = await createImages(allImages);
+       if(result === null){
+         toast.error("Error in server, please try later")
+       }else{
+         toast.success(result);
+         setTimeout(() => {
+          window.location.href = "/user-zone";
+        }, 1000);
+       }
+      } catch (error) {
+        console.log(error);
+      }
+     
     }
 
-    try {
-    } catch (error) {
-      console.log(error);
-    }
+   
   };
 
   return (

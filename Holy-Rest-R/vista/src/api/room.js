@@ -8,9 +8,6 @@ export async function createRoom(Room) {
   Room.forEach((element) => {
     element = Object.assign(element, hotelItem);
   });
-
-  //let item = { Type: "CreateFood" };
-  //let arrayForOption = ["CreateFood"];
   let arrayForOption = [
     {
       Type: "CreateRoom",
@@ -22,12 +19,29 @@ export async function createRoom(Room) {
     const params = await createParams(Room);
     const response = await fetch(urlRoom, params);
     const result = await response.json();
-    //console.log(result);
-    //return result;
+    return result;
   } catch (error) {
     console.log(error);
   }
 }
+
+export async function getRooms(){
+  let hotel = await comproveAdmin();
+  let idHotel = {idHotel: await hotel[0].IdHotel };
+  let item = { Type: "GetRooms"};
+  let hotelGet = Object.assign(idHotel, item);
+  try {
+    const params = await createParams(hotelGet);
+    const response = await fetch(urlRoom, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+ 
+}
+
 
 const createParams = async (formData) => {
   const params = {

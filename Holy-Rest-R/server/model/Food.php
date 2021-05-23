@@ -9,4 +9,16 @@ class Food extends Queries
         	values ('" . $IdHotel . "','" . $Type . "','" . $Price . "')";
         return Queries::insertDatas($sql);
     }
+
+    protected function deleteALLFoods()
+    {
+        $sql = "DELETE FROM food ";
+        return Queries::insertDatas($sql);
+    }
+
+    protected function getFoods($IdHotel)
+    {
+        $sql = "SELECT * FROM food where IdHotel = '$IdHotel'";
+        return Queries::returnDatas($sql);
+    }
 }

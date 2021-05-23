@@ -88,7 +88,19 @@ export default function RoomForm() {
     if (allRooms.length === 0) {
       toast.warning("please select some food");
     } else {
-      createRoom(allRooms);
+      try {
+        let result = await createRoom(allRooms);
+        if(result === null){
+          toast.error("Error in server, please try later")
+        }else{
+          toast.success(result);
+           setTimeout(() => {
+           window.location.href = "/user-zone";
+         }, 1000); 
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
   };

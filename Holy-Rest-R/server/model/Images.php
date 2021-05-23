@@ -21,4 +21,10 @@ class Images extends Queries
         $sql = "DELETE FROM imageshotels ";
         return Queries::insertDatas($sql);
     }
+
+    protected function getImages($IdHotel)
+    {
+        $sql = "SELECT * FROM imageshotels where IdHotel = '$IdHotel'";
+        return Queries::returnDatas($sql);
+    }
 }

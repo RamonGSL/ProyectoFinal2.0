@@ -8,9 +8,6 @@ export async function createFood(Food) {
   Food.forEach((element) => {
     element = Object.assign(element, hotelItem);
   });
-
-  //let item = { Type: "CreateFood" };
-  //let arrayForOption = ["CreateFood"];
   let arrayForOption = [
     {
       Type: "CreateFood",
@@ -22,11 +19,27 @@ export async function createFood(Food) {
     const params = await createParams(Food);
     const response = await fetch(urlFood, params);
     const result = await response.json();
-    //console.log(result);
-    //return result;
+    return result;
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function getFoods(){
+  let hotel = await comproveAdmin();
+  let idHotel = {idHotel: await hotel[0].IdHotel };
+  let item = { Type: "GetFoods"};
+  let hotelGet = Object.assign(idHotel, item);
+  try {
+    const params = await createParams(hotelGet);
+    const response = await fetch(urlFood, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+ 
 }
 
 const createParams = async (formData) => {

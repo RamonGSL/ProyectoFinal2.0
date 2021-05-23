@@ -9,4 +9,16 @@ class Room extends Queries
         	values ('" . $IdHotel . "','" . $TypeRoom . "','" . $RoomPrice . "')";
         return Queries::insertDatas($sql);
     }
+
+    protected function deleteALLRooms()
+    {
+        $sql = "DELETE FROM room ";
+        return Queries::insertDatas($sql);
+    }
+
+    protected function getRooms($IdHotel)
+    {
+        $sql = "SELECT * FROM room where IdHotel = '$IdHotel'";
+        return Queries::returnDatas($sql);
+    }
 }

@@ -18,14 +18,8 @@ include_once('./functionsImages.php');
 $functionImages = new functionsImages();
 $comprobationType = true;
 
-switch (end($data)[0]['Type']) {
-
-    case 'CreateImages':
-        echo  json_encode($functionImages->createAllImages($data));
-        break;
-
-
-    default:
-        # code...
-        break;
+if (array_key_exists('idHotel', $data)) {
+    echo  json_encode($functionImages->getImagesForHotel($data));
+} else {
+    echo  json_encode($functionImages->createAllImages($data));
 }

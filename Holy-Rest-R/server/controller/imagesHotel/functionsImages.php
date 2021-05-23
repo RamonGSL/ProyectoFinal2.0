@@ -20,7 +20,6 @@ class functionsImages extends Images
             //$this->generateFolder($allImages[$i]["IdHotel"]);
             $this->generateImage($allImages[$i]["Image"], $allImages[$i]["IdHotel"], $imageName);
         }
-        var_dump($result);
         foreach ($result as $insert) {
             if ($insert !== "New record created successfully") {
                 return null;
@@ -28,6 +27,40 @@ class functionsImages extends Images
         }
 
         return "Correct";
+    }
+
+    public function getImagesForHotel($data)
+    {
+        $getImages = Images::getImages($data['idHotel']);
+        $arrayImgExt = [];
+        if ($getImages === "0 datas") {
+            return null;
+        }
+        foreach ($getImages as $image) {
+            $count = 0;
+            $direction = utils::returnDirection();
+
+            $imageDirection = $direction . "server/imagesHotels/" . $image["IdHotel"] . "/";
+            if (is_dir($imageDirection)) {
+                if ($dh = opendir($imageDirection)) {
+                    while (($file = readdir($dh)) !== false) {
+                        if (strpos($file, $image['NameImage']) !== false) {
+                            array_push($arrayImgExt, $file);
+                            //$getImages[$count]['NameImage'] = $file;
+                        }
+                    }
+                    closedir($dh);
+                }
+            }
+            $count++;
+        }
+
+        for ($i = 0; $i < count($arrayImgExt); $i++) {
+            $getImages[$i]["NameImage"] = $arrayImgExt[$i];
+        }
+
+        $this->getImg($getImages);
+        return $this->getImg($getImages);
     }
 
     private function generateFolder($idHotel)
@@ -97,5 +130,28 @@ class functionsImages extends Images
         } catch (\Throwable $th) {
             return "error";
         }
+    }
+
+    private function getImg($images)
+    {
+        $direction = utils::returnDirection();
+        $folderDirection = $direction . "server/imagesHotels/";
+        try {
+
+            for ($i = 0; $i < count($images); $i++) {
+                $image = $folderDirection . $images[$i]["IdHotel"] . "/" . $images[$i]["NameImage"];
+                $fp = fopen($image, "r");
+                $contents = fread($fp, filesize($image));
+                $imgB64 = base64_encode($contents);
+                $images[$i]["base64"] = $imgB64;
+            }
+            return $images;
+        } catch (\Throwable $th) {
+            return null;
+        }
+    }
+
+    private function b64()
+    {
     }
 }

@@ -4,7 +4,6 @@ import axios from "axios";
 import { values, size, initial, map, random } from "lodash";
 import { toast } from "react-toastify";
 import "./scss/FoodForm.scss";
-import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import { API_URL } from "./../../../../utils/constant";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { createFood } from "./../../../../api/food";
@@ -88,12 +87,19 @@ export default function FoodForm() {
     if (allFoods.length === 0) {
       toast.warning("please select some food");
     } else {
-      createFood(allFoods);
-    }
-
-    try {
-    } catch (error) {
-      console.log(error);
+      try {
+        let result = await createFood(allFoods);
+        if(result === null){
+          toast.error("Error in server, please try later")
+        }else{
+          toast.success(result);
+          setTimeout(() => {
+           window.location.href = "/user-zone";
+         }, 1000); 
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
