@@ -114,7 +114,7 @@ export default function FoodForm() {
         }else{
           toast.success(result);
           setTimeout(() => {
-           window.location.href = "/user-zone";
+           //window.location.href = "/user-zone";
          }, 1000); 
         }
       } catch (error) {
