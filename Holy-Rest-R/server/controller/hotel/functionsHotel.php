@@ -26,4 +26,19 @@ class functionsHotel extends Hotel
             return "Error";
         }
     }
+
+    public function getAllHotels()
+    {
+        $getHotels = Hotel::getHotels();
+        return $getHotels;
+    }
+
+    public function disableHotel($datas)
+    {
+        $changeDisabled = Hotel::changeDisabled($datas["EmailHotel"], $datas["DisabledHotel"]);
+        if ($changeDisabled === "New record created successfully") {
+            return "Correct";
+        }
+        return "Error";
+    }
 }

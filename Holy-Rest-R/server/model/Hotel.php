@@ -25,4 +25,16 @@ class Hotel extends Queries
         $sql = "SELECT * FROM hotels WHERE Email = '$Email'";
         return Queries::returnDatas($sql);
     }
+
+    protected function getHotels()
+    {
+        $sql = "SELECT * FROM hotels";
+        return Queries::returnDatas($sql);
+    }
+
+    protected function changeDisabled($Email, $DisabledHotel)
+    {
+        $sql = "UPDATE hotels SET Email = '$Email', Disabled = '$DisabledHotel'";
+        return Queries::insertDatas($sql);
+    }
 }

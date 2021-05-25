@@ -36,6 +36,13 @@ switch ($data['Type']) {
         }
         break;
 
+    case 'getAllHotels':
+        echo  json_encode($functionHotel->getAllHotels());
+        break;
+
+    case 'disableHotel':
+        echo  json_encode($functionHotel->disableHotel($data));
+        break;
 
     default:
         # code...

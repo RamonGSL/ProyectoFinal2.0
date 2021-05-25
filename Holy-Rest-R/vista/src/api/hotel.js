@@ -1,7 +1,7 @@
 import { API_URL } from "./../utils/constant";
 import { createManage } from "./manage";
 import { getDatasUser } from "./user";
-const urlUser = `${API_URL}/server/controller/hotel/hotel.php`;
+const urlHotel = `${API_URL}/server/controller/hotel/hotel.php`;
 
 export async function getHotel(idHotel) {
   let item = { Type: "ReturnHotel" };
@@ -11,7 +11,7 @@ export async function getHotel(idHotel) {
   console.log(formData);
   try {
     const params = await createParams(formData);
-    const response = await fetch(urlUser, params);
+    const response = await fetch(urlHotel, params);
     const result = await response.json();
 
     return result;
@@ -29,7 +29,7 @@ export async function createHotel(hotel) {
 
   try {
     const params = await createParams(formData);
-    const response = await fetch(urlUser, params);
+    const response = await fetch(urlHotel, params);
     const result = await response.json();
     if (result === "Error") {
       return null;
@@ -47,6 +47,37 @@ export async function createHotel(hotel) {
     return null;
   }
 }
+
+export async function getAllHotel() {
+  let formData = { Type: "getAllHotels" };
+  
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlHotel, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function disableHotelApi(dataHotel) {
+  let item = { Type: "disableHotel" };
+  let formData = Object.assign(dataHotel, item);
+  console.log(formData);
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlHotel, params);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 
 const createParams = async (formData) => {
   const params = {
