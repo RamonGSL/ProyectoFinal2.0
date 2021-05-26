@@ -21,16 +21,19 @@ export default function RoomForm() {
   const initialiceRooms  = async () => {
     let obj = null;
     let result = await getRooms();
-    await result.forEach(element => {
-      obj = {
-        Room: element.TypeRoom,
-        Price: element.RoomPrice
-      }
-      if(obj !== null){
-        allRooms.push(obj);
-      }      
-    });
-    roomTable();
+    if(result!== null){
+      await result.forEach(element => {
+        obj = {
+          Room: element.TypeRoom,
+          Price: element.RoomPrice
+        }
+        if(obj !== null){
+          allRooms.push(obj);
+        }      
+      });
+      roomTable();
+    }
+
   };
 
   const addRoom = () => {

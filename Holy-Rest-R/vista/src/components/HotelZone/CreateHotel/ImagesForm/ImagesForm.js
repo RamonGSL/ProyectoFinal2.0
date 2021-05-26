@@ -24,16 +24,18 @@ export default function ImagesForm() {
     let obj = null;
     let result = await getImages();
     console.log(result);
-    await result.forEach(element => {
-      obj = {
-        Type: element.Type,
-        Image: element.base64
-      }
-      if(obj !== null){
-        allImages.push(obj);
-      }      
-    });
-    imagesTable();
+    if(result !== null){
+      await result.forEach(element => {
+        obj = {
+          Type: element.Type,
+          Image: element.base64
+        }
+        if(obj !== null){
+          allImages.push(obj);
+        }      
+      });
+      imagesTable();
+    }
   };
 
 
@@ -202,8 +204,6 @@ export default function ImagesForm() {
             <AddCircleOutlineRoundedIcon className="foodIcon" />
           </button>
         </Form.Group>
-
-        <div></div>
 
         <Button className="buttonFoodForm" variant="primary" type="submit">
           {!formHotelImageLoading ? "Submit" : <Spinner animation="border" />}

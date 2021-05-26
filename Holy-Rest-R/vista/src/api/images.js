@@ -48,6 +48,20 @@ export async function getImages(){
  
 }
 
+export async function getALLIMages(){
+  let item = { GetImages: "GetImages"};
+  try {
+    const params = await createParams(item);
+    const response = await fetch(urlImages, params);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 const createParams = async (formData) => {
   const params = {
     method: "POST",

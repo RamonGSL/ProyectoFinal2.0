@@ -17,9 +17,10 @@ include_once('./functionsImages.php');
 
 $functionImages = new functionsImages();
 $comprobationType = true;
-
 if (array_key_exists('idHotel', $data)) {
     echo  json_encode($functionImages->getImagesForHotel($data));
+} else if (array_key_exists('GetImages', $data)) {
+    echo  json_encode($functionImages->getALLImages());
 } else {
     echo  json_encode($functionImages->createAllImages($data));
 }

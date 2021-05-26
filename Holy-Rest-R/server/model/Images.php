@@ -27,4 +27,10 @@ class Images extends Queries
         $sql = "SELECT * FROM imageshotels where IdHotel = '$IdHotel'";
         return Queries::returnDatas($sql);
     }
+
+    protected function returnALLImages()
+    {
+        $sql = "SELECT * FROM imageshotels";
+        return Queries::returnDatas($sql);
+    }
 }

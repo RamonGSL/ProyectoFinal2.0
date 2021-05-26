@@ -150,8 +150,12 @@ class functionsImages extends Images
             return null;
         }
     }
-
-    private function b64()
+    public function getALLImages()
     {
+        $totalImages = Images::returnALLImages();
+        if ($totalImages == "0 datas") {
+            return null;
+        }
+        return $totalImages;
     }
 }

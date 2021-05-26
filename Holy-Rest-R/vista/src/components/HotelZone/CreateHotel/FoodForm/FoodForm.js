@@ -21,16 +21,19 @@ export default function FoodForm() {
   const initialiceFoods  = async () => {
     let obj = null;
     let result = await getFoods();
-    await result.forEach(element => {
-      obj = {
-        Food: element.Type,
-        Price: element.Price
-      }
-      if(obj !== null){
-        allFoods.push(obj);
-      }      
-    });
-    foodTable();
+    if(result !== null) {
+      await result.forEach(element => {
+        obj = {
+          Food: element.Type,
+          Price: element.Price
+        }
+        if(obj !== null){
+          allFoods.push(obj);
+        }      
+      });
+      foodTable();
+    }
+
   };
 
   const addFood = () => {
