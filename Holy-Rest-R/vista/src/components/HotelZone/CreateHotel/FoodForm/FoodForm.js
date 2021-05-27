@@ -16,24 +16,23 @@ export default function FoodForm() {
 
   useEffect(() => {
     initialiceFoods();
-  }, [])
+  }, []);
 
-  const initialiceFoods  = async () => {
+  const initialiceFoods = async () => {
     let obj = null;
     let result = await getFoods();
-    if(result !== null) {
-      await result.forEach(element => {
+    if (result !== null) {
+      await result.forEach((element) => {
         obj = {
           Food: element.Type,
-          Price: element.Price
-        }
-        if(obj !== null){
+          Price: element.Price,
+        };
+        if (obj !== null) {
           allFoods.push(obj);
-        }      
+        }
       });
       foodTable();
     }
-
   };
 
   const addFood = () => {
@@ -111,13 +110,13 @@ export default function FoodForm() {
     } else {
       try {
         let result = await createFood(allFoods);
-        if(result === null){
-          toast.error("Error in server, please try later")
-        }else{
+        if (result === null) {
+          toast.error("Error in server, please try later");
+        } else {
           toast.success(result);
           setTimeout(() => {
-           //window.location.href = "/user-zone";
-         }, 1000); 
+            //window.location.href = "/user-zone";
+          }, 1000);
         }
       } catch (error) {
         console.log(error);

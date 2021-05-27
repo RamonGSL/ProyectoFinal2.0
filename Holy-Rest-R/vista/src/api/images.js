@@ -19,6 +19,7 @@ export async function createImages(Images) {
     const params = await createParams(Images);
     const response = await fetch(urlImages, params);
     const result = await response.json();
+    console.log(response);
     return result;
   } catch (error) {
     console.log(error);
@@ -26,35 +27,34 @@ export async function createImages(Images) {
   }
 }
 
-export async function getImages(){
+export async function getImages() {
   let hotel = await comproveAdmin();
-  let idHotel = {idHotel: await hotel[0].IdHotel };
-  let item = { Type: "GetImages"};
+  if (hotel === null) return null;
+  let idHotel = { idHotel: await hotel[0].IdHotel };
+  let item = { Type: "GetImages" };
   let hotelGet = Object.assign(idHotel, item);
   try {
     const params = await createParams(hotelGet);
     const response = await fetch(urlImages, params);
     const result = await response.json();
-    result.forEach(element => {
-      element.base64 = "data:;base64,"+ element.base64;
-      if(element.Type === "0") element.Type = "Normal"
-      if(element.Type === "1") element.Type = "principal"
+    result.forEach((element) => {
+      element.base64 = "data:;base64," + element.base64;
+      if (element.Type === "0") element.Type = "Normal";
+      if (element.Type === "1") element.Type = "principal";
     });
     return await result;
   } catch (error) {
     console.log(error);
     return null;
   }
- 
 }
 
-export async function getALLIMages(){
-  let item = { GetImages: "GetImages"};
+export async function getALLIMages() {
+  let item = { GetImages: "GetImages" };
   try {
     const params = await createParams(item);
     const response = await fetch(urlImages, params);
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

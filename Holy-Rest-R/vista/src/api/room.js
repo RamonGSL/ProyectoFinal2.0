@@ -25,10 +25,11 @@ export async function createRoom(Room) {
   }
 }
 
-export async function getRooms(){
+export async function getRooms() {
   let hotel = await comproveAdmin();
-  let idHotel = {idHotel: await hotel[0].IdHotel };
-  let item = { Type: "GetRooms"};
+  if (hotel === null) return null;
+  let idHotel = { idHotel: await hotel[0].IdHotel };
+  let item = { Type: "GetRooms" };
   let hotelGet = Object.assign(idHotel, item);
   try {
     const params = await createParams(hotelGet);
@@ -39,9 +40,7 @@ export async function getRooms(){
     console.log(error);
     return null;
   }
- 
 }
-
 
 const createParams = async (formData) => {
   const params = {

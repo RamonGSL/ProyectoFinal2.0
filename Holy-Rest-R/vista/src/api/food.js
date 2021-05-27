@@ -25,21 +25,22 @@ export async function createFood(Food) {
   }
 }
 
-export async function getFoods(){
+export async function getFoods() {
   let hotel = await comproveAdmin();
-  let idHotel = {idHotel: await hotel[0].IdHotel };
-  let item = { Type: "GetFoods"};
+  if (hotel === null) return null;
+  let idHotel = { idHotel: await hotel[0].IdHotel };
+  let item = { Type: "GetFoods" };
   let hotelGet = Object.assign(idHotel, item);
   try {
     const params = await createParams(hotelGet);
     const response = await fetch(urlFood, params);
     const result = await response.json();
+    console.log(response);
     return result;
   } catch (error) {
     console.log(error);
     return null;
   }
- 
 }
 
 const createParams = async (formData) => {

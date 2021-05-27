@@ -25,7 +25,7 @@ class functionsFood extends Food
     {
         $getFood = Food::getFoods($data['idHotel']);
         if ($getFood === "0 datas") {
-            return null;
+            return "0 datas";
         }
         return $getFood;
     }
