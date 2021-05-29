@@ -1,1 +1,21 @@
-@import "../../../index.scss"
+@import "../../../index.scss";
+
+.contentHotels {
+  .conteinerHotel {
+    display: flex;
+    .containerImgPrincipal {
+      width: 300px;
+      .imgPrincipalHotel {
+        width: 100%;
+        height: auto;
+      }
+      @supports (object-fit: cover) {
+        .imgPrincipalHotel {
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+    }
+  }
+}

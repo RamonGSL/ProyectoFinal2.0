@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Form, Button, Spinner, ListGroup } from "react-bootstrap";
 import axios from "axios";
-import { values, size } from "lodash";
+import { values, size, random } from "lodash";
 import { toast } from "react-toastify";
 import "./scss/ImagesForm.scss";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
@@ -94,20 +94,20 @@ export default function ImagesForm() {
         newArray.push(element);
       }
     });
-    console.log(allImages);
     allImages = newArray;
+    console.log(allImages);
   };
 
   const imagesTable = () => {
     let container = document.getElementById("groupImage");
-
+    let number = 9999;
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
     allImages.forEach((element, i) => {
-      element.Id = i;
-      let node = document.createElement("DIV");
-      node.setAttribute("id", i);
+      element.Id = number.toString(); 
+      let node = document.createElement("DIV"); 
+      node.setAttribute("id", number.toString()); 
       node.classList.add("list-group-item");
       let imageCreate = document.createElement("img");
       imageCreate.setAttribute("src", element.Image);
@@ -115,7 +115,7 @@ export default function ImagesForm() {
       let textnode = document.createTextNode(element.Type);
       let button = document.createElement("button");
       button.addEventListener("click", () => {
-        deleteImage(i);
+        deleteImage(number.toString());
       });
 
       let icon = document.createElement("img");

@@ -21,6 +21,7 @@ export default function FoodForm() {
   const initialiceFoods = async () => {
     let obj = null;
     let result = await getFoods();
+    console.log(result)
     if (result !== null) {
       await result.forEach((element) => {
         obj = {

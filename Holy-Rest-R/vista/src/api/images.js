@@ -18,8 +18,8 @@ export async function createImages(Images) {
   try {
     const params = await createParams(Images);
     const response = await fetch(urlImages, params);
-    const result = await response.json();
     console.log(response);
+    const result = await response.json();
     return result;
   } catch (error) {
     console.log(error);
@@ -37,11 +37,12 @@ export async function getImages() {
     const params = await createParams(hotelGet);
     const response = await fetch(urlImages, params);
     const result = await response.json();
-    result.forEach((element) => {
-      element.base64 = "data:;base64," + element.base64;
-      if (element.Type === "0") element.Type = "Normal";
-      if (element.Type === "1") element.Type = "principal";
-    });
+    if (result !== "0 datas" || result !== null)
+      result.forEach((element) => {
+        element.base64 = "data:;base64," + element.base64;
+        if (element.Type === "0") element.Type = "Normal";
+        if (element.Type === "1") element.Type = "principal";
+      });
     return await result;
   } catch (error) {
     console.log(error);
@@ -51,6 +52,19 @@ export async function getImages() {
 
 export async function getALLIMages() {
   let item = { GetImages: "GetImages" };
+  try {
+    const params = await createParams(item);
+    const response = await fetch(urlImages, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function getUrlImg(image) {
+  let item = { GetImages: "extensionImg", NameImg: image };
   try {
     const params = await createParams(item);
     const response = await fetch(urlImages, params);

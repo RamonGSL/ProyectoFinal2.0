@@ -73,8 +73,9 @@ export default function RoomForm() {
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
+    let number = 0;
     allRooms.forEach((element, i) => {
-      element.Id = i;
+      element.Id = number.toString();
       let node = document.createElement("DIV");
       node.setAttribute("id", i);
       node.classList.add("list-group-item");
@@ -84,7 +85,7 @@ export default function RoomForm() {
       );
       let button = document.createElement("button");
       button.addEventListener("click", () => {
-        deleteRoom(i);
+        deleteRoom(number.toString());
       });
 
       let imagen = document.createElement("img");
@@ -96,6 +97,7 @@ export default function RoomForm() {
       node.appendChild(span);
       node.appendChild(button);
       document.getElementById("groupRoom").appendChild(node);
+      number++;
     });
     //setFormRoomValue(initialRoomValue());
     delete formRoomValue.Id;

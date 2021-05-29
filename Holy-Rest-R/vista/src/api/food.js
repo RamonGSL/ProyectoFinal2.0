@@ -35,7 +35,10 @@ export async function getFoods() {
     const params = await createParams(hotelGet);
     const response = await fetch(urlFood, params);
     const result = await response.json();
-    console.log(response);
+    if(result === '0 datas'){
+      return null;
+    }
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

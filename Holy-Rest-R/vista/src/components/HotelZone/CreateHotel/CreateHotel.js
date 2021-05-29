@@ -8,14 +8,19 @@ import RoomForm from "./RoomForm/RoomForm";
 
 export default function CreateHotel() {
   const [hotelState, setHotelState] = useState(false);
-
-  useEffect(() => {
-    let hotel = comproveAdmin();
+  
+  const existHotel = async () =>{
+    let hotel = await comproveAdmin();
+    console.log(hotel)
     if (hotel !== null) {
       setHotelState(true);
     } else {
       setHotelState(false);
     }
+  }
+
+  useEffect(() => {
+    existHotel();
   }, []);
 
   return (

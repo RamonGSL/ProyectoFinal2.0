@@ -21,6 +21,8 @@ if (array_key_exists('idHotel', $data)) {
     echo  json_encode($functionImages->getImagesForHotel($data));
 } else if (array_key_exists('GetImages', $data)) {
     echo  json_encode($functionImages->getALLImages());
+} else if (array_key_exists('extensionImg', $data)) {
+    echo  json_encode($functionImages->getUrl($data));
 } else {
     echo  json_encode($functionImages->createAllImages($data));
 }

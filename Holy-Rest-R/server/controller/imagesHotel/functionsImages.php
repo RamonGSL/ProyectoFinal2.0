@@ -8,7 +8,7 @@ class functionsImages extends Images
     {
         $result = [];
         $this->generateFolder($allImages[0]["IdHotel"]);
-        $deleteTable = Images::deleteALLImages();
+        $deleteTable = Images::deleteALLImages($allImages[0]["IdHotel"]);
         for ($i = 0; $i < count($allImages) - 1; $i++) {
             $imageName = $this->generateRandomString();
             $type = 0;
@@ -153,9 +153,34 @@ class functionsImages extends Images
     public function getALLImages()
     {
         $totalImages = Images::returnALLImages();
+        $arrayImgExt = [];
         if ($totalImages == "0 datas") {
             return null;
         }
+
+        foreach ($totalImages as $image) {
+            $direction = utils::returnDirection();
+            $imageDirection = $direction . "server/imagesHotels/" . $image["IdHotel"] . "/";
+
+            if (is_dir($imageDirection)) {
+                if ($dh = opendir($imageDirection)) {
+                    while (($file = readdir($dh)) !== false) {
+                        if (strpos($file, $image['NameImage']) !== false) {
+                            array_push($arrayImgExt, $file);
+                        }
+                    }
+                    closedir($dh);
+                }
+            }
+        }
+
+        for ($i = 0; $i < count($arrayImgExt); $i++) {
+            $totalImages[$i]["NameImage"] = $arrayImgExt[$i];
+        }
         return $totalImages;
+    }
+
+    public function getUrl()
+    {
     }
 }

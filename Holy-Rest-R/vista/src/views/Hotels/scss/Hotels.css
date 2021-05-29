@@ -142,4 +142,29 @@ select.form-control:focus {
 .list-group-item {
   background-color: var(--primary-dark);
 }
+
+.contentHotels .conteinerHotel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.contentHotels .conteinerHotel .containerImgPrincipal {
+  width: 300px;
+}
+
+.contentHotels .conteinerHotel .containerImgPrincipal .imgPrincipalHotel {
+  width: 100%;
+  height: auto;
+}
+
+@supports ((-o-object-fit: cover) or (object-fit: cover)) {
+  .contentHotels .conteinerHotel .containerImgPrincipal .imgPrincipalHotel {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center center;
+       object-position: center center;
+  }
+}
 /*# sourceMappingURL=Hotels.css.map */
