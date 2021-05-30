@@ -1,9 +1,28 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./scss/InfoHotel.scss";
 import { Modal } from "react-bootstrap";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
+import Banner from "./Banner/Banner";
+import { getALLIMages } from "../../api/images";
+
+var arrayImages = [];
+
 export default function InfoHotel(props) {
   const { show, setShow, hotel } = props;
+
+  const returnImages = async () => {
+    let totalImg = await getALLIMages();
+    totalImg.forEach((img) => {
+      if (img.IdHotel === hotel.Id) {
+        arrayImages.push(img);
+      }
+    });
+  };
+
+  useEffect(() => {
+    returnImages();
+  }, []);
+
   return (
     <>
       <Modal
@@ -14,11 +33,11 @@ export default function InfoHotel(props) {
         onHide={() => setShow(false)}
       >
         <Modal.Header>
-          <Modal.Title></Modal.Title>
+          <Modal.Title>{hotel.HotelName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
-            <p>{hotel}</p>
+            <Banner images={arrayImages} />
           </div>
         </Modal.Body>
       </Modal>

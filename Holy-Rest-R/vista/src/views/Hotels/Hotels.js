@@ -7,7 +7,7 @@ import { API_URL } from "../../utils/constant";
 import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
 import CommentRoundedIcon from "@material-ui/icons/CommentRounded";
 import ControlPointRoundedIcon from "@material-ui/icons/ControlPointRounded";
-import InfoHotel from "./InfoHotel/InfoHotel";
+import InfoHotel from "../../components/InfoHotel/InfoHotel";
 var HotelImages = [];
 export default function Hotels() {
   const [loadImage, setLoadImage] = useState(false);
@@ -71,9 +71,8 @@ export default function Hotels() {
                   <p className="textImg">{index.Description}</p>
                   <InfoRoundedIcon
                     onClick={() => {
-                      setInfoHotel(index.Id);
+                      setInfoHotel(index);
                       setShowModal(true);
-                      console.log(showModal);
                     }}
                     className="iconsHotels"
                   ></InfoRoundedIcon>
