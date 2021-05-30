@@ -7,11 +7,13 @@ import { API_URL } from "../../utils/constant";
 import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
 import CommentRoundedIcon from "@material-ui/icons/CommentRounded";
 import ControlPointRoundedIcon from "@material-ui/icons/ControlPointRounded";
-
+import InfoHotel from "./InfoHotel/InfoHotel";
 var HotelImages = [];
 export default function Hotels() {
   const [loadImage, setLoadImage] = useState(false);
   const [hotels, setHotels] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [infoHotel, setInfoHotel] = useState(null);
 
   const getHotels = async () => {
     let hotels = await getAllHotel();
@@ -62,19 +64,30 @@ export default function Hotels() {
                     className="imgPrincipalHotel"
                     src={index.ImagePrincipal}
                     alt="Img"
-                    width="500px"
                   />
                 </div>
-                <p>{index.HotelName}</p>
-                <p>{index.Description}</p>
-                <InfoRoundedIcon></InfoRoundedIcon>
-                <CommentRoundedIcon></CommentRoundedIcon>
-                <ControlPointRoundedIcon></ControlPointRoundedIcon>
+                <div className="contentInfoHotel">
+                  <p className="textImg">{index.HotelName}</p>
+                  <p className="textImg">{index.Description}</p>
+                  <InfoRoundedIcon
+                    onClick={() => {
+                      setInfoHotel(index.Id);
+                      setShowModal(true);
+                      console.log(showModal);
+                    }}
+                    className="iconsHotels"
+                  ></InfoRoundedIcon>
+                  <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
+                  <ControlPointRoundedIcon className="iconsHotels"></ControlPointRoundedIcon>
+                </div>
               </div>
             ))}
           </div>
         ) : null}
       </div>
+      {showModal === true ? (
+        <InfoHotel show={showModal} setShow={setShowModal} hotel={infoHotel} />
+      ) : null}
     </div>
   );
 }

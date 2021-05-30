@@ -2,9 +2,13 @@
 
 .contentHotels {
   .conteinerHotel {
+    border: 2px solid var(--primary-yellow);
+    padding: 5px;
+    margin: 20px;
     display: flex;
     .containerImgPrincipal {
       width: 300px;
+
       .imgPrincipalHotel {
         width: 100%;
         height: auto;
@@ -15,6 +19,15 @@
           object-fit: cover;
           object-position: center center;
         }
+      }
+    }
+    .contentInfoHotel {
+      margin-left: 20px;
+      .textImg {
+      }
+      .iconsHotels {
+        text-align: right;
+        margin: 10px;
       }
     }
   }

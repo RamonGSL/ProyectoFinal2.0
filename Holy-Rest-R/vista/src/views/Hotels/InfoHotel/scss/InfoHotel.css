@@ -1,0 +1,23 @@
+:root {
+  --primary: #003566;
+  --primary-light: #cae9ff;
+  --primary-yellow: #ffc300;
+  --primary-dark: #001d3d;
+  --primary-black: #000814;
+  --primary-yellow-light: #ffe357;
+  --secondary-dark: #f5b062;
+  --font-primary: var(--primary);
+  --font-light: #fff;
+  --font-yellow: var(--primary-yellow);
+  --font-dark: #000;
+  --icon-light: #fff;
+  --border-primary: var(--primary);
+  --border-light: #fff;
+  --border-yellow: var(--primary-yellow);
+  --border-dark: var(--primary-dark);
+  --background-light: #fff;
+  --background-dark: var(--primary-dark);
+  --background-light: var(--primary-light);
+  --danger: #e0245e;
+}
+/*# sourceMappingURL=InfoHotel.css.map */

@@ -144,6 +144,9 @@ select.form-control:focus {
 }
 
 .contentHotels .conteinerHotel {
+  border: 2px solid var(--primary-yellow);
+  padding: 5px;
+  margin: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -166,5 +169,14 @@ select.form-control:focus {
     -o-object-position: center center;
        object-position: center center;
   }
+}
+
+.contentHotels .conteinerHotel .contentInfoHotel {
+  margin-left: 20px;
+}
+
+.contentHotels .conteinerHotel .contentInfoHotel .iconsHotels {
+  text-align: right;
+  margin: 10px;
 }
 /*# sourceMappingURL=Hotels.css.map */
