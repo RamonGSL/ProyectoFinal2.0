@@ -1,11 +1,15 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect } from "react";
 import "./scss/InfoHotel.scss";
 import { Modal } from "react-bootstrap";
-import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Banner from "./Banner/Banner";
+import Foods from "./Foods/Foods";
+import Rooms from "./Rooms/Rooms";
 import { getALLIMages } from "../../api/images";
-
+import { getFoodsForHotel } from "./../../api/food";
+import { getRoomsForHotel } from "../../api/room";
 var arrayImages = [];
+var arrayFoods = [];
+var arrayRooms = [];
 
 export default function InfoHotel(props) {
   const { show, setShow, hotel } = props;
@@ -19,8 +23,30 @@ export default function InfoHotel(props) {
     });
   };
 
+  const returnFoods = async () => {
+    let totalFoods = await getFoodsForHotel(hotel.Id);
+    if (totalFoods !== null) {
+      console.log(totalFoods);
+      totalFoods.forEach((food) => {
+        arrayFoods.push(food);
+      });
+      console.log(arrayFoods);
+    }
+  };
+
+  const returnRooms = async () => {
+    let totalRooms = await getRoomsForHotel(hotel.Id);
+    if (totalRooms !== null) {
+      totalRooms.forEach((room) => {
+        arrayRooms.push(room);
+      });
+      console.log(arrayFoods);
+    }
+  };
+
   useEffect(() => {
     returnImages();
+    returnFoods();
   }, []);
 
   return (
@@ -38,6 +64,8 @@ export default function InfoHotel(props) {
         <Modal.Body>
           <div>
             <Banner images={arrayImages} />
+            <Foods foods={arrayFoods} />
+            <Rooms rooms={arrayRooms} />
           </div>
         </Modal.Body>
       </Modal>

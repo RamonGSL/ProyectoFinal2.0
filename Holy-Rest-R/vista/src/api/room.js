@@ -42,6 +42,22 @@ export async function getRooms() {
   }
 }
 
+export async function getRoomsForHotel(idHotel) {
+  let item = { Type: "GetRooms" };
+  let hotel = { idHotel: idHotel };
+  let hotelGet = Object.assign(hotel, item);
+  try {
+    const params = await createParams(hotelGet);
+    const response = await fetch(urlRoom, params);
+    const result = await response.json();
+    if (response === "0 data") return null;
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 const createParams = async (formData) => {
   const params = {
     method: "POST",

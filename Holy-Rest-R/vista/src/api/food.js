@@ -35,10 +35,28 @@ export async function getFoods() {
     const params = await createParams(hotelGet);
     const response = await fetch(urlFood, params);
     const result = await response.json();
-    if(result === '0 datas'){
+    if (result === "0 datas") {
       return null;
     }
     console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function getFoodsForHotel(hotelId) {
+  let item = { Type: "GetFoods" };
+  let hotel = { idHotel: hotelId };
+  let foodRequest = Object.assign(hotel, item);
+  try {
+    const params = await createParams(foodRequest);
+    const response = await fetch(urlFood, params);
+    const result = await response.json();
+    if (result === "0 datas") {
+      return null;
+    }
     return result;
   } catch (error) {
     console.log(error);
