@@ -13,7 +13,7 @@ var allFoods = [];
 export default function FoodForm() {
   const [formFoodValue, setFormFoodValue] = useState(initialFoodValue());
   const [foodFormLoading, setFoodFormLoading] = useState(false);
-
+  
   useEffect(() => {
     initialiceFoods();
   }, []);
@@ -21,11 +21,11 @@ export default function FoodForm() {
   const initialiceFoods = async () => {
     let obj = null;
     let result = await getFoods();
-    console.log(result)
     if (result !== null) {
       await result.forEach((element) => {
         obj = {
           Food: element.Type,
+
           Price: element.Price,
         };
         if (obj !== null) {

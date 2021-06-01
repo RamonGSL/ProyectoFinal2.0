@@ -1,15 +1,28 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import { API_URL } from "../../../utils/constant";
 import { map } from "lodash";
 
 export default function Banner(props) {
   const { images } = props;
+  const [img, setImg] = useState(null);
+
+  const prepareImages = async () => {
+    console.log('Entramos');
+    let expect = await images;
+    setImg(expect);
+    console.log(img);
+  }
+
+  useEffect(() => {
+    prepareImages();
+  }, [])
+
   const urlImages = `${API_URL}server/imagesHotels/`;
   return (
     <div className="carouselIMG">
       <Carousel>
-        {map(images, (index, value) => (
+        {map(img, (index, value) => (
           <Carousel.Item key={value}>
             <p></p>
             <img

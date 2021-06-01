@@ -8,12 +8,20 @@ import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
 import CommentRoundedIcon from "@material-ui/icons/CommentRounded";
 import ControlPointRoundedIcon from "@material-ui/icons/ControlPointRounded";
 import InfoHotel from "../../components/InfoHotel/InfoHotel";
+import { datasUser } from "../../api/user";
+
 var HotelImages = [];
 export default function Hotels() {
   const [loadImage, setLoadImage] = useState(false);
   const [hotels, setHotels] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [infoHotel, setInfoHotel] = useState(null);
+  const [user, setUser] = useState(null)
+  
+  const getUser = async () => {
+    let res = await datasUser();
+    setUser(res);
+  }
 
   const getHotels = async () => {
     let hotels = await getAllHotel();
@@ -50,6 +58,7 @@ export default function Hotels() {
 
   useEffect(() => {
     getHotels();
+    getUser();
   }, []);
 
   return (

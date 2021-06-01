@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import "./scss/InfoHotel.scss";
 import { Modal } from "react-bootstrap";
 import Banner from "./Banner/Banner";
@@ -7,13 +7,15 @@ import Rooms from "./Rooms/Rooms";
 import { getALLIMages } from "../../api/images";
 import { getFoodsForHotel } from "./../../api/food";
 import { getRoomsForHotel } from "../../api/room";
+import { Tabs, Tab } from "react-bootstrap";
+
 var arrayImages = [];
 var arrayFoods = [];
 var arrayRooms = [];
 
 export default function InfoHotel(props) {
   const { show, setShow, hotel } = props;
-
+  const [key, setKey] = useState("about");
   const returnImages = async () => {
     let totalImg = await getALLIMages();
     totalImg.forEach((img) => {
@@ -26,11 +28,9 @@ export default function InfoHotel(props) {
   const returnFoods = async () => {
     let totalFoods = await getFoodsForHotel(hotel.Id);
     if (totalFoods !== null) {
-      console.log(totalFoods);
       totalFoods.forEach((food) => {
         arrayFoods.push(food);
       });
-      console.log(arrayFoods);
     }
   };
 
@@ -40,13 +40,16 @@ export default function InfoHotel(props) {
       totalRooms.forEach((room) => {
         arrayRooms.push(room);
       });
-      console.log(arrayFoods);
     }
   };
 
   useEffect(() => {
+    arrayFoods = [];
+    arrayImages = [];
+    arrayImages = [];
     returnImages();
     returnFoods();
+    returnRooms();
   }, []);
 
   return (
@@ -63,9 +66,22 @@ export default function InfoHotel(props) {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <Banner images={arrayImages} />
-            <Foods foods={arrayFoods} />
-            <Rooms rooms={arrayRooms} />
+          <Banner images={arrayImages} />
+          <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+      >
+        
+        <Tab eventKey="Foods" title="Foods">
+        <Foods foods={arrayFoods} />
+        </Tab>
+        <Tab eventKey="Rooms" title="Rooms">
+        <Rooms rooms={arrayRooms} />
+        </Tab>
+      </Tabs>
+            
+            
           </div>
         </Modal.Body>
       </Modal>

@@ -18,7 +18,6 @@ export async function createImages(Images) {
   try {
     const params = await createParams(Images);
     const response = await fetch(urlImages, params);
-    console.log(response);
     const result = await response.json();
     return result;
   } catch (error) {

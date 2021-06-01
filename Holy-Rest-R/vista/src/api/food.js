@@ -38,7 +38,6 @@ export async function getFoods() {
     if (result === "0 datas") {
       return null;
     }
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
