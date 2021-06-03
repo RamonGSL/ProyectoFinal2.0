@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import "./scss/Hotels.scss";
 import { getAllHotel } from "../../api/hotel";
-import { getALLIMages, getUrlImg } from "../../api/images";
+import { getALLIMages } from "../../api/images";
 import { map } from "lodash";
 import { API_URL } from "../../utils/constant";
 import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
@@ -16,12 +16,13 @@ export default function Hotels() {
   const [hotels, setHotels] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [infoHotel, setInfoHotel] = useState(null);
-  const [user, setUser] = useState(null)
-  
+  const [user, setUser] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+
   const getUser = async () => {
     let res = await datasUser();
     setUser(res);
-  }
+  };
 
   const getHotels = async () => {
     let hotels = await getAllHotel();
@@ -54,6 +55,9 @@ export default function Hotels() {
 
     return dataReturn;
   };
+
+  const selectPoints = () => {};
+
   const urlImages = `${API_URL}server/imagesHotels/`;
 
   useEffect(() => {
@@ -86,7 +90,12 @@ export default function Hotels() {
                     className="iconsHotels"
                   ></InfoRoundedIcon>
                   <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
-                  <ControlPointRoundedIcon className="iconsHotels"></ControlPointRoundedIcon>
+                  <ControlPointRoundedIcon
+                    onClick={() => {
+                      setOpenDialog(true);
+                    }}
+                    className="iconsHotels"
+                  ></ControlPointRoundedIcon>
                 </div>
               </div>
             ))}
@@ -95,6 +104,11 @@ export default function Hotels() {
       </div>
       {showModal === true ? (
         <InfoHotel show={showModal} setShow={setShowModal} hotel={infoHotel} />
+      ) : null}
+      {openDialog === true ? (
+        <div>
+          <p setDialog={setOpenDialog}>hola</p>
+        </div>
       ) : null}
     </div>
   );

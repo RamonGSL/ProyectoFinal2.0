@@ -6,11 +6,11 @@ import { map } from "lodash";
 export default function Banner(props) {
   const { images } = props;
   const [img, setImg] = useState(null);
-
+  console.log(props)
   const prepareImages = async () => {
     console.log('Entramos');
     let expect = await images;
-    setImg(expect);
+    setImg(await expect);
     console.log(img);
   }
 
