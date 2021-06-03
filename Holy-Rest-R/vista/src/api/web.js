@@ -14,7 +14,6 @@ export const whatColorStorage = () => {
   if (!colorSave) {
     return "null";
   } else {
-    console.log(colorSave);
     return colorSave;
   }
 };

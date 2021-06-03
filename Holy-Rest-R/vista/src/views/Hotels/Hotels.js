@@ -41,7 +41,6 @@ export default function Hotels() {
         hotel.ImagePrincipal = image;
       }
     });
-    console.log(hotels);
     setLoadImage(true);
   };
 

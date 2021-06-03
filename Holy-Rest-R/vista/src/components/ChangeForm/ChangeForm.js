@@ -27,7 +27,6 @@ export default function ChangeForm(props) {
 
   const requestServer = async (formData, encripted) => {
     let response = await updateUserApi(formData, encripted);
-    console.log(response);
     return response;
   };
 

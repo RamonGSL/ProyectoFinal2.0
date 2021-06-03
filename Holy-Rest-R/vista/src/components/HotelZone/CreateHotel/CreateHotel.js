@@ -11,7 +11,6 @@ export default function CreateHotel() {
   
   const existHotel = async () =>{
     let hotel = await comproveAdmin();
-    console.log(hotel)
     if (hotel !== null) {
       setHotelState(true);
     } else {

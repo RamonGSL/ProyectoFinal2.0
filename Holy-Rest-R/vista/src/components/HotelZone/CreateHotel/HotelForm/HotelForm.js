@@ -19,7 +19,6 @@ export default function HotelForm() {
     setFormHotelValue({ ...formHotelValue, [e.target.name]: e.target.value });
   };
   const onSubmit = async (e) => {
-    console.log(formHotelValue);
     e.preventDefault();
     let validCount = 0;
     values(formHotelValue).some((value) => {

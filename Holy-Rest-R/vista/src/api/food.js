@@ -14,7 +14,6 @@ export async function createFood(Food) {
     },
   ];
   Food.push(arrayForOption);
-  console.log(Food);
   try {
     const params = await createParams(Food);
     const response = await fetch(urlFood, params);

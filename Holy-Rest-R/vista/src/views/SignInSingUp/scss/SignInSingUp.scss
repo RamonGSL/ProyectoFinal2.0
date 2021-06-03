@@ -38,6 +38,7 @@
           width: 40px;
         }
       }
+
     }
   }
 
@@ -72,6 +73,7 @@
         }
         @media (max-width: 700px) {
           font-size: 20px;
+          color: var(--font-light);
         }
         @media (max-width: 400px) {
           font-size: 15px;
@@ -88,6 +90,7 @@
         }
         @media (max-width: 700px) {
           font-size: 15px;
+          color: var(--font-light);
         }
         @media (max-width: 400px) {
           font-size: 10px;
@@ -116,4 +119,10 @@
 }
 .containerInfoSign {
   text-align: center;
+}
+.imgLogo{
+  @media (max-width: 700px) {
+   background-color: var(--primary-dark);
+   border-radius: 20px;
+  }
 }

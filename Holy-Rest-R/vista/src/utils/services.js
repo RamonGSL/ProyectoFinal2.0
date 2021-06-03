@@ -5,7 +5,6 @@ const generateUrl = "http://localhost/PROYECTO/Holy-Rest-R/";
 const UrlUser = generateUrl + "server/controller/user/user.php";
 
 export const newUser = (newUser) => {
-  console.log(UrlUser);
   const article = JSON.stringify({
     type: "newUser",
     datas: newUser,
@@ -13,7 +12,6 @@ export const newUser = (newUser) => {
   axios
     .post(UrlUser, article)
     .then((response) => {
-      console.log(response.data);
 
       if (response.data !== "new user Created") {
         toast.error(response.data);
@@ -28,7 +26,6 @@ export const newUser = (newUser) => {
 };
 
 export const loginUser = (datasUser) => {
-  console.log(datasUser);
   const article = JSON.stringify({
     type: "loginUser",
     datas: datasUser,
@@ -37,7 +34,6 @@ export const loginUser = (datasUser) => {
   axios
     .post(UrlUser, article)
     .then((response) => {
-      console.log(response.data);
       if (response.data !== "Correct Login") {
         toast.error("Error, email or password are not valid");
       } else {

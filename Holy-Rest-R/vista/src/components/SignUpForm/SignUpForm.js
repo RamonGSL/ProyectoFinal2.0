@@ -72,7 +72,6 @@ export default function SignUpForm() {
   //Cuando algun elemento del formulario cambia actualiza nuestro formData
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
   //al iniciar rellenamos el select del form con todos los paises
   useEffect(() => {

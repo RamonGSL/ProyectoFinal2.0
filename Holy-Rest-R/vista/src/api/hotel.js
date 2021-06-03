@@ -8,7 +8,6 @@ export async function getHotel(idHotel) {
   let formData = { Id: idHotel };
 
   formData = Object.assign(formData, item);
-  console.log(formData);
   try {
     const params = await createParams(formData);
     const response = await fetch(urlHotel, params);
@@ -25,7 +24,6 @@ export async function createHotel(hotel) {
   let item = { Type: "CreateHotel" };
   let datasUser = getDatasUser();
   let formData = Object.assign(hotel, item, datasUser);
-  console.log(formData);
 
   try {
     const params = await createParams(formData);
@@ -35,7 +33,6 @@ export async function createHotel(hotel) {
       return null;
     } else {
       let newResult = await createManage(result);
-      console.log(newResult);
       if (newResult === "Correct") {
         return newResult;
       } else {
@@ -65,12 +62,10 @@ export async function getAllHotel() {
 export async function disableHotelApi(dataHotel) {
   let item = { Type: "disableHotel" };
   let formData = Object.assign(dataHotel, item);
-  console.log(formData);
   try {
     const params = await createParams(formData);
     const response = await fetch(urlHotel, params);
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

@@ -65,7 +65,6 @@ export default function RoomForm() {
       }
     });
     allRooms = newArray;
-    console.log(allRooms);
   };
 
   const roomTable = () => {

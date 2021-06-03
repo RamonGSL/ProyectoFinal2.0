@@ -23,7 +23,6 @@ export default function ImagesForm() {
   const initialiceImages  = async () => {
     let obj = null;
     let result = await getImages();
-    console.log(result);
     if(result !== null){
       await result.forEach(element => {
         obj = {
@@ -46,7 +45,6 @@ export default function ImagesForm() {
       value && validCount++;
       return null;
     });
-    console.log(formHotelImage);
     if (size(formHotelImage) !== validCount) {
       toast.warning("Complete all fields");
     } else {
@@ -88,14 +86,11 @@ export default function ImagesForm() {
     let newArray = [];
     document.getElementById(id).remove();
     allImages.forEach((element) => {
-      if (element.Id === id) {
-        console.log("Este no lo quiero");
-      } else {
+      if (element.Id !== id) {
         newArray.push(element);
       }
     });
     allImages = newArray;
-    console.log(allImages);
   };
 
   const imagesTable = () => {
@@ -136,7 +131,6 @@ export default function ImagesForm() {
       ...formHotelImage,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target.value);
   };
 
   const onSubmit = async (e) => {

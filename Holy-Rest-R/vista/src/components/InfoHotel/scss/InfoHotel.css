@@ -20,4 +20,12 @@
   --background-light: var(--primary-light);
   --danger: #e0245e;
 }
+
+#controlled-tab-example-tab-Foods {
+  background-color: var(--primary-dark) !important;
+}
+
+#controlled-tab-example-tab-Rooms {
+  background-color: var(--primary-dark) !important;
+}
 /*# sourceMappingURL=InfoHotel.css.map */

@@ -141,9 +141,6 @@ export default function UserTable() {
                 deletUserEmail(emailSelected);
                 let emailLocal = getDatasUser();
                 emailLocal = emailLocal.Email;
-                console.log(emailLocal);
-                console.log(emailSelected);
-                //console.log(document.getElementById(emailLocal));
                 if (emailSelected === emailLocal) {
                   logoutUser();
                   setTimeout(() => {

@@ -14,7 +14,6 @@ export async function createRoom(Room) {
     },
   ];
   Room.push(arrayForOption);
-  console.log(Room);
   try {
     const params = await createParams(Room);
     const response = await fetch(urlRoom, params);

@@ -120,6 +120,7 @@
 @media (max-width: 700px) {
   .signin-signup__right div .firstTitle {
     font-size: 20px;
+    color: var(--font-light);
   }
 }
 
@@ -145,6 +146,7 @@
 @media (max-width: 700px) {
   .signin-signup__right div .secondTitle {
     font-size: 15px;
+    color: var(--font-light);
   }
 }
 
@@ -176,5 +178,12 @@
 
 .containerInfoSign {
   text-align: center;
+}
+
+@media (max-width: 700px) {
+  .imgLogo {
+    background-color: var(--primary-dark);
+    border-radius: 20px;
+  }
 }
 /*# sourceMappingURL=SignInSingUp.css.map */

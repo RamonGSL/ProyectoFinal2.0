@@ -64,7 +64,6 @@ export default function FoodForm() {
       }
     });
     allFoods = newArray;
-    console.log(allFoods);
   };
 
   const foodTable = () => {
