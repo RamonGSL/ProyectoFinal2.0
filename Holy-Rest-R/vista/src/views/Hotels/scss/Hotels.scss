@@ -20,14 +20,25 @@
           object-position: center center;
         }
       }
+
+      @media (max-width: 500px) {
+        width: 200px;
+      }
     }
     .contentInfoHotel {
       margin-left: 20px;
-      .textImg {
-      }
       .iconsHotels {
         text-align: right;
         margin: 10px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+      text-align: center;
+      .containerImgPrincipal{
+        margin: auto;
+        padding-top: 20px;
       }
     }
   }

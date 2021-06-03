@@ -171,6 +171,12 @@ select.form-control:focus {
   }
 }
 
+@media (max-width: 500px) {
+  .contentHotels .conteinerHotel .containerImgPrincipal {
+    width: 200px;
+  }
+}
+
 .contentHotels .conteinerHotel .contentInfoHotel {
   margin-left: 20px;
 }
@@ -178,5 +184,19 @@ select.form-control:focus {
 .contentHotels .conteinerHotel .contentInfoHotel .iconsHotels {
   text-align: right;
   margin: 10px;
+}
+
+@media (max-width: 700px) {
+  .contentHotels .conteinerHotel {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+  .contentHotels .conteinerHotel .containerImgPrincipal {
+    margin: auto;
+    padding-top: 20px;
+  }
 }
 /*# sourceMappingURL=Hotels.css.map */

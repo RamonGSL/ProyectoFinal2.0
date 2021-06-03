@@ -62,8 +62,9 @@ export async function loginApi(formData) {
 export async function datasUser() {
   let item = { Type: "datas" };
   let formData = getDatasUser();
+  if( formData.Email === null || formData.Password === null ) return null
   formData = Object.assign(formData, item);
-
+  
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
@@ -78,6 +79,7 @@ export async function datasUser() {
 export async function getAllNames() {
   let item = { Type: "names" };
   let formData = getDatasUser();
+  if( formData.Email === null || formData.Password === null ) return null
   formData = Object.assign(formData, item);
   try {
     const params = await createParams(formData);
@@ -93,6 +95,7 @@ export async function getAllNames() {
 export async function deleteUser(user) {
   let item = { Type: "delete" };
   let formData = getDatasUser();
+  if( formData.Email === null || formData.Password === null ) return null
   formData = Object.assign(formData, item, user);
   try {
     const params = await createParams(formData);
@@ -114,6 +117,7 @@ export async function changeRole(user) {
   }
   let item = { Type: "role" };
   let formData = getDatasUser();
+  if( formData.Email === null || formData.Password === null ) return null
   formData = Object.assign(formData, item, user);
   try {
     const params = await createParams(formData);
