@@ -3,20 +3,23 @@ import { comproveAdmin } from "./manage";
 
 const urlAssessment = `${API_URL}/server/controller/assessment/assessment.php`;
 
-export async function insertAssesemt(idUser) {
-    let item = { Type: "Insert" };
-    let user = { idUser: idUser };
-    let obj = Object.assign(user, item);
+export async function insertAssesemt(puntuation, userId, hotelId) {
+    let item = { Insert: "Insert" };
+    let user = { IdUser: userId };
+    let hotel = {IdHotel: hotelId};
+    let assessment = {Assessment: puntuation};
+    let datas = Object.assign(user, hotel, assessment, item);
+    
     try {
-      const params = await createParams(obj);
-      const response = await fetch(user, params);
+      const params = await createParams(datas);
+      const response = await fetch(urlAssessment, params);
       const result = await response.json();
       if (response === "0 data") return null;
       return result;
     } catch (error) {
       console.log(error);
       return null;
-    }
+    } 
   }
   
   const createParams = async (formData) => {

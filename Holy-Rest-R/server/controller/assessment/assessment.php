@@ -15,5 +15,9 @@ $data = json_decode(file_get_contents("php://input"), true);
 //Componentes del controlador
 include_once('./functionsAssessment.php');
 
+
 $functionAssessment = new functionsAssessment();
 $comprobationType = true;
+if (array_key_exists('Insert', $data)) {
+    echo  json_encode($functionAssessment->insertAssesment($data));
+}

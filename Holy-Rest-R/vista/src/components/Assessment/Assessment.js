@@ -1,10 +1,23 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
-import "./scss/Assessment.scss"
+import { insertAssesemt } from "../../api/assessment";
+import "./scss/Assessment.scss";
+//primero react luego api luego css libreria
 export default function Assessment(props) {
-    const { openDialog, setDialog } = props;
-    const [puntuation, setPuntuation] = useState(null)
+    const { openDialog, setDialog, user, hotel } = props;
+
+    const [puntuation, setPuntuation] = useState(null);
+    const [userId, setUserId] = useState(null);
+    const [hotelId, setHotelId] = useState(null);
+    
+    const returnIdUser = async () => {
+      if(user !== null) setUserId(user[0].Id)
+    }
+    
+    const returnIdHotel = async () => {
+      if(hotel !== null) setHotelId(hotel)
+    }
 
     const onChange = (e) => {
         let newPuntuation = parseInt(e.target.value);
@@ -14,15 +27,20 @@ export default function Assessment(props) {
             setPuntuation(newPuntuation);
         }
     }
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(puntuation)
         if(puntuation !== null) {
-            toast.success("Good");
+            let res = await insertAssesemt(puntuation, userId, hotelId);
+
         }else{
             toast.warning("Please select correct puntuation");
         }
     }
+
+    useEffect(() => {
+      returnIdUser();
+      returnIdHotel();
+    }, [])
     return (
         <>
         <Modal

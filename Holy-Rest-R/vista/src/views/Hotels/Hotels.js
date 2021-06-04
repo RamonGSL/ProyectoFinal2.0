@@ -103,19 +103,22 @@ export default function Hotels() {
                     className="iconsHotels"
                   ></ControlPointRoundedIcon>
                 </div>
+                {showModal === true ? (
+                <InfoHotel show={showModal} setShow={setShowModal} hotel={infoHotel} />
+              ) : null}
+              {openDialog === true ? (
+                <div>
+                  <p>{infoHotel}</p>
+                  <Assessment user={user} openDialog={openDialog} setDialog={setOpenDialog} hotel={index.Id}/>
+                </div>
+              ) : null}
               </div>
+             
             ))}
           </div>
         ) : null}
       </div>
-      {showModal === true ? (
-        <InfoHotel show={showModal} setShow={setShowModal} hotel={infoHotel} />
-      ) : null}
-      {openDialog === true ? (
-        <div>
-          <Assessment openDialog={openDialog} setDialog={setOpenDialog}/>
-        </div>
-      ) : null}
+      
     </div>
     ):null}
     </>
