@@ -44,14 +44,14 @@ export default function UserZone() {
           <h3 className="nameUserTitle"> This is the zone of your user</h3>
         </div>
       ) : null}
-      {dataUser !== null ? (
+      
       <div id="containerUserZone">
         <div id="containerButtons">
           <Button id="logout" onClick={logout}>
             <LockRoundedIcon />
             <span>Logout</span>
           </Button>
-
+          {dataUser !== null ? (
           <Button
             id="dataUser"
             onClick={() => {
@@ -61,7 +61,7 @@ export default function UserZone() {
             <AccountCircleIcon />
             <span name="dataUser">change data</span>
           </Button>
-
+          ):null}
           {role === "1" ? (
             <Button
               id="dataUser"
@@ -97,7 +97,7 @@ export default function UserZone() {
           {optionSelect === "hotelZone" ? <HotelZone /> : null}
         </div>
       </div>
-      ):null}
+      
     </>
   );
 }
