@@ -1,0 +1,56 @@
+:root {
+  --primary: #003566;
+  --primary-light: #cae9ff;
+  --primary-yellow: #ffc300;
+  --primary-dark: #001d3d;
+  --primary-black: #000814;
+  --primary-yellow-light: #ffe357;
+  --secondary-dark: #f5b062;
+  --font-primary: var(--primary);
+  --font-light: #fff;
+  --font-yellow: var(--primary-yellow);
+  --font-dark: #000;
+  --icon-light: #fff;
+  --border-primary: var(--primary);
+  --border-light: #fff;
+  --border-yellow: var(--primary-yellow);
+  --border-dark: var(--primary-dark);
+  --background-light: #fff;
+  --background-dark: var(--primary-dark);
+  --background-light: var(--primary-light);
+  --danger: #e0245e;
+}
+
+.formPuntuation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.formPuntuation .submitPuntuation {
+  background-color: var(--primary-yellow);
+  width: 80px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 4px;
+  color: white;
+}
+
+.formPuntuation .inputPuntuation {
+  width: 80px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: var(--primary-dark);
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--primary-yellow-light);
+}
+/*# sourceMappingURL=Assessment.css.map */

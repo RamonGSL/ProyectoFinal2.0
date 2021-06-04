@@ -9,9 +9,12 @@ import CommentRoundedIcon from "@material-ui/icons/CommentRounded";
 import ControlPointRoundedIcon from "@material-ui/icons/ControlPointRounded";
 import InfoHotel from "../../components/InfoHotel/InfoHotel";
 import { datasUser } from "../../api/user";
+import Assessment from "../../components/Assessment/Assessment";
 
 var HotelImages = [];
+
 export default function Hotels() {
+
   const [loadImage, setLoadImage] = useState(false);
   const [hotels, setHotels] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -21,27 +24,30 @@ export default function Hotels() {
 
   const getUser = async () => {
     let res = await datasUser();
-    setUser(res);
+    if(res !== null) setUser(res);
   };
 
   const getHotels = async () => {
     let hotels = await getAllHotel();
-    setHotels(hotels);
+    if (hotels !== null)  setHotels(hotels);
 
     let images = await getALLIMages();
-    images.forEach((image) => {
-      if (image.Type === "1") {
-        HotelImages.push(image);
-      }
-    });
-
-    hotels.forEach((hotel) => {
-      let image = returnImageHotel(hotel.Id);
-      if (image !== null) {
-        hotel.ImagePrincipal = image;
-      }
-    });
-    setLoadImage(true);
+    if(images !== null){
+      images.forEach((image) => {
+        if (image.Type === "1") {
+          HotelImages.push(image);
+        }
+      });
+  
+      hotels.forEach((hotel) => {
+        let image = returnImageHotel(hotel.Id);
+        if (image !== null) {
+          hotel.ImagePrincipal = image;
+        }
+      });
+      setLoadImage(true);
+    }
+   
   };
 
   const returnImageHotel = (idHotel) => {
@@ -55,7 +61,6 @@ export default function Hotels() {
     return dataReturn;
   };
 
-  const selectPoints = () => {};
 
   const urlImages = `${API_URL}server/imagesHotels/`;
 
@@ -65,6 +70,8 @@ export default function Hotels() {
   }, []);
 
   return (
+    <>
+    {hotels !== null ? (
     <div className="Hotels">
       <div className="hotelBox">
         {loadImage === true ? (
@@ -106,9 +113,11 @@ export default function Hotels() {
       ) : null}
       {openDialog === true ? (
         <div>
-          <p setDialog={setOpenDialog}>hola</p>
+          <Assessment openDialog={openDialog} setDialog={setOpenDialog}/>
         </div>
       ) : null}
     </div>
+    ):null}
+    </>
   );
 }

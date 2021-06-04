@@ -17,8 +17,11 @@ export default function UserZone() {
 
   const returnDatas = async () => {
     let response = await datasUser();
-    setRole(response[0].RoleUser);
-    setDataUser(response[0]);
+    if(response !== null){
+      setRole(response[0].RoleUser);
+      setDataUser(response[0]);
+    }
+    
   };
 
   useEffect(() => {
@@ -41,6 +44,7 @@ export default function UserZone() {
           <h3 className="nameUserTitle"> This is the zone of your user</h3>
         </div>
       ) : null}
+      {dataUser !== null ? (
       <div id="containerUserZone">
         <div id="containerButtons">
           <Button id="logout" onClick={logout}>
@@ -93,6 +97,7 @@ export default function UserZone() {
           {optionSelect === "hotelZone" ? <HotelZone /> : null}
         </div>
       </div>
+      ):null}
     </>
   );
 }
