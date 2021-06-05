@@ -13,14 +13,14 @@ class functionsAssessment extends Assessment
                 return "Correct";
             }
             return "Error";
+        } else {
+            $this->updateAssesment($datas);
         }
-        $this->updateAssesment($datas);
     }
 
     protected function updateAssesment($datas)
     {
         $updateAssesment = Assessment::putAssesment($datas['IdUser'], $datas['IdHotel'], $datas['Assessment']);
-
         if ($updateAssesment == "New record created successfully") {
             return "Correct";
         }

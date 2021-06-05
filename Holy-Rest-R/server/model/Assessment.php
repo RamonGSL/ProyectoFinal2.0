@@ -18,7 +18,7 @@ class Assessment extends Queries
 
     protected function comproveAssesment($IdUser)
     {
-        $sql = "SELECT * FROM assessment where IdUser = '$IdUser'";
+        $sql = "SELECT * FROM assessment WHERE IdUser = '$IdUser'";
         return Queries::returnDatas($sql);
     }
 }

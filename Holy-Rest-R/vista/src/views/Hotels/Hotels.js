@@ -96,12 +96,15 @@ export default function Hotels() {
                     className="iconsHotels"
                   ></InfoRoundedIcon>
                   <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
-                  <ControlPointRoundedIcon
+                  {user !== null ? (
+                    <ControlPointRoundedIcon
                     onClick={() => {
                       setOpenDialog(true);
                     }}
                     className="iconsHotels"
                   ></ControlPointRoundedIcon>
+                  ) :null}
+                  
                 </div>
                 {showModal === true ? (
                 <InfoHotel show={showModal} setShow={setShowModal} hotel={infoHotel} />
