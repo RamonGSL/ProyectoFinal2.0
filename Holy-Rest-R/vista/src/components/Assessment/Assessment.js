@@ -31,6 +31,7 @@ export default function Assessment(props) {
         e.preventDefault();
         if(puntuation !== null) {
             let res = await insertAssesemt(puntuation, userId, hotelId);
+            console.log(res);
 
         }else{
             toast.warning("Please select correct puntuation");
