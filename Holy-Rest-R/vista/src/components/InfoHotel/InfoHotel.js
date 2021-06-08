@@ -8,18 +8,18 @@ import { getALLIMages } from "../../api/images";
 import { getFoodsForHotel } from "./../../api/food";
 import { getRoomsForHotel } from "../../api/room";
 import { Tabs, Tab } from "react-bootstrap";
+import { mediaPuntuation } from "../../api/assessment";
 
 let arrayImages = [];
 let arrayRooms = [];
 let arrayFoods = [];
 export default function InfoHotel(props) {
   const { show, setShow, hotel } = props;
-  const [interruptor, setInterruptor] = useState(false)
+  const [interruptor, setInterruptor] = useState(false);
   const [interruptorImages, setInterruptorImages] = useState(false);
   const [interruptorRooms, setInterruptorRooms] = useState(false);
   const [interruptorFoods, setInterruptorFoods] = useState(false);
   const [key, setKey] = useState("about");
-
 
   const returnImages = async () => {
     let totalImg = await getALLIMages();
@@ -27,7 +27,7 @@ export default function InfoHotel(props) {
       for (const image of totalImg) {
         arrayImages.push(image);
       }
-      setInterruptorImages(true)
+      setInterruptorImages(true);
     }
     return true;
   };
@@ -57,14 +57,20 @@ export default function InfoHotel(props) {
     let room = await returnRooms();
     let image = returnImages();
     let food = await returnFoods();
-    if(room && image && food) setInterruptor(true);
-  }
+    if (room && image && food) setInterruptor(true);
+  };
+
+  const showMediaPuntuation = async () => {
+    let media = await mediaPuntuation(hotel.Id);
+    console.log(media);
+  };
 
   useEffect(() => {
     arrayImages = [];
     arrayRooms = [];
     arrayFoods = [];
     changeInterruptor();
+    showMediaPuntuation();
   }, []);
 
   return (

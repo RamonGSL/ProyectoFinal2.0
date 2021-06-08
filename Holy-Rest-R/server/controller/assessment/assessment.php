@@ -20,4 +20,6 @@ $functionAssessment = new functionsAssessment();
 $comprobationType = true;
 if (array_key_exists('Insert', $data)) {
     echo  json_encode($functionAssessment->insertAssesment($data));
+} else if (array_key_exists('media', $data)) {
+    echo  json_encode($functionAssessment->getALLAssesment($data));
 }

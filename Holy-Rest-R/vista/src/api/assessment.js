@@ -3,41 +3,44 @@ import { API_URL } from "./../utils/constant";
 const urlAssessment = `${API_URL}/server/controller/assessment/assessment.php`;
 
 export async function insertAssesemt(puntuation, userId, hotelId) {
-    let item = { Insert: "Insert" };
-    let user = { IdUser: userId };
-    let hotel = {IdHotel: hotelId};
-    let assessment = {Assessment: puntuation};
-    let datas = Object.assign(user, hotel, assessment, item);
-    
-    try {
-      const params = await createParams(datas);
-      const response = await fetch(urlAssessment, params);
-      console.log(response)
-      if(response.status === 200) return 'Correct';
-      const result = await response.json();
-      if (response === "Error") return null;
-      return result;
-    } catch (error) {
-      console.log(error);
-      return null;
-    } 
-}
+  let item = { Insert: "Insert" };
+  let user = { IdUser: userId };
+  let hotel = { IdHotel: hotelId };
+  let assessment = { Assessment: puntuation };
+  let datas = Object.assign(user, hotel, assessment, item);
 
-export async function mediaPuntuation (idHotel) {
-  let item = {media: 'media'};
-  let hotel = {IdHotel: idHotel};
-  let formData = Object.assign(hotel, item);
   try {
-    const params = await createParams(formData);
+    const params = await createParams(datas);
     const response = await fetch(urlAssessment, params);
-    console.log(response)
+    console.log(response);
+    if (response.status === 200) return "Correct";
+    const result = await response.json();
+    if (response === "Error") return null;
+    return result;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return null;
   }
 }
 
-  
+export async function mediaPuntuation(idHotel) {
+  let item = { media: "media" };
+  let hotel = { IdHotel: idHotel };
+  let formData = Object.assign(hotel, item);
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlAssessment, params);
+    if (response.status === 200) {
+      let result = response.json();
+      console.log(result);
+    }
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 const createParams = async (formData) => {
   const params = {
     method: "POST",
@@ -46,6 +49,5 @@ const createParams = async (formData) => {
     },
     body: JSON.stringify(formData),
   };
-    return params;
+  return params;
 };
-  

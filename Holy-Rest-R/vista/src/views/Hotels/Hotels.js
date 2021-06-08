@@ -14,7 +14,6 @@ import Assessment from "../../components/Assessment/Assessment";
 var HotelImages = [];
 
 export default function Hotels() {
-
   const [loadImage, setLoadImage] = useState(false);
   const [hotels, setHotels] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -24,21 +23,21 @@ export default function Hotels() {
 
   const getUser = async () => {
     let res = await datasUser();
-    if(res !== null) setUser(res);
+    if (res !== null) setUser(res);
   };
 
   const getHotels = async () => {
     let hotels = await getAllHotel();
-    if (hotels !== null)  setHotels(hotels);
+    if (hotels !== null) setHotels(hotels);
 
     let images = await getALLIMages();
-    if(images !== null){
+    if (images !== null) {
       images.forEach((image) => {
         if (image.Type === "1") {
           HotelImages.push(image);
         }
       });
-  
+
       hotels.forEach((hotel) => {
         let image = returnImageHotel(hotel.Id);
         if (image !== null) {
@@ -47,7 +46,6 @@ export default function Hotels() {
       });
       setLoadImage(true);
     }
-   
   };
 
   const returnImageHotel = (idHotel) => {
@@ -61,7 +59,6 @@ export default function Hotels() {
     return dataReturn;
   };
 
-
   const urlImages = `${API_URL}server/imagesHotels/`;
 
   useEffect(() => {
@@ -71,59 +68,64 @@ export default function Hotels() {
 
   return (
     <>
-    {hotels !== null ? (
-    <div className="Hotels">
-      <div className="hotelBox">
-        {loadImage === true ? (
-          <div className="contentHotels">
-            {map(hotels, (index, value) => (
-              <div key={value} id={index.Name} className="conteinerHotel">
-                <div className="containerImgPrincipal">
-                  <img
-                    className="imgPrincipalHotel"
-                    src={index.ImagePrincipal}
-                    alt="Img"
-                  />
-                </div>
-                <div className="contentInfoHotel">
-                  <p className="textImg">{index.HotelName}</p>
-                  <p className="textImg">{index.Description}</p>
-                  <InfoRoundedIcon
-                    onClick={() => {
-                      setInfoHotel(index);
-                      setShowModal(true);
-                    }}
-                    className="iconsHotels"
-                  ></InfoRoundedIcon>
-                  <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
-                  {user !== null ? (
-                    <ControlPointRoundedIcon
-                    onClick={() => {
-                      setOpenDialog(true);
-                    }}
-                    className="iconsHotels"
-                  ></ControlPointRoundedIcon>
-                  ) :null}
-                  
-                </div>
-                {showModal === true ? (
-                <InfoHotel show={showModal} setShow={setShowModal} hotel={infoHotel} />
-              ) : null}
-              {openDialog === true ? (
-                <div>
-                  <p>{infoHotel}</p>
-                  <Assessment user={user} openDialog={openDialog} setDialog={setOpenDialog} hotel={index.Id}/>
-                </div>
-              ) : null}
+      {hotels !== null ? (
+        <div className="Hotels">
+          <div className="hotelBox">
+            {loadImage === true ? (
+              <div className="contentHotels">
+                {map(hotels, (index, value) => (
+                  <div key={value} id={index.Name} className="conteinerHotel">
+                    <div className="containerImgPrincipal">
+                      <img
+                        className="imgPrincipalHotel"
+                        src={index.ImagePrincipal}
+                        alt="Img"
+                      />
+                    </div>
+                    <div className="contentInfoHotel">
+                      <p className="textImg">{index.HotelName}</p>
+                      <p className="textImg">{index.Description}</p>
+                      <InfoRoundedIcon
+                        onClick={() => {
+                          setInfoHotel(index);
+                          setShowModal(true);
+                        }}
+                        className="iconsHotels"
+                      ></InfoRoundedIcon>
+                      <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
+                      {user !== null ? (
+                        <ControlPointRoundedIcon
+                          onClick={() => {
+                            setOpenDialog(true);
+                          }}
+                          className="iconsHotels"
+                        ></ControlPointRoundedIcon>
+                      ) : null}
+                    </div>
+                    {showModal === true ? (
+                      <InfoHotel
+                        show={showModal}
+                        setShow={setShowModal}
+                        hotel={infoHotel}
+                      />
+                    ) : null}
+                    {openDialog === true ? (
+                      <div>
+                        <Assessment
+                          user={user}
+                          openDialog={openDialog}
+                          setDialog={setOpenDialog}
+                          hotel={index.Id}
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
               </div>
-             
-            ))}
+            ) : null}
           </div>
-        ) : null}
-      </div>
-      
-    </div>
-    ):null}
+        </div>
+      ) : null}
     </>
   );
 }

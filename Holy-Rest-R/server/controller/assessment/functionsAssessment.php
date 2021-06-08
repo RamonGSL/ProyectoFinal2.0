@@ -18,6 +18,16 @@ class functionsAssessment extends Assessment
         }
     }
 
+    public function getALLAssesment($datas)
+    {
+        $getAssements = Assessment::getAllAssessment($datas['IdHotel']);
+        if ($getAssements == "0 datas") {
+            return null;
+        } else {
+            $this->mediaAssement($getAssements);
+        }
+    }
+
     protected function updateAssesment($datas)
     {
         $updateAssesment = Assessment::putAssesment($datas['IdUser'], $datas['IdHotel'], $datas['Assessment']);
@@ -26,5 +36,16 @@ class functionsAssessment extends Assessment
         }
 
         return "Error";
+    }
+
+    protected function mediaAssement($arrayAssements)
+    {
+        $puntuation = 0;
+        foreach ($arrayAssements as $assessment) {
+            $puntuation += intval($assessment["Assessment"]);
+        }
+
+        $puntuation = $puntuation / count($arrayAssements);
+        var_dump($puntuation);
     }
 }

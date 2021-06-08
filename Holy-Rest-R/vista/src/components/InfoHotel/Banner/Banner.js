@@ -9,11 +9,11 @@ export default function Banner(props) {
   const prepareImages = async () => {
     let expect = await images;
     setImg(await expect);
-  }
+  };
 
   useEffect(() => {
     prepareImages();
-  }, [])
+  }, []);
 
   const urlImages = `${API_URL}server/imagesHotels/`;
   return (
@@ -21,7 +21,6 @@ export default function Banner(props) {
       <Carousel>
         {map(img, (index, value) => (
           <Carousel.Item key={value}>
-            <p></p>
             <img
               className="d-block w-100"
               src={`${urlImages}${index.IdHotel}/${index.NameImage}`}
