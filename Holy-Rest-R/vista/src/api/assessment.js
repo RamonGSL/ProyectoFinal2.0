@@ -31,10 +31,10 @@ export async function mediaPuntuation(idHotel) {
     const params = await createParams(formData);
     const response = await fetch(urlAssessment, params);
     if (response.status === 200) {
-      let result = response.json();
-      console.log(result);
+      let result = await response.json();
+      return result;
     }
-    console.log(response);
+    return null;
   } catch (error) {
     console.log(error);
     return null;

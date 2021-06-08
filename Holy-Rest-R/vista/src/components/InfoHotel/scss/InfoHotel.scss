@@ -1,8 +1,23 @@
 @import "../../../scss/index.scss";
-#controlled-tab-example-tab-Foods{
-    background-color: var(--primary-dark) !important;
+#controlled-tab-example-tab-Foods {
+  background-color: var(--primary-dark) !important;
 }
 
-#controlled-tab-example-tab-Rooms{
-    background-color: var(--primary-dark) !important;
+#controlled-tab-example-tab-Rooms {
+  background-color: var(--primary-dark) !important;
+}
+
+.totalPuntuation {
+  text-align: center;
+  font-size: 15px;
+  color: var(--primary-yellow);
+}
+.totalScore {
+  font-size: 25px;
+  text-align: center;
+  color: var(--primary-yellow);
+}
+.hotelNameInfo {
+  text-align: center;
+  color: var(--primary-yellow);
 }

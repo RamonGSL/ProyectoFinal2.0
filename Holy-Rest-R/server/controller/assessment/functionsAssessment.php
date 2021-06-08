@@ -24,7 +24,8 @@ class functionsAssessment extends Assessment
         if ($getAssements == "0 datas") {
             return null;
         } else {
-            $this->mediaAssement($getAssements);
+            $media = $this->mediaAssement($getAssements);
+            return $media;
         }
     }
 
@@ -40,12 +41,15 @@ class functionsAssessment extends Assessment
 
     protected function mediaAssement($arrayAssements)
     {
-        $puntuation = 0;
-        foreach ($arrayAssements as $assessment) {
-            $puntuation += intval($assessment["Assessment"]);
+        try {
+            $puntuation = 0;
+            foreach ($arrayAssements as $assessment) {
+                $puntuation += intval($assessment["Assessment"]);
+            }
+            $puntuation = $puntuation / count($arrayAssements);
+            return strval($puntuation);
+        } catch (\Throwable $th) {
+            return "Error";
         }
-
-        $puntuation = $puntuation / count($arrayAssements);
-        var_dump($puntuation);
     }
 }

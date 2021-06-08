@@ -20,6 +20,7 @@ export default function InfoHotel(props) {
   const [interruptorRooms, setInterruptorRooms] = useState(false);
   const [interruptorFoods, setInterruptorFoods] = useState(false);
   const [key, setKey] = useState("about");
+  const [totalPuntuation, setTotalPuntuation] = useState("");
 
   const returnImages = async () => {
     let totalImg = await getALLIMages();
@@ -62,7 +63,7 @@ export default function InfoHotel(props) {
 
   const showMediaPuntuation = async () => {
     let media = await mediaPuntuation(hotel.Id);
-    console.log(media);
+    setTotalPuntuation(media);
   };
 
   useEffect(() => {
@@ -84,7 +85,13 @@ export default function InfoHotel(props) {
           onHide={() => setShow(false)}
         >
           <Modal.Header>
-            <Modal.Title>{hotel.HotelName}</Modal.Title>
+            <Modal.Title>
+              <p className="hotelNameInfo">{hotel.HotelName}</p>
+              <p className="totalPuntuation">
+                The average score for this hotel is
+              </p>
+              <p className="totalScore">{totalPuntuation}</p>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
