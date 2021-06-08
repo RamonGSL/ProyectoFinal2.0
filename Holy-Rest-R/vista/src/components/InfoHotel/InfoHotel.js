@@ -13,6 +13,7 @@ import { mediaPuntuation } from "../../api/assessment";
 let arrayImages = [];
 let arrayRooms = [];
 let arrayFoods = [];
+
 export default function InfoHotel(props) {
   const { show, setShow, hotel } = props;
   const [interruptor, setInterruptor] = useState(false);
@@ -32,6 +33,7 @@ export default function InfoHotel(props) {
     }
     return true;
   };
+
   const returnFoods = async () => {
     let totalFoods = await getFoodsForHotel(hotel.Id);
     if (totalFoods !== null) {

@@ -21,28 +21,21 @@
   --danger: #e0245e;
 }
 
-#controlled-tab-example-tab-Foods {
-  background-color: var(--primary-dark) !important;
+#selectScore {
+  width: 100px;
+  margin: auto;
+  border-radius: 10px;
 }
 
-#controlled-tab-example-tab-Rooms {
-  background-color: var(--primary-dark) !important;
-}
-
-.totalPuntuation {
+.optionSelectScore {
   text-align: center;
-  font-size: 15px;
-  color: var(--primary-yellow);
+  font-size: 20px;
 }
 
-.totalScore {
-  font-size: 25px;
-  text-align: center;
-  color: var(--primary-yellow);
+.containerScore {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
 }
-
-.hotelNameInfo {
-  text-align: center;
-  color: var(--primary-yellow);
-}
-/*# sourceMappingURL=InfoHotel.css.map */
+/*# sourceMappingURL=Analytics.css.map */

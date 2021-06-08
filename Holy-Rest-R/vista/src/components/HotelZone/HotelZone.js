@@ -5,6 +5,7 @@ import BasicModal from "./../Modal/BasicModal/BasicModal";
 import { Button } from "react-bootstrap";
 import { Tabs, Tab, Carousel } from "react-bootstrap";
 import CreateHotel from "./CreateHotel/CreateHotel";
+import Analytics from "./Analytics/Analytics";
 export default function HotelZone() {
   const [key, setKey] = useState("about");
 
@@ -21,19 +22,6 @@ export default function HotelZone() {
 
   return (
     <div className="containerHotelZone">
-      {/*  {hotelDatas === null ? (
-        <Button
-          variant="primary"
-          onClick={() => openModal(<CreateHotel setShowModal={setShowModal} />)}
-        >
-          CreateHotel
-        </Button>
-      ) : null}
-
-      <BasicModal show={showModal} setShow={setShowModal}>
-        {contentModal}
-      </BasicModal> */}
-
       <Tabs
         id="controlled-tab-example"
         activeKey={key}
@@ -43,22 +31,9 @@ export default function HotelZone() {
           <CreateHotel />
         </Tab>
         <Tab eventKey="Analytics" title="Analytics">
-          <p>Analytics</p>
+          <Analytics />
         </Tab>
       </Tabs>
-
-      {/*  {hotelDatas !== null ? (
-        <Tabs
-          id="controlled-tab-example"
-          activeKey={key}
-          onSelect={(k) => setKey(k)}
-        >
-          <Tab eventKey="HotelSettings" title="HotelSettings"></Tab>
-          <Tab eventKey="Hotels" title="Hotels">
-            <p>Estadisticas</p>
-          </Tab>
-        </Tabs>
-      ) : null} */}
     </div>
   );
 }

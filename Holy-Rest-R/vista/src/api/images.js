@@ -55,6 +55,7 @@ export async function getALLIMages() {
     const params = await createParams(item);
     const response = await fetch(urlImages, params);
     const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
