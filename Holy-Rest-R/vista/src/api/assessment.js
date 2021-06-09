@@ -12,7 +12,6 @@ export async function insertAssesemt(puntuation, userId, hotelId) {
   try {
     const params = await createParams(datas);
     const response = await fetch(urlAssessment, params);
-    console.log(response);
     if (response.status === 200) return "Correct";
     const result = await response.json();
     if (response === "Error") return null;

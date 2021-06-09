@@ -82,4 +82,10 @@ class User extends Queries
         $sql = "UPDATE users SET RoleUser = '$role' where Email = '$Email'";
         return Queries::insertDatas($sql);
     }
+
+    protected function returnDate($id)
+    {
+        $sql = "SELECT DateOfBirth FROM users where Id = '$id'";
+        return Queries::returnDatas($sql);
+    }
 }

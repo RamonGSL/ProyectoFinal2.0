@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { Tabs, Tab, Carousel } from "react-bootstrap";
 import CreateHotel from "./CreateHotel/CreateHotel";
 import Analytics from "./Analytics/Analytics";
+
 export default function HotelZone() {
   const [key, setKey] = useState("about");
 
@@ -31,7 +32,9 @@ export default function HotelZone() {
           <CreateHotel />
         </Tab>
         <Tab eventKey="Analytics" title="Analytics">
-          <Analytics />
+          { hotelDatas !== null ? (
+            <Analytics idHotel={hotelDatas} />
+          ):null }
         </Tab>
       </Tabs>
     </div>

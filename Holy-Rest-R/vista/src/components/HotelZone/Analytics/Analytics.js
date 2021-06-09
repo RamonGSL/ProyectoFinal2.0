@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "./scss/Analytics.scss";
 import {
   PieChart,
@@ -11,10 +11,13 @@ import {
   CartesianGrid,
   Bar,
 } from "recharts";
-import { FormControl } from "react-bootstrap";
-import { selectScoreUsers } from "./functionAnalytics";
 
-export default function Analytics() {
+import { FormControl } from "react-bootstrap";
+import { selectScoreUsers, selectAllUsers } from "./functionAnalytics";
+
+export default function Analytics(props) {
+  const { idHotel } = props;
+
   const data = [
     { name: "Facebook", users: 2000000000 },
     { name: "Instagram", users: 1500000000 },
@@ -22,10 +25,21 @@ export default function Analytics() {
     { name: "Telegram", users: 500000000 },
   ];
 
+  const [rangeData, setRangeData] = useState(null);
+  const [myHotelId, setMyHotelId] = useState(null);
+
   const onChangeSelectScore = async (e) => {
-    let res = await selectScoreUsers(e.target.value);
-    console.log(res);
+    let res = await selectScoreUsers(e.target.value, myHotelId[0].IdHotel);
   };
+
+  useEffect(() => {
+    setMyHotelId(idHotel);
+    const prepareDatas = async () => {
+      console.log("Entramos");
+      let res2 = await selectAllUsers(idHotel[0].IdHotel);
+    };
+    prepareDatas();
+  }, [idHotel]);
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -88,6 +102,9 @@ export default function Analytics() {
             </option>
             <option className="optionSelectScore" value="9">
               9
+            </option>
+            <option className="optionSelectScore" value="10">
+              10
             </option>
           </FormControl>
         </div>

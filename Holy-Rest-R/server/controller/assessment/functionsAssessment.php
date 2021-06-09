@@ -29,6 +29,18 @@ class functionsAssessment extends Assessment
         }
     }
 
+    public function getScore($datas)
+    {
+        $getScores = Assessment::getScores($datas['Score'], $datas['HotelId']);
+        return $getScores;
+    }
+
+    public function getAllUsers($datas)
+    {
+        $getUsersId = Assessment::getUsersId($datas['HotelId']);
+        return $getUsersId;
+    }
+
     protected function updateAssesment($datas)
     {
         $updateAssesment = Assessment::putAssesment($datas['IdUser'], $datas['IdHotel'], $datas['Assessment']);

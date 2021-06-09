@@ -27,4 +27,16 @@ class Assessment extends Queries
         $sql = "SELECT * FROM assessment WHERE IdHotel = '$IdHotel'";
         return Queries::returnDatas($sql);
     }
+
+    protected function getScores($score, $idHotel)
+    {
+        $sql = "SELECT IdUser FROM assessment WHERE IdHotel = '$idHotel' AND  Assessment = '$score' ";
+        return Queries::returnDatas($sql);
+    }
+
+    protected function getUsersId($idHotel)
+    {
+        $sql = "SELECT IdUser FROM assessment WHERE IdHotel = '$idHotel'";
+        return Queries::returnDatas($sql);
+    }
 }

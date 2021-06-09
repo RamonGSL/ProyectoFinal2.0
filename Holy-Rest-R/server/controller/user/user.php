@@ -148,6 +148,15 @@ switch ($data['Type']) {
 
         break;
 
+    case 'Dates':
+        $datesUser = $functionUser->returnDates($data);
+        /*  if ($datasUser != "Error") {
+            echo json_encode("User role has been changed successfully");
+        } else {
+            echo json_encode("Server Not Found");
+        }
+ */
+        break;
 
     default:
         # code...

@@ -122,6 +122,16 @@ class functionsUser extends User
         }
     }
 
+    public function returnDates($datas)
+    {
+        $userDates = [];
+        foreach ($datas["Datas"] as $userId) {
+            $dateUser = User::returnDate($userId["IdUser"]);
+            array_push($userDates, $dateUser);
+        }
+        var_dump($userDates);
+    }
+
     private function checkRoleUser($email, $password)
     {
         $returnRoleUser = User::returnRoleUser($email, $password);

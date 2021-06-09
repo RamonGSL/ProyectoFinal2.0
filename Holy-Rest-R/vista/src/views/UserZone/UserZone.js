@@ -38,12 +38,12 @@ export default function UserZone() {
 
   return (
     <>
-      {dataUser !== null ? (
+      {/* {dataUser !== null ? (
         <div className="userName">
           <h2 className="nameUserTitle1">{dataUser.Name}</h2>
           <h3 className="nameUserTitle"> This is the zone of your user</h3>
         </div>
-      ) : null}
+      ) : null} */}
       
       <div id="containerUserZone">
         <div id="containerButtons">
