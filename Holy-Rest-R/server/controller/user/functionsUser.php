@@ -129,7 +129,7 @@ class functionsUser extends User
             $dateUser = User::returnDate($userId["IdUser"]);
             array_push($userDates, $dateUser);
         }
-        var_dump($userDates);
+        return $userDates;
     }
 
     private function checkRoleUser($email, $password)

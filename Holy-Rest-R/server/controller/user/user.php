@@ -149,7 +149,7 @@ switch ($data['Type']) {
         break;
 
     case 'Dates':
-        $datesUser = $functionUser->returnDates($data);
+        echo json_encode($functionUser->returnDates($data));
         /*  if ($datasUser != "Error") {
             echo json_encode("User role has been changed successfully");
         } else {

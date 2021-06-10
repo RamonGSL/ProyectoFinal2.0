@@ -65,7 +65,16 @@ export async function userDates($datas) {
   try {
     const params = await createParams(request);
     const response = await fetch(urluser, params);
-    console.log(response);
+    const result = await response.json();
+    let arrayDates = [];
+    for (const date of result) {
+      let Date = date[0].DateOfBirth;
+      let dateSplit = Date.split("-");
+      arrayDates.push(parseInt(dateSplit[0]));
+    }
+    arrayDates.sort();
+    console.log(arrayDates);
+    return arrayDates;
   } catch (error) {
     console.log(error);
     return null;
