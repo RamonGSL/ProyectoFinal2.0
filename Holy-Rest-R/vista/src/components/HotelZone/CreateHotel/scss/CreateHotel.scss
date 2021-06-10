@@ -1,1 +1,11 @@
 @import "./../../../../scss/index.scss";
+
+.buttonSelectForm {
+  height: 75px;
+  width: 150px;
+  font-size: 15px !important;
+  margin-top: 20px;
+}
+.containerBtnForms {
+  display: grid;
+}

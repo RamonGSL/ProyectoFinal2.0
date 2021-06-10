@@ -32,9 +32,7 @@ export default function HotelZone() {
           <CreateHotel />
         </Tab>
         <Tab eventKey="Analytics" title="Analytics">
-          { hotelDatas !== null ? (
-            <Analytics idHotel={hotelDatas} />
-          ):null }
+          {hotelDatas !== null ? <Analytics idHotel={hotelDatas} /> : null}
         </Tab>
       </Tabs>
     </div>

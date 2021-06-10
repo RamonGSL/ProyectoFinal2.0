@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { comproveAdmin } from "./../../../api/manage";
 import "./scss/CreateHotel.scss";
-import FoodForm from "./FoodForm/FoodForm";
-import HotelForm from "./HotelForm/HotelForm";
-import ImagesForm from "./ImagesForm/ImagesForm";
-import RoomForm from "./RoomForm/RoomForm";
+import { Button } from "react-bootstrap";
+
+import ComponentsHotel from "./ComponentsHotel/ComponentsHotel";
 
 export default function CreateHotel() {
   const [hotelState, setHotelState] = useState(false);
+  const [buttonSelect, setButtonSelect] = useState(null);
 
   const existHotel = async () => {
     let hotel = await comproveAdmin();
@@ -23,14 +23,46 @@ export default function CreateHotel() {
   }, []);
 
   return (
-    <div className="Content-form">
-      <HotelForm />
+    <div className="containerBtnForms">
+      <Button
+        className="buttonSelectForm"
+        onClick={() => {
+          setButtonSelect(1);
+        }}
+      >
+        Main information
+      </Button>
       {hotelState === true ? (
         <>
-          <FoodForm />
-          <RoomForm />
-          <ImagesForm />
+          <Button
+            className="buttonSelectForm"
+            onClick={() => {
+              setButtonSelect(2);
+            }}
+          >
+            Food
+          </Button>
+
+          <Button
+            className="buttonSelectForm"
+            onClick={() => {
+              setButtonSelect(3);
+            }}
+          >
+            Images
+          </Button>
+          <Button
+            className="buttonSelectForm"
+            onClick={() => {
+              setButtonSelect(4);
+            }}
+          >
+            Rooms
+          </Button>
         </>
+      ) : null}
+      {buttonSelect !== null ? (
+        <ComponentsHotel open={buttonSelect} close={setButtonSelect} />
       ) : null}
     </div>
   );

@@ -15,25 +15,25 @@ export default function RoomForm() {
   const [foodRoomLoading, setRoomFormLoading] = useState(false);
 
   useEffect(() => {
+    allRooms = [];
     initialiceRooms();
-  }, [])
+  }, []);
 
-  const initialiceRooms  = async () => {
+  const initialiceRooms = async () => {
     let obj = null;
     let result = await getRooms();
-    if(result!== null){
-      await result.forEach(element => {
+    if (result !== null) {
+      await result.forEach((element) => {
         obj = {
           Room: element.TypeRoom,
-          Price: element.RoomPrice
-        }
-        if(obj !== null){
+          Price: element.RoomPrice,
+        };
+        if (obj !== null) {
           allRooms.push(obj);
-        }      
+        }
       });
       roomTable();
     }
-
   };
 
   const addRoom = () => {
@@ -112,19 +112,18 @@ export default function RoomForm() {
     } else {
       try {
         let result = await createRoom(allRooms);
-        if(result === null){
-          toast.error("Error in server, please try later")
-        }else{
+        if (result === null) {
+          toast.error("Error in server, please try later");
+        } else {
           toast.success(result);
-           setTimeout(() => {
-           window.location.href = "/user-zone";
-         }, 1000); 
+          setTimeout(() => {
+            window.location.href = "/user-zone";
+          }, 1000);
         }
       } catch (error) {
         console.log(error);
       }
     }
-
   };
 
   return (

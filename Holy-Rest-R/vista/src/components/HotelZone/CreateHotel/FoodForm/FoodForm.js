@@ -13,8 +13,9 @@ var allFoods = [];
 export default function FoodForm() {
   const [formFoodValue, setFormFoodValue] = useState(initialFoodValue());
   const [foodFormLoading, setFoodFormLoading] = useState(false);
-  
+
   useEffect(() => {
+    allFoods = [];
     initialiceFoods();
   }, []);
 

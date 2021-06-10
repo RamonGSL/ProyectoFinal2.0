@@ -9,7 +9,6 @@ import { API_URL } from "../../../../utils/constant";
 import { createImages, getImages } from "./../../../../api/images";
 var allImages = [];
 export default function ImagesForm() {
-
   const [formHotelImage, setFormHotelImage] = useState(initialHotelImage());
   const [formHotelImageLoading, setRoomFormLoading] = useState(false);
   const [image, setImage] = useState(
@@ -17,26 +16,26 @@ export default function ImagesForm() {
   );
 
   useEffect(() => {
+    allImages = [];
     initialiceImages();
-  }, [])
+  }, []);
 
-  const initialiceImages  = async () => {
+  const initialiceImages = async () => {
     let obj = null;
     let result = await getImages();
-    if(result !== null){
-      await result.forEach(element => {
+    if (result !== null) {
+      await result.forEach((element) => {
         obj = {
           Type: element.Type,
-          Image: element.base64
-        }
-        if(obj !== null){
+          Image: element.base64,
+        };
+        if (obj !== null) {
           allImages.push(obj);
-        }      
+        }
       });
       imagesTable();
     }
   };
-
 
   const addImage = () => {
     let validCount = 0;
@@ -100,9 +99,9 @@ export default function ImagesForm() {
       container.removeChild(container.firstChild);
     }
     allImages.forEach((element, i) => {
-      element.Id = number.toString(); 
-      let node = document.createElement("DIV"); 
-      node.setAttribute("id", number.toString()); 
+      element.Id = number.toString();
+      let node = document.createElement("DIV");
+      node.setAttribute("id", number.toString());
       node.classList.add("list-group-item");
       let imageCreate = document.createElement("img");
       imageCreate.setAttribute("src", element.Image);
@@ -139,22 +138,19 @@ export default function ImagesForm() {
       toast.warning("please select some food");
     } else {
       try {
-       let result = await createImages(allImages);
-       if(result === null){
-         toast.error("Error in server, please try later")
-       }else{
-         toast.success(result);
-         setTimeout(() => {
-          window.location.href = "/user-zone";
-        }, 1000);
-       }
+        let result = await createImages(allImages);
+        if (result === null) {
+          toast.error("Error in server, please try later");
+        } else {
+          toast.success(result);
+          setTimeout(() => {
+            window.location.href = "/user-zone";
+          }, 1000);
+        }
       } catch (error) {
         console.log(error);
       }
-     
     }
-
-   
   };
 
   return (
@@ -194,7 +190,7 @@ export default function ImagesForm() {
         </Form.Group>
 
         <Form.Group className="boxInput">
-          <button type="button"  onClick={addImage}>
+          <button type="button" onClick={addImage}>
             <AddCircleOutlineRoundedIcon className="foodIcon" />
           </button>
         </Form.Group>

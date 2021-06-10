@@ -21,15 +21,10 @@
   --danger: #e0245e;
 }
 
-.buttonSelectForm {
-  height: 75px;
-  width: 150px;
-  font-size: 15px !important;
-  margin-top: 20px;
+.modal-content {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
 }
-
-.containerBtnForms {
-  display: -ms-grid;
-  display: grid;
-}
-/*# sourceMappingURL=CreateHotel.css.map */
+/*# sourceMappingURL=componentsHotel.css.map */
