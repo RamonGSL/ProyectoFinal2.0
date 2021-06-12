@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { isHotelNameValid } from "./../../../../utils/validations";
 import "./scss/HotelForm.scss";
 //import Map from "./../../../../utils/map/Map";
-import Map from "../../../../utils/map/Map";
+import SelectFront from "../../../../utils/selectMultiple/SelectFront.js";
 import { createHotel } from "./../../../../api/hotel";
 
 export default function HotelForm() {
@@ -155,6 +155,7 @@ export default function HotelForm() {
               }
             }}
           ></Form.Check>
+          <SelectFront setLocation={setLocation} />
           <div id="Terms">
             <p className="textTerms">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
@@ -164,7 +165,7 @@ export default function HotelForm() {
             </p>
           </div>
         </Form.Group>
-        <Map setLocation={setLocation} />
+
         <Button className="buttonHotelForm" variant="primary" type="submit">
           {!hotelFormLoading ? "Submit" : <Spinner animation="border" />}
         </Button>
