@@ -34,4 +34,10 @@ class Hotel extends Queries
         $sql = "UPDATE hotels SET Email = '$Email', Disabled = '$DisabledHotel'";
         return Queries::insertDatas($sql);
     }
+
+    protected function deleteHotel($Email)
+    {
+        $sql = "DELETE FROM hotels WHERE Email = '$Email'";
+        return Queries::insertDatas($sql);
+    }
 }

@@ -39,4 +39,16 @@ class Assessment extends Queries
         $sql = "SELECT IdUser FROM assessment WHERE IdHotel = '$idHotel'";
         return Queries::returnDatas($sql);
     }
+
+    protected function deleteAssessmentForUser($IdUser)
+    {
+        $sql = "DELETE FROM assessment where IdUser = '$IdUser'";
+        return Queries::insertDatas($sql);
+    }
+
+    protected function deleteAssessmentForHotel($IdHotel)
+    {
+        $sql = "DELETE FROM assessment where IdHotel = '$IdHotel'";
+        return Queries::insertDatas($sql);
+    }
 }

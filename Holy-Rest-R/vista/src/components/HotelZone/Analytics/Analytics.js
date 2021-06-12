@@ -14,10 +14,12 @@ import {
 
 import { FormControl } from "react-bootstrap";
 import { selectScoreUsers, selectAllUsers } from "./functionAnalytics";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 export default function Analytics(props) {
   const { idHotel } = props;
   let arrayTotalScore = [];
+
   const data = [
     { name: "Facebook", users: 2000000000 },
     { name: "Instagram", users: 1500000000 },
@@ -31,14 +33,39 @@ export default function Analytics(props) {
   const onChangeSelectScore = async (e) => {
     let res = await selectScoreUsers(e.target.value, myHotelId[0].IdHotel);
   };
+
   const prepareDatas = async () => {
-    let res2 = await selectAllUsers(idHotel[0].IdHotel);
-    arrayTotalScore = await res2;
+    let res = await selectAllUsers(idHotel[0].IdHotel);
+    let result = await res;
+    if (result !== null) {
+      setRangeData(await res);
+    }
   };
+
+  const prepareAnalitycs = async () => {
+    console.log(rangeData);
+    /*  let newArray = [];
+    arrayTotalScore.forEach((element) => {
+      data.push({ name: element });
+    });
+
+    data.forEach((element) => {
+      if (!newArray.find((obj) => obj.name === element.id)) {
+        const { name } = element;
+        newArray.push({ name });
+      }
+    });
+    console.log(newArray); */
+  };
+
   useEffect(() => {
     setMyHotelId(idHotel);
     prepareDatas();
   }, [idHotel]);
+
+  useEffect(() => {
+    prepareAnalitycs();
+  }, [rangeData]);
 
   return (
     <div style={{ textAlign: "center" }}>

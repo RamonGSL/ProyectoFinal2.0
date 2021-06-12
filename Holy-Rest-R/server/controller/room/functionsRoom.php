@@ -7,7 +7,7 @@ class functionsRoom extends Room
     public function createAllRooms($allRooms)
     {
         $result = [];
-        $deleteTable = Room::deleteALLRooms();
+        $deleteTable = Room::deleteALLRooms($allRooms[0]["IdHotel"]);
         for ($i = 0; $i < count($allRooms) - 1; $i++) {
             $createRoom = Room::insertRoom($allRooms[$i]["Room"], $allRooms[$i]["Price"], $allRooms[$i]["IdHotel"]);
             array_push($result, $createRoom);

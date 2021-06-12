@@ -10,9 +10,9 @@ class Room extends Queries
         return Queries::insertDatas($sql);
     }
 
-    protected function deleteALLRooms()
+    protected function deleteALLRooms($IdHotel)
     {
-        $sql = "DELETE FROM room ";
+        $sql = "DELETE FROM room WHERE IdHotel = '$IdHotel'";
         return Queries::insertDatas($sql);
     }
 

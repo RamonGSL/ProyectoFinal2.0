@@ -10,9 +10,9 @@ class Food extends Queries
         return Queries::insertDatas($sql);
     }
 
-    protected function deleteALLFoods()
+    protected function deleteALLFoods($IdHotel)
     {
-        $sql = "DELETE FROM food ";
+        $sql = "DELETE FROM food WHERE IdHotel = '$IdHotel'";
         return Queries::insertDatas($sql);
     }
 

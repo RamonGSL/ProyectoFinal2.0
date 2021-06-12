@@ -44,7 +44,6 @@ export async function selectAllUsers(idHotel) {
     if (body !== "0 datas") {
       let arrayIds = [];
       body = await JSON.parse(body);
-      console.log(body);
       body.forEach((element) => {
         arrayIds.push(element);
       });
@@ -70,13 +69,13 @@ export async function userDates($datas) {
     let arrayDates = [];
     for (const date of result) {
       let Date = date[0].DateOfBirth;
-      console.log(Date);
       let dateSplit = Date.split("-");
       arrayDates.push(parseInt(dateSplit[0]));
     }
     arrayDates.sort((a, b) => a - b);
-    console.log(arrayDates);
-    return arrayDates;
+    let respReturn = arrayDates;
+    console.log(respReturn);
+    return respReturn;
   } catch (error) {
     console.log(error);
     return null;
