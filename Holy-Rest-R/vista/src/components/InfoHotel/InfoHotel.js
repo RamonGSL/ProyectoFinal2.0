@@ -93,6 +93,7 @@ export default function InfoHotel(props) {
                 The average score for this hotel is
               </p>
               <p className="totalScore">{totalPuntuation}</p>
+              <p className="hotelNameInfo">{hotel.Location}</p>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

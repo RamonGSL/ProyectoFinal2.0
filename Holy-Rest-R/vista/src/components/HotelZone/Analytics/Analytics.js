@@ -17,7 +17,7 @@ import { selectScoreUsers, selectAllUsers } from "./functionAnalytics";
 
 export default function Analytics(props) {
   const { idHotel } = props;
-
+  let arrayTotalScore = [];
   const data = [
     { name: "Facebook", users: 2000000000 },
     { name: "Instagram", users: 1500000000 },
@@ -31,13 +31,12 @@ export default function Analytics(props) {
   const onChangeSelectScore = async (e) => {
     let res = await selectScoreUsers(e.target.value, myHotelId[0].IdHotel);
   };
-
+  const prepareDatas = async () => {
+    let res2 = await selectAllUsers(idHotel[0].IdHotel);
+    arrayTotalScore = await res2;
+  };
   useEffect(() => {
     setMyHotelId(idHotel);
-    const prepareDatas = async () => {
-      console.log("Entramos");
-      let res2 = await selectAllUsers(idHotel[0].IdHotel);
-    };
     prepareDatas();
   }, [idHotel]);
 

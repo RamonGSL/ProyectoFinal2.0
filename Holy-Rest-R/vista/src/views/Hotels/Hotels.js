@@ -49,13 +49,14 @@ export default function Hotels() {
   };
 
   const returnImageHotel = (idHotel) => {
+    console.log(idHotel);
     let dataReturn = null;
     HotelImages.forEach((image) => {
       if (image.IdHotel === idHotel) {
         dataReturn = `${urlImages}${idHotel}/${image.NameImage}`;
       }
     });
-
+    console.log(dataReturn);
     return dataReturn;
   };
 

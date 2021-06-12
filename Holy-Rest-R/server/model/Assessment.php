@@ -12,7 +12,7 @@ class Assessment extends Queries
 
     protected function putAssesment($IdUser, $IdHotel, $Assessment)
     {
-        $sql = "UPDATE assessment SET IdUser = '$IdUser', IdHotel = '$IdHotel', Assessment = '$Assessment'";
+        $sql = "UPDATE assessment SET IdHotel = '$IdHotel', Assessment = '$Assessment' WHERE IdUser = '$IdUser'";
         return Queries::insertDatas($sql);
     }
 

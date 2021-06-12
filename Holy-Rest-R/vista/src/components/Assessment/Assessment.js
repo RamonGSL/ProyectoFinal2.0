@@ -28,6 +28,7 @@ export default function Assessment(props) {
     }
   };
   const onSubmit = async (e) => {
+    console.log(userId);
     e.preventDefault();
     if (puntuation !== null) {
       let res = await insertAssesemt(puntuation, userId, hotelId);
