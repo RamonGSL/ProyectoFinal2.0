@@ -18,7 +18,6 @@ include_once('./functionsManage.php');
 
 $functionManage = new functionsManage();
 $comprobationType = true;
-
 switch ($data['Type']) {
 
     case 'comproveAdmin':
@@ -36,17 +35,7 @@ switch ($data['Type']) {
         break;
 
     case 'createManage':
-
-
-        foreach ($data as $index) {
-            if (!is_string($index)) {
-                $comprobationType = false;
-            }
-        }
-
-        if ($comprobationType == true) {
-            echo  json_encode($functionManage->newManage($data));
-        }
+        echo  $functionManage->newManage($data);
         break;
 
     default:

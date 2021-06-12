@@ -14,13 +14,28 @@ class functionsManage extends Manage
         }
     }
 
+    public function comproveAdminUser($datas)
+    {
+        $comproveAdmin = Manage::comproveAdmin($datas["IdUser"]);
+        if ($comproveAdmin == "0 datas") {
+            return "Don´t exist";
+        } else {
+            return $comproveAdmin;
+        }
+    }
+
     public function newManage($datas)
     {
-        $createManage = Manage::createManage($datas["IdHotel"], $datas["IdUser"]);
-        if ($createManage == "New record created successfully") {
-            return "Correct";
+        $comprove = $this->comproveAdminUser($datas);
+        if ($comprove == "Don´t exist") {
+            $createManage = Manage::createManage($datas["IdHotel"], $datas["IdUser"]);
+            if ($createManage == "New record created successfully") {
+                return "Correct";
+            } else {
+                return $createManage;
+            }
         } else {
-            return $createManage;
+            return "Correct";
         }
     }
 }

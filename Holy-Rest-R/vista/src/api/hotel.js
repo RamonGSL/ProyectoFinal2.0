@@ -28,7 +28,7 @@ export async function createHotel(hotel) {
   try {
     const params = await createParams(formData);
     const response = await fetch(urlHotel, params);
-    const result = await response.json();
+    const result = await response.body;
     if (result === "Error") {
       return null;
     } else {
@@ -47,7 +47,7 @@ export async function createHotel(hotel) {
 
 export async function getAllHotel() {
   let formData = { Type: "getAllHotels" };
-  
+
   try {
     const params = await createParams(formData);
     const response = await fetch(urlHotel, params);
@@ -72,7 +72,6 @@ export async function disableHotelApi(dataHotel) {
     return null;
   }
 }
-
 
 const createParams = async (formData) => {
   const params = {

@@ -26,6 +26,7 @@ export default function HotelForm() {
       return null;
     });
     if (validCount !== size(formHotelValue)) {
+      console.log(formHotelValue);
       toast.warning("Complete all fields");
     } else {
       if (!isHotelNameValid(formHotelValue.HotelName)) {
@@ -55,6 +56,7 @@ export default function HotelForm() {
               window.location.href = "/user-zone";
             }, 1500);
           } else if (response == null) {
+            console.log(response);
             toast.error("Server error please try again later");
           } else {
             toast.error(response);
@@ -140,6 +142,7 @@ export default function HotelForm() {
             defaultValue={formHotelValue.Description}
           />
         </Form.Group>
+        <SelectFront setLocation={setLocation} />
         <Form.Group>
           <Form.Check
             type="switch"
@@ -155,7 +158,7 @@ export default function HotelForm() {
               }
             }}
           ></Form.Check>
-          <SelectFront setLocation={setLocation} />
+
           <div id="Terms">
             <p className="textTerms">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde

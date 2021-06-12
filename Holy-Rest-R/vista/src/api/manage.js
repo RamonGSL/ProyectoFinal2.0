@@ -33,8 +33,9 @@ export async function createManage(id) {
 
     const params = await createParams(formData);
     const response = await fetch(urlManage, params);
-    const result = await response.json();
-    return result;
+    let reader = await response.body.getReader().read();
+    let body = new TextDecoder().decode(reader.value);
+    return body;
   } catch (error) {
     console.log(error);
     return null;

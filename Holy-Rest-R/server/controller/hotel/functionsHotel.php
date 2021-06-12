@@ -20,7 +20,6 @@ class functionsHotel extends Hotel
         } else {
 
             $updateHotel = Hotel::updateHotel($datas["HotelName"], $datas["Location"], $datas["Description"], $datas["Phone"], $datas["Prefix"], $datas["Email"]);
-
             if ($updateHotel == "New record created successfully") {
                 $returnHotel = Hotel::comproveHotelWithEmail($datas["Email"]);
                 return $returnHotel[0]["Id"];

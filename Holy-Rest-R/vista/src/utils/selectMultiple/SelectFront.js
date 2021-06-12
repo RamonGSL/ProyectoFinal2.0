@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { FormControl } from "react-bootstrap";
-import { API_URL } from "../constant";
+import "./scss/Select.scss";
 
 export default function SelectFront(props) {
   const [paisSelected, setPaisSelected] = useState(null);
