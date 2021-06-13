@@ -50,7 +50,6 @@ export default function Hotels() {
   };
 
   const returnImageHotel = (idHotel) => {
-    console.log(idHotel);
     let dataReturn = null;
     HotelImages.forEach((image) => {
       if (image.IdHotel === idHotel) {
@@ -59,7 +58,6 @@ export default function Hotels() {
     });
     if (dataReturn === null)
       dataReturn = `${API_URL}vista/src/assets/HomeAssets/DefaultHoteljpg.jpg`;
-    console.log(dataReturn);
     return dataReturn;
   };
 
@@ -78,13 +76,9 @@ export default function Hotels() {
             {loadImage === true ? (
               <div className="contentHotels">
                 {map(hotels, (index, value) => (
-                  <>
+                  <div key={value}>
                     {index.Disabled !== "1" ? (
-                      <div
-                        key={value}
-                        id={index.Name}
-                        className="conteinerHotel"
-                      >
+                      <div id={index.Name} className="conteinerHotel">
                         <div className="containerImgPrincipal">
                           <img
                             className="imgPrincipalHotel"
@@ -131,7 +125,7 @@ export default function Hotels() {
                         ) : null}
                       </div>
                     ) : null}
-                  </>
+                  </div>
                 ))}
               </div>
             ) : null}
