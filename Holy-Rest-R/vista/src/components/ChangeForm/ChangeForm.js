@@ -143,6 +143,15 @@ export default function ChangeForm(props) {
     e.preventDefault();
     console.log("Entra");
     let res = await deleteUser(userData);
+    if (res === "Correct") {
+      toast.success("Correct");
+      setTimeout(() => {
+        logoutUser();
+        window.location.href = "/signInUp";
+      }, 1500);
+    } else {
+      toast.warning("Error please try again");
+    }
   };
 
   return (
