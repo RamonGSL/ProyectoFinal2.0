@@ -21,7 +21,7 @@
   --danger: #e0245e;
 }
 
-.modal-content {
+.modal-content .formCreateHotel {
   -webkit-box-orient: horizontal !important;
   -webkit-box-direction: normal !important;
       -ms-flex-direction: row !important;

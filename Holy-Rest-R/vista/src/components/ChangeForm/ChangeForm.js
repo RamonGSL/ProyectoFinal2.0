@@ -258,12 +258,22 @@ export default function ChangeForm(props) {
           setModalOC(true);
         }}
       />
-      <Modal show={modalOC} onHide={modalOC}>
+      <Modal
+        show={modalOC}
+        onHide={() => {
+          setModalOC(false);
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title className="textModal">You're sure?</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <Button variant="secondary" onClick={modalOC}>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setModalOC(false);
+            }}
+          >
             Close
           </Button>
           <Button

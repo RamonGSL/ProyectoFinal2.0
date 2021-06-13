@@ -1,5 +1,7 @@
 @import "../../../../../scss/index.scss";
 
 .modal-content {
-  flex-direction: row !important;
+  & .formCreateHotel {
+    flex-direction: row !important;
+  }
 }
