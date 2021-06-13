@@ -57,6 +57,8 @@ export default function Hotels() {
         dataReturn = `${urlImages}${idHotel}/${image.NameImage}`;
       }
     });
+    if (dataReturn === null)
+      dataReturn = `${API_URL}vista/src/assets/HomeAssets/DefaultHoteljpg.jpg`;
     console.log(dataReturn);
     return dataReturn;
   };
