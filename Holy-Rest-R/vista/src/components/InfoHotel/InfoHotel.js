@@ -76,6 +76,18 @@ export default function InfoHotel(props) {
     showMediaPuntuation();
   }, []);
 
+  const [imagesA, setImagesA] = useState(null);
+
+  useEffect(() => {
+    let newArray = [];
+    for (const image of arrayImages) {
+      if (image.IdHotel === hotel.Id) {
+        newArray.push(image);
+      }
+    }
+    setImagesA(newArray);
+  }, [interruptorImages]);
+
   return (
     <>
       {interruptor === true ? (

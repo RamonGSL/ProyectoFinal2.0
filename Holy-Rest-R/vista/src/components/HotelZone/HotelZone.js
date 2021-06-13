@@ -3,7 +3,7 @@ import "./scss/HotelZone.scss";
 import { comproveAdmin } from "./../../api/manage";
 import BasicModal from "./../Modal/BasicModal/BasicModal";
 import { Button } from "react-bootstrap";
-import { Tabs, Tab, Carousel } from "react-bootstrap";
+import { Tabs, Tab } from "react-bootstrap";
 import CreateHotel from "./CreateHotel/CreateHotel";
 import Analytics from "./Analytics/Analytics";
 
