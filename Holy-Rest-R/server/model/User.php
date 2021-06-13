@@ -67,7 +67,7 @@ class User extends Queries
 
     protected function returnNamesUsers()
     {
-        $sql = "SELECT Name,Email,ProfileImage FROM users";
+        $sql = "SELECT Name, Email, ProfileImage, RoleUser FROM users";
         return Queries::returnDatas($sql);
     }
 

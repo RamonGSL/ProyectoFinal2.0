@@ -157,7 +157,9 @@ switch ($data['Type']) {
         }
  */
         break;
-
+    case 'returnDataForDelete':
+        echo json_encode($functionUser->returnDatasForDelete($data));
+        break;
     default:
         # code...
         break;

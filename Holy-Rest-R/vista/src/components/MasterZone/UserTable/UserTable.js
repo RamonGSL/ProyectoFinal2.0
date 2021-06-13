@@ -3,7 +3,7 @@ import { ListGroup, Modal, Button } from "react-bootstrap";
 
 import {
   getAllNames,
-  deleteUser,
+  deleteUserData,
   changeRole,
   getDatasUser,
   logoutUser,
@@ -15,6 +15,9 @@ import { map } from "lodash";
 
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+import FaceIcon from "@material-ui/icons/Face";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
 
 export default function UserTable() {
   const [userNames, setUserNames] = useState(null);
@@ -41,14 +44,12 @@ export default function UserTable() {
 
   const deletUserEmail = async (email) => {
     let item = { user: email };
-    let response = await deleteUser(item);
+    let response = await deleteUserData(item);
 
-    if (response === "Has been deleted successfully") {
-      toast.success(response);
-    } else if (response === null) {
-      toast.error("Sorry, error in server please try again");
+    if (response === "Correct") {
+      toast.success("User has been successfully deleted");
     } else {
-      toast.warning(response);
+      toast.error("Error please try again later");
     }
   };
 
@@ -111,6 +112,9 @@ export default function UserTable() {
             <button onClick={() => updateRole(index.Email)}>
               <AddCircleOutlineRoundedIcon className="roleIcon" />
             </button>
+            {index.RoleUser === "0" ? <FaceIcon /> : null}
+            {index.RoleUser === "1" ? <LocationCityIcon /> : null}
+            {index.RoleUser === "2" ? <SupervisorAccountIcon /> : null}
           </ListGroup.Item>
         ))}
       </ListGroup>
@@ -171,7 +175,8 @@ export default function UserTable() {
           <Modal.Body>
             <label className="textModal" htmlFor="roleUser">
               Write Hotel for upgrade user to Admin for Hotel or Write Admin for
-              upgrade user to Admin for Web
+              upgrade user to Admin for Web or Write User for upgrade to User
+              for Web
             </label>
             <input
               className="modalInput textModal"
@@ -187,7 +192,11 @@ export default function UserTable() {
             <Button
               variant="primary"
               onClick={() => {
-                if (modalInput === "Hotel" || modalInput === "Admin") {
+                if (
+                  modalInput === "Hotel" ||
+                  modalInput === "Admin" ||
+                  modalInput === "User"
+                ) {
                   changeUserRole(modalInput);
                   let emailLocal = getDatasUser();
                   emailLocal = emailLocal.Email;

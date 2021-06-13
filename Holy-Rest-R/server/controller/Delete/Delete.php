@@ -17,7 +17,6 @@ $datasUser = $data["dataUser"];
 include_once('./functionsDelete.php');
 $functionsDelete = new functionsDelete();
 //Componentes del controlador
-
 if ($datasUser["RoleUser"] === "0") {
     echo $functionsDelete->deleteUserRole0($datasUser);
 } else if ($datasUser["RoleUser"] === "1") {

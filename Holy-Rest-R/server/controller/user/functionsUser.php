@@ -189,4 +189,10 @@ class functionsUser extends User
         $image = $image . "server/images/" . $nameOfImage;
         unlink($image);
     }
+
+    public function returnDatasForDelete($datas)
+    {
+        $return = User::returnEmail($datas['user']);
+        return $return;
+    }
 }

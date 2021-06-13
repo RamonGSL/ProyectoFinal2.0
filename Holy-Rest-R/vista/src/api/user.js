@@ -1,4 +1,5 @@
 import { API_URL } from "./../utils/constant";
+import { deleteUser } from "./deleteUser";
 const urlUser = `${API_URL}/server/controller/user/user.php`;
 
 export async function registerApi(formData) {
@@ -62,9 +63,9 @@ export async function loginApi(formData) {
 export async function datasUser() {
   let item = { Type: "datas" };
   let formData = getDatasUser();
-  if( formData.Email === null || formData.Password === null ) return null
+  if (formData.Email === null || formData.Password === null) return null;
   formData = Object.assign(formData, item);
-  
+
   try {
     const params = await createParams(formData);
     const response = await fetch(urlUser, params);
@@ -79,7 +80,7 @@ export async function datasUser() {
 export async function getAllNames() {
   let item = { Type: "names" };
   let formData = getDatasUser();
-  if( formData.Email === null || formData.Password === null ) return null
+  if (formData.Email === null || formData.Password === null) return null;
   formData = Object.assign(formData, item);
   try {
     const params = await createParams(formData);
@@ -92,10 +93,24 @@ export async function getAllNames() {
   }
 }
 
-export async function deleteUser(user) {
-  let item = { Type: "delete" };
+export async function deleteUserData(user) {
+  let item = { Type: "returnDataForDelete" };
+  let formData = Object.assign(user, item);
+
+  try {
+    const params = await createParams(formData);
+    const response = await fetch(urlUser, params);
+    const result = await response.json();
+    const resultPrepare = { dataUser: result[0] };
+    const newResult = await deleteUser(resultPrepare);
+    return newResult;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+  /*  let item = { Type: "delete" };
   let formData = getDatasUser();
-  if( formData.Email === null || formData.Password === null ) return null
+  if (formData.Email === null || formData.Password === null) return null;
   formData = Object.assign(formData, item, user);
   try {
     const params = await createParams(formData);
@@ -105,19 +120,21 @@ export async function deleteUser(user) {
   } catch (error) {
     console.log(error);
     return null;
-  }
+  } */
 }
 export async function changeRole(user) {
   if (user.user === "Hotel") {
     user.user = "1";
   } else if (user.user === "Admin") {
     user.user = "2";
+  } else if (user.user === "User") {
+    user.user = "0";
   } else {
     return null;
   }
   let item = { Type: "role" };
   let formData = getDatasUser();
-  if( formData.Email === null || formData.Password === null ) return null
+  if (formData.Email === null || formData.Password === null) return null;
   formData = Object.assign(formData, item, user);
   try {
     const params = await createParams(formData);
