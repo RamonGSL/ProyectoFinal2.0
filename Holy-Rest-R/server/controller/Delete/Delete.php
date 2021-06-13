@@ -11,17 +11,17 @@ if ($method == "OPTIONS") {
     header("HTTP/1.1 200 OK");
     die();
 }
-
-//Componentes del controlador
-include_once('../model/Assessment.php');
-include_once('../model/Food.php');
-include_once('../model/Hotel.php');
-include_once('../model/Images.php');
-include_once('../model/Manage.php');
-include_once('../model/Room.php');
-include_once('../model/User.php');
-
+//Error en el includeOnce
 $data = json_decode(file_get_contents("php://input"), true);
+$datasUser = $data["dataUser"];
+include_once('./functionsDelete.php');
+$functionsDelete = new functionsDelete();
+//Componentes del controlador
 
-
-var_dump($data);
+if ($datasUser["RoleUser"] === "0") {
+    echo $functionsDelete->deleteUserRole0($datasUser);
+} else if ($datasUser["RoleUser"] === "1") {
+    echo $functionsDelete->deleteUserRole1($datasUser);
+} else if ($datasUser["RoleUser"] === "2") {
+    echo $functionsDelete->deleteUserRole2($datasUser);
+}

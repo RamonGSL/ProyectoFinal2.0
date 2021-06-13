@@ -17,7 +17,7 @@ export default function ComponentsHotel(props) {
   return (
     <div>
       <Modal
-        className="basic-modal modalForm"
+        className="basic-modal modalForm formCreateHotel"
         centered
         size="lg"
         show={show}

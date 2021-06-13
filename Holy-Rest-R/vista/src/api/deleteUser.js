@@ -1,12 +1,14 @@
 import { API_URL } from "./../utils/constant";
 
-const urlDelete = `${API_URL}/server/controller/Delete.php`;
+const urlDelete = `${API_URL}/server/controller/Delete/Delete.php`;
 
 export async function deleteUser(formData) {
   try {
     const params = await createParams(formData);
     const response = await fetch(urlDelete, params);
-    console.log(response);
+    let reader = await response.body.getReader().read();
+    let body = new TextDecoder().decode(reader.value);
+    return body;
   } catch (error) {
     console.log(error);
     return null;

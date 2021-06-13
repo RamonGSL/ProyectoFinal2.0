@@ -12,6 +12,7 @@ class functionsImages extends Images
         for ($i = 0; $i < count($allImages) - 1; $i++) {
             $imageName = $this->generateRandomString();
             $type = 0;
+            var_dump($allImages[$i]);
             if ($allImages[$i]["Type"] === "principal") {
                 $type = 1;
             }
