@@ -13,6 +13,8 @@ import {
   isPasswordValid,
 } from "./../../utils/validations";
 import { logoutUser, updateUserApi } from "./../../api/user";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { deleteUser } from "../../api/deleteUser";
 
 export default function ChangeForm(props) {
   //datos del usuario
@@ -137,6 +139,12 @@ export default function ChangeForm(props) {
     }
   };
 
+  const deleteUserButton = async (e) => {
+    e.preventDefault();
+    console.log("Entra");
+    let res = await deleteUser(userData);
+  };
+
   return (
     <div>
       <Form id="formUpdate" onSubmit={onSubmit} onChange={onChange}>
@@ -234,6 +242,11 @@ export default function ChangeForm(props) {
           {!spinnerLoad ? "Submit" : <Spinner animation="border" />}
         </Button>
       </Form>
+      <DeleteIcon
+        onClick={(e) => {
+          deleteUserButton(e);
+        }}
+      />
     </div>
   );
 }

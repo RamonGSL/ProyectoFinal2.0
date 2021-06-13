@@ -107,6 +107,10 @@ class functionsUser extends User
         }
     }
 
+    public function deleteMy($datas)
+    {
+    }
+
     public function newRole($datas)
     {
         $role = $this->checkRoleUser($datas['Email'], $datas['Password']);
