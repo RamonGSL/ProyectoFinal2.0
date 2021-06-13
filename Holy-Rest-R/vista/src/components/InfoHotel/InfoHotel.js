@@ -98,7 +98,7 @@ export default function InfoHotel(props) {
           </Modal.Header>
           <Modal.Body>
             <div>
-              <Banner images={arrayImages} />
+              <Banner images={arrayImages} hotel={hotel.Id} />
               <Tabs
                 id="controlled-tab-example"
                 activeKey={key}

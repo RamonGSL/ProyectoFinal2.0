@@ -4,11 +4,17 @@ import { API_URL } from "../../../utils/constant";
 import { map } from "lodash";
 
 export default function Banner(props) {
-  const { images } = props;
+  const { images, hotel } = props;
   const [img, setImg] = useState(null);
   const prepareImages = async () => {
     let expect = await images;
-    setImg(await expect);
+    let newArray = [];
+    for (const image of expect) {
+      if (image.IdHotel === hotel) {
+        newArray.push(image);
+      }
+    }
+    setImg(await newArray);
   };
 
   useEffect(() => {

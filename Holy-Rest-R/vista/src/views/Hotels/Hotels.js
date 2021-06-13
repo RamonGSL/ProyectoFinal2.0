@@ -78,9 +78,13 @@ export default function Hotels() {
             {loadImage === true ? (
               <div className="contentHotels">
                 {map(hotels, (index, value) => (
-                  <div key={value} id={index.Name} className="conteinerHotel">
-                    {index.Disabled !== 1 ? (
-                      <>
+                  <>
+                    {index.Disabled !== "1" ? (
+                      <div
+                        key={value}
+                        id={index.Name}
+                        className="conteinerHotel"
+                      >
                         <div className="containerImgPrincipal">
                           <img
                             className="imgPrincipalHotel"
@@ -125,9 +129,9 @@ export default function Hotels() {
                             />
                           </div>
                         ) : null}
-                      </>
+                      </div>
                     ) : null}
-                  </div>
+                  </>
                 ))}
               </div>
             ) : null}
