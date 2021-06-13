@@ -14,6 +14,7 @@ import Assessment from "../../components/Assessment/Assessment";
 var HotelImages = [];
 
 export default function Hotels() {
+  let urlImage = "../../assets/userDefault.jpeg";
   const [loadImage, setLoadImage] = useState(false);
   const [hotels, setHotels] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -76,49 +77,53 @@ export default function Hotels() {
               <div className="contentHotels">
                 {map(hotels, (index, value) => (
                   <div key={value} id={index.Name} className="conteinerHotel">
-                    <div className="containerImgPrincipal">
-                      <img
-                        className="imgPrincipalHotel"
-                        src={index.ImagePrincipal}
-                        alt="Img"
-                      />
-                    </div>
-                    <div className="contentInfoHotel">
-                      <p className="textImg">{index.HotelName}</p>
-                      <p className="textImg">{index.Description}</p>
-                      <InfoRoundedIcon
-                        onClick={() => {
-                          setInfoHotel(index);
-                          setShowModal(true);
-                        }}
-                        className="iconsHotels"
-                      ></InfoRoundedIcon>
-                      <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
-                      {user !== null ? (
-                        <ControlPointRoundedIcon
-                          onClick={() => {
-                            setOpenDialog(true);
-                          }}
-                          className="iconsHotels"
-                        ></ControlPointRoundedIcon>
-                      ) : null}
-                    </div>
-                    {showModal === true ? (
-                      <InfoHotel
-                        show={showModal}
-                        setShow={setShowModal}
-                        hotel={infoHotel}
-                      />
-                    ) : null}
-                    {openDialog === true ? (
-                      <div>
-                        <Assessment
-                          user={user}
-                          openDialog={openDialog}
-                          setDialog={setOpenDialog}
-                          hotel={index.Id}
-                        />
-                      </div>
+                    {index.Disabled !== 1 ? (
+                      <>
+                        <div className="containerImgPrincipal">
+                          <img
+                            className="imgPrincipalHotel"
+                            src={index.ImagePrincipal}
+                            alt="Img"
+                          />
+                        </div>
+                        <div className="contentInfoHotel">
+                          <p className="textImg">{index.HotelName}</p>
+                          <p className="textImg">{index.Description}</p>
+                          <InfoRoundedIcon
+                            onClick={() => {
+                              setInfoHotel(index);
+                              setShowModal(true);
+                            }}
+                            className="iconsHotels"
+                          ></InfoRoundedIcon>
+                          <CommentRoundedIcon className="iconsHotels"></CommentRoundedIcon>
+                          {user !== null ? (
+                            <ControlPointRoundedIcon
+                              onClick={() => {
+                                setOpenDialog(true);
+                              }}
+                              className="iconsHotels"
+                            ></ControlPointRoundedIcon>
+                          ) : null}
+                        </div>
+                        {showModal === true ? (
+                          <InfoHotel
+                            show={showModal}
+                            setShow={setShowModal}
+                            hotel={infoHotel}
+                          />
+                        ) : null}
+                        {openDialog === true ? (
+                          <div>
+                            <Assessment
+                              user={user}
+                              openDialog={openDialog}
+                              setDialog={setOpenDialog}
+                              hotel={index.Id}
+                            />
+                          </div>
+                        ) : null}
+                      </>
                     ) : null}
                   </div>
                 ))}

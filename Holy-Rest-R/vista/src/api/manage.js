@@ -24,6 +24,7 @@ export async function comproveAdmin() {
 }
 
 export async function createManage(id) {
+  console.log(id);
   try {
     let item = { Type: "createManage" };
     let idHotel = { IdHotel: id };

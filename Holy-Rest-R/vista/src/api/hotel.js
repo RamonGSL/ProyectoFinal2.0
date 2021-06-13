@@ -32,7 +32,9 @@ export async function createHotel(hotel) {
     if (result === "Error") {
       return null;
     } else {
-      let newResult = await createManage(result);
+      let reader = await response.body.getReader().read();
+      let body = new TextDecoder().decode(reader.value);
+      let newResult = await createManage(body);
       if (newResult === "Correct") {
         return newResult;
       } else {
