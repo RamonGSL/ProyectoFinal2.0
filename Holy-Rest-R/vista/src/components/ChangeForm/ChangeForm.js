@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Redirect } from "react-router-dom";
 import "./scss/ChangeForm.scss";
 import { API_URL } from "./../../utils/constant";
+import { Modal } from "react-bootstrap";
 import {
   isEmailValid,
   isNameValid,
@@ -20,7 +21,7 @@ export default function ChangeForm(props) {
   //datos del usuario
   const [userData, setUserData] = useState(props);
   const [formData, setFormData] = useState(userData.dataUser);
-
+  const [modalOC, setModalOC] = useState(false);
   const [imageUser, setImageUser] = useState(
     `${API_URL}/server/images/${userData.dataUser.ProfileImage}`
   );
@@ -253,9 +254,27 @@ export default function ChangeForm(props) {
       </Form>
       <DeleteIcon
         onClick={(e) => {
-          deleteUserButton(e);
+          e.preventDefault();
+          setModalOC(true);
         }}
       />
+      <Modal show={modalOC} onHide={modalOC}>
+        <Modal.Header closeButton>
+          <Modal.Title className="textModal">You're sure?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={modalOC}>
+            Close
+          </Button>
+          <Button
+            onClick={(e) => {
+              deleteUserButton(e);
+            }}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

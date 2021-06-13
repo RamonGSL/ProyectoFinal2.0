@@ -38,14 +38,15 @@ export default function Hotels() {
           HotelImages.push(image);
         }
       });
-
-      hotels.forEach((hotel) => {
-        let image = returnImageHotel(hotel.Id);
-        if (image !== null) {
-          hotel.ImagePrincipal = image;
-        }
-      });
-      setLoadImage(true);
+      if (hotels !== "0 datas") {
+        hotels.forEach((hotel) => {
+          let image = returnImageHotel(hotel.Id);
+          if (image !== null) {
+            hotel.ImagePrincipal = image;
+          }
+        });
+        setLoadImage(true);
+      }
     }
   };
 
@@ -66,11 +67,12 @@ export default function Hotels() {
   useEffect(() => {
     getHotels();
     getUser();
+    console.log(hotels);
   }, []);
 
   return (
     <>
-      {hotels !== null ? (
+      {hotels === null ? (
         <div className="Hotels">
           <div className="hotelBox">
             {loadImage === true ? (
