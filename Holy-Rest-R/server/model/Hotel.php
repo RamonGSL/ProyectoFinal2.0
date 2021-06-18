@@ -31,7 +31,7 @@ class Hotel extends Queries
 
     protected function changeDisabled($Email, $DisabledHotel)
     {
-        $sql = "UPDATE hotels SET Email = '$Email', Disabled = '$DisabledHotel'";
+        $sql = "UPDATE hotels SET Disabled = '$DisabledHotel' WHERE Email = '$Email'";
         return Queries::insertDatas($sql);
     }
 

@@ -12,7 +12,7 @@ class functionsImages extends Images
         for ($i = 0; $i < count($allImages) - 1; $i++) {
             $imageName = $this->generateRandomString();
             $type = 0;
-            var_dump($allImages[$i]);
+
             if ($allImages[$i]["Type"] === "principal") {
                 $type = 1;
             }
@@ -41,7 +41,7 @@ class functionsImages extends Images
             $count = 0;
             $direction = utils::returnDirection();
 
-            $imageDirection = $direction . "server/imagesHotels/" . $image["IdHotel"] . "/";
+            $imageDirection = $direction . "ImagesHotels/" . $image["IdHotel"] . "/";
             if (is_dir($imageDirection)) {
                 if ($dh = opendir($imageDirection)) {
                     while (($file = readdir($dh)) !== false) {
@@ -67,7 +67,7 @@ class functionsImages extends Images
     private function generateFolder($idHotel)
     {
         $direction = utils::returnDirection();
-        $folderDirection = $direction . "server/imagesHotels/" . $idHotel;
+        $folderDirection = $direction . "ImagesHotels/" . $idHotel;
 
         if (scandir($folderDirection)) {
             $this->removeImages($folderDirection);
@@ -85,15 +85,16 @@ class functionsImages extends Images
             $extension = explode(";", $extension);
             $extension = $extension[0];
 
-            $nameReturn = $imageName . "." . $extension;
+            $nameReturn = $imageName . "." . 'jpg';
 
             while ($imageName == Images::checkNameImage($imageName)) {
                 $imageName = $this->generateRandomString();
             }
 
             $direction = utils::returnDirection();
-            $imageDirection = $direction . "server/imagesHotels/" . $idHotel . "/";
-            $imageName = $imageDirection . $imageName . "." . $extension;
+            $imageDirection = $direction . "ImagesHotels/" . $idHotel . "/";
+            $imageName = $imageDirection . $imageName . ".jpg";
+
 
             $fp = fopen($imageName, 'w+');
             fwrite($fp, base64_decode($imageB64[1]));
@@ -136,7 +137,7 @@ class functionsImages extends Images
     private function getImg($images)
     {
         $direction = utils::returnDirection();
-        $folderDirection = $direction . "server/imagesHotels/";
+        $folderDirection = $direction . "ImagesHotels/";
         try {
 
             for ($i = 0; $i < count($images); $i++) {
@@ -151,34 +152,17 @@ class functionsImages extends Images
             return null;
         }
     }
+
     public function getALLImages()
     {
         $totalImages = Images::returnALLImages();
-        $arrayImgExt = [];
         if ($totalImages == "0 datas") {
-            return null;
-        }
+            	return null;
+        }else{
 
-        foreach ($totalImages as $image) {
-            $direction = utils::returnDirection();
-            $imageDirection = $direction . "server/imagesHotels/" . $image["IdHotel"] . "/";
+		return $totalImages;
+	}
 
-            if (is_dir($imageDirection)) {
-                if ($dh = opendir($imageDirection)) {
-                    while (($file = readdir($dh)) !== false) {
-                        if (strpos($file, $image['NameImage']) !== false) {
-                            array_push($arrayImgExt, $file);
-                        }
-                    }
-                    closedir($dh);
-                }
-            }
-        }
-
-        for ($i = 0; $i < count($arrayImgExt); $i++) {
-            $totalImages[$i]["NameImage"] = $arrayImgExt[$i];
-        }
-        return $totalImages;
     }
 
     public function getUrl()

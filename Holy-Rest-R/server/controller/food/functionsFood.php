@@ -6,6 +6,7 @@ class functionsFood extends Food
 {
     public function createAllFoods($allFoods)
     {
+
         $result = [];
         $deleteTable = Food::deleteALLFoods($allFoods[0]["IdHotel"]);
         for ($i = 0; $i < count($allFoods) - 1; $i++) {
@@ -14,6 +15,7 @@ class functionsFood extends Food
         }
         foreach ($result as $insert) {
             if ($insert !== "New record created successfully") {
+
                 return null;
             }
         }

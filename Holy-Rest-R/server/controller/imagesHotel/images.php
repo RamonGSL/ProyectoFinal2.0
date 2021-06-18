@@ -11,12 +11,14 @@ if ($method == "OPTIONS") {
     header("HTTP/1.1 200 OK");
     die();
 }
-$data = json_decode(file_get_contents("php://input"), true);
-//Componentes del controlador
-include_once('./functionsImages.php');
 
+$data = json_decode(file_get_contents("php://input"), true);
+
+//Componentes del controlador
+
+include_once('./functionsImages.php');
 $functionImages = new functionsImages();
-$comprobationType = true;
+
 if (array_key_exists('idHotel', $data)) {
     echo  json_encode($functionImages->getImagesForHotel($data));
 } else if (array_key_exists('GetImages', $data)) {
@@ -26,3 +28,4 @@ if (array_key_exists('idHotel', $data)) {
 } else {
     echo  json_encode($functionImages->createAllImages($data));
 }
+

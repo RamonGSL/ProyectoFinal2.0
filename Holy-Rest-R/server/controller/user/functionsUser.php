@@ -1,7 +1,8 @@
 <?php
-//declare(strict_types=1);
 include_once('./../../model/User.php');
 include_once('./../utils.php');
+include_once('./../images');
+
 class functionsUser extends User
 {
 
@@ -48,7 +49,6 @@ class functionsUser extends User
     {
         $newProfileImage = null;
         $updateDatas = null;
-
         if (count($datas) == 10) {
             $datas['Password'] = md5($datas['Password']);
         }
@@ -59,7 +59,9 @@ class functionsUser extends User
             if ($nameOfImage != "userDefault.jpeg" && $nameOfImage != $datas['ProfileImage']) {
                 $this->removeImage($nameOfImage);
                 $newProfileImage = $this->generateImage($datas['ProfileImage']);
-            }
+            }else if($datas['ProfileImage'] !== 'userDefault.jpeg'){
+		$newProfileImage = $this->generateImage($datas['ProfileImage']);
+		}
         }
         $comprobationEmail = User::returnOtherUserEmail($datas["Email"], $datas["Id"]);
         if ($comprobationEmail == "0 datas") {
@@ -68,8 +70,7 @@ class functionsUser extends User
             } else {
                 $updateDatas = User::updateDatas($datas["Name"], $datas["Surnames"], $datas["Email"], $datas["Password"], $datas["DateOfBirth"], $datas["Country"], $datas["ProfileImage"], $datas["Id"]);
             }
-
-            if ($updateDatas == "New record created successfully") {
+            if ($updateDatas == 'New record created successfully') {
                 $returnPassAndEmail = User::returnEmailAndPass($datas["Id"]);
                 return $returnPassAndEmail;
             } else {
@@ -113,9 +114,9 @@ class functionsUser extends User
 
     public function newRole($datas)
     {
-        $role = $this->checkRoleUser($datas['Email'], $datas['Password']);
+        $role = $this->checkRoleUser($datas['EmailUserLogin'], $datas['PasswordUserLogin']);
         if ($role[0]["RoleUser"] == "2") {
-            $changeRole = User::changeRole($datas['user'], $datas['Email']);
+            $changeRole = User::changeRole($datas['Role'], $datas['Email']);
             if ($changeRole != "New record created successfully") {
                 return "Error";
             } else {
@@ -150,24 +151,29 @@ class functionsUser extends User
         $extension = explode(";", $extension);
         $extension = $extension[0];
 
-
         $imageName = $this->generateRandomString();
-        $nameReturn = $imageName . "." . $extension;
+        $nameReturn = $imageName . ".". $extension;
 
         while ($imageName == User::checkNameImage($imageName)) {
             $imageName = $this->generateRandomString();
         }
 
+	$fp2 = fopen('https://server.holy-rest.com/images/hola.txt', 'r');
+	fwrite($fp2,'HOLA');
+	fclose($fp2);
+
         $direction = utils::returnDirection();
-        $imageDirection = $direction . "server/images/";
+        $imageDirection = $direction . "images/";
         $imageName = $imageDirection . $imageName . "." . $extension;
-
-
-        $fp = fopen($imageName, 'w+');
+	try {
+        $fp = fopen($imageName, 'w');
         fwrite($fp, base64_decode($imageB64[1]));
         fclose($fp);
-
+	} catch(\Throwable $th){
+	echo 'Error';
+	}
         return $nameReturn;
+
     }
 
     private function  generateRandomString($word = 30)
@@ -186,7 +192,7 @@ class functionsUser extends User
     private function removeImage($nameOfImage)
     {
         $image = utils::returnDirection();
-        $image = $image . "server/images/" . $nameOfImage;
+        $image = $image . "images/" . $nameOfImage;
         unlink($image);
     }
 
